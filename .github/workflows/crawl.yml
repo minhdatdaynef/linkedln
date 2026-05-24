@@ -2,8 +2,8 @@ name: LinkedIn Daily Crawler
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 7:00 sáng GMT+7 = 00:00 UTC mỗi ngày
-  workflow_dispatch:        # cho phép chạy thủ công trên GitHub UI
+    - cron: '0 0 * * *'   # 7:00 sáng GMT+7 mỗi ngày
+  workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -30,15 +30,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Playwright Chromium
-        run: playwright install chromium --with-deps
-
       - name: Run crawler
-        env:
-          LI_AT: ${{ secrets.LI_AT }}
         run: python crawler.py
 
-      - name: Upload results as artifact
+      - name: Upload results
         uses: actions/upload-artifact@v4
         with:
           name: jobs-${{ github.run_number }}
