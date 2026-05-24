@@ -1,0 +1,11 @@
+.env
+linkedin_session.json
+data/*.json
+data/*.csv
+venv/
+__pycache__/
+*.pyc
+.idea/
+debug.py
+debug_screenshot.png
+*.png
