@@ -339,7 +339,7 @@ def save_results(results, filename="data/jobs.json"):
             print(f"  {job['title']} @ {job['company']} | {job['location']} | {job['posted']}")
 
 
-def send_email(jobs, crawl_date=None):
+def send_email(jobs, crawl_date=None, keywords=None, location=None):
     """
     Gui email HTML tom tat danh sach jobs den EMAIL_TO.
     Yeu cau .env: GMAIL_USER, GMAIL_APP_PASSWORD, EMAIL_TO
@@ -356,7 +356,10 @@ def send_email(jobs, crawl_date=None):
         print("[Email] Khong co job nao de gui.")
         return
 
-    date_str = crawl_date or time.strftime("%d/%m/%Y")
+    date_str  = crawl_date or time.strftime("%d/%m/%Y")
+    kw_str    = ", ".join(keywords) if keywords else "việc làm"
+    loc_str   = location or "Việt Nam"
+    sender_id = gmail_user or "LinkedIn Crawler"
 
     # ── Build HTML ──────────────────────────────────────────
     cards_html = ""
@@ -419,11 +422,11 @@ def send_email(jobs, crawl_date=None):
           📋 LinkedIn Jobs — {date_str}
         </h1>
         <p style="font-family:Arial;color:#666;font-size:13px;margin-top:0;">
-          Tìm thấy <b>{len(jobs)}</b> việc làm Marketing tại Hà Nội trong 24h qua
+          Tìm thấy <b>{len(jobs)}</b> việc làm <b>{kw_str}</b> tại {loc_str}
         </p>
         {cards_html}
         <p style="font-family:Arial;color:#aaa;font-size:11px;text-align:center;">
-          Gửi tự động bởi LinkedIn Crawler · minhdat31502@gmail.com
+          Gửi tự động bởi LinkedIn Crawler · {sender_id}
         </p>
       </div>
     </body></html>
@@ -431,7 +434,7 @@ def send_email(jobs, crawl_date=None):
 
     # ── Send ─────────────────────────────────────────────────
     msg = MIMEMultipart("alternative")
-    msg["Subject"] = f"[LinkedIn Jobs] {len(jobs)} việc Marketing HN · {date_str}"
+    msg["Subject"] = f"[LinkedIn Jobs] {len(jobs)} việc {kw_str} tại {loc_str} · {date_str}"
     msg["From"]    = gmail_user
     msg["To"]      = email_to
     msg.attach(MIMEText(html_body, "html", "utf-8"))
@@ -495,4 +498,4 @@ if __name__ == "__main__":
     save_results(filtered, "data/jobs.json")
 
     # Gui email ket qua
-    send_email(filtered)
+    send_email(filtered, keywords=SEARCH_KEYWORDS, location=LOCATION)
