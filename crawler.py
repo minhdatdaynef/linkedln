@@ -446,10 +446,17 @@ def send_email(jobs, crawl_date=None):
 
 
 if __name__ == "__main__":
-    SEARCH_KEYWORDS = ["marketing", "truyen thong", "su kien"]
-    TITLE_FILTER    = ["marketing", "truyen thong", "truyền thông", "su kien", "sự kiện", "event"]
-    LOCATION        = "Hanoi"
-    MAX_PAGES       = 4
+    # Doc tu env (web trigger) hoac dung default (schedule)
+    _kw_env = os.getenv("CRAWL_KEYWORDS", "marketing,truyen thong,su kien")
+    SEARCH_KEYWORDS = [k.strip() for k in _kw_env.split(",") if k.strip()]
+    LOCATION        = os.getenv("CRAWL_LOCATION", "Hanoi")
+    MAX_PAGES       = int(os.getenv("CRAWL_MAX_PAGES", "4"))
+    DATE_POSTED_CFG = os.getenv("CRAWL_DATE_POSTED", "24h") or "24h"
+    EXPERIENCE_CFG  = os.getenv("CRAWL_EXPERIENCE", "") or None
+    WORK_TYPE_CFG   = os.getenv("CRAWL_WORK_TYPE", "") or None
+    JOB_TYPE_CFG    = os.getenv("CRAWL_JOB_TYPE", "") or None
+
+    TITLE_FILTER = ["marketing", "truyen thong", "truyền thông", "su kien", "sự kiện", "event"]
 
     all_jobs = []
     for kw in SEARCH_KEYWORDS:
@@ -457,7 +464,10 @@ if __name__ == "__main__":
             keyword=kw,
             location=LOCATION,
             max_pages=MAX_PAGES,
-            date_posted="24h",
+            date_posted=DATE_POSTED_CFG,
+            experience=EXPERIENCE_CFG,
+            work_type=WORK_TYPE_CFG,
+            job_type=JOB_TYPE_CFG,
         )
         all_jobs.extend(jobs)
 

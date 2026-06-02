@@ -4,6 +4,28 @@ on:
   schedule:
     - cron: '0 0 * * *'   # 7:00 sáng GMT+7 mỗi ngày
   workflow_dispatch:
+    inputs:
+      keywords:
+        description: 'Keywords (comma separated)'
+        default: 'marketing,truyen thong,su kien'
+      location:
+        description: 'Location'
+        default: 'Hanoi'
+      date_posted:
+        description: 'Date posted (24h/week/month/any)'
+        default: '24h'
+      max_pages:
+        description: 'Max pages per keyword'
+        default: '4'
+      experience:
+        description: 'Experience level (entry/mid_senior/...)'
+        default: ''
+      work_type:
+        description: 'Work type (remote/hybrid/onsite)'
+        default: ''
+      job_type:
+        description: 'Job type (fulltime/parttime/...)'
+        default: ''
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -35,6 +57,13 @@ jobs:
       - name: Run crawler
         run: python crawler.py
         env:
+          CRAWL_KEYWORDS: ${{ github.event.inputs.keywords || 'marketing,truyen thong,su kien' }}
+          CRAWL_LOCATION: ${{ github.event.inputs.location || 'Hanoi' }}
+          CRAWL_DATE_POSTED: ${{ github.event.inputs.date_posted || '24h' }}
+          CRAWL_MAX_PAGES: ${{ github.event.inputs.max_pages || '4' }}
+          CRAWL_EXPERIENCE: ${{ github.event.inputs.experience || '' }}
+          CRAWL_WORK_TYPE: ${{ github.event.inputs.work_type || '' }}
+          CRAWL_JOB_TYPE: ${{ github.event.inputs.job_type || '' }}
           GROG_API_KEY: ${{ secrets.GROG_API_KEY }}
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
@@ -52,5 +81,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
-          git diff --staged --quiet || git commit -m "chore: crawl jobs $(date +'%Y-%m-%d')"
+          git diff --staged --quiet || git commit -m "chore: crawl jobs $(date +'%Y-%m-%d %H:%M')"
           git push
