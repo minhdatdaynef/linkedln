@@ -456,7 +456,8 @@ if __name__ == "__main__":
     WORK_TYPE_CFG   = os.getenv("CRAWL_WORK_TYPE", "") or None
     JOB_TYPE_CFG    = os.getenv("CRAWL_JOB_TYPE", "") or None
 
-    TITLE_FILTER = ["marketing", "truyen thong", "truyền thông", "su kien", "sự kiện", "event"]
+    # Title filter tu dong theo keywords nguoi dung nhap
+    TITLE_FILTER = list(set(SEARCH_KEYWORDS))
 
     all_jobs = []
     for kw in SEARCH_KEYWORDS:
