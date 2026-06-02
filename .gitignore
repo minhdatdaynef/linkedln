@@ -1,7 +1,7 @@
 .env
 linkedin_session.json
-data/*.json
-data/*.csv
+data/raw_jobs.json
+data/raw_marketing_hanoi.json
 venv/
 __pycache__/
 *.pyc
