@@ -118,8 +118,12 @@ export default function Home() {
   const [analysis,    setAnalysis]    = useState<CVAnalysis | null>(null);
   const [chatError,   setChatError]   = useState("");
   const [improvedCV,  setImprovedCV]  = useState("");
+  const [originalCV,  setOriginalCV]  = useState(""); // original before AI edits
   const [rightTab,    setRightTab]    = useState<"analysis" | "improved">("analysis");
+  const [cvView,      setCvView]      = useState<"improved" | "original">("improved");
   const [copied,      setCopied]      = useState(false);
+  const [downloaded,  setDownloaded]  = useState(false);
+  const [confirmReset,setConfirmReset]= useState(false);
 
   const cvFileRef    = useRef<HTMLInputElement>(null);
   const jdFileRef    = useRef<HTMLInputElement>(null);
@@ -271,7 +275,10 @@ export default function Home() {
       }
 
       // ── Update persisted contexts if server extracted new ones ─────────────
-      if (data.cvText && data.cvText !== cv) { setCvContext(data.cvText); cv = data.cvText; }
+      if (data.cvText && data.cvText !== cv) {
+        if (!originalCV) setOriginalCV(data.cvText); // lock in original on first upload
+        setCvContext(data.cvText); cv = data.cvText;
+      }
       if (data.jdText && data.jdText !== jd) { setJdContext(data.jdText); jd = data.jdText; }
 
       // ── Update analysis panel ──────────────────────────────
@@ -399,7 +406,16 @@ export default function Home() {
                 </span>
               )}
             </div>
-            {polling && <p style={{fontSize:12,color:"#888",margin:"8px 0 0"}}>⏳ Đang chạy trên GitHub Actions (~2-3 phút). Kết quả tự cập nhật khi xong.</p>}
+            {polling && (
+              <div style={{marginTop:10,background:"#e8f4fd",border:"1px solid #90caf9",borderRadius:8,padding:"10px 14px",display:"flex",justifyContent:"space-between",alignItems:"center",gap:10,flexWrap:"wrap" as const}}>
+                <span style={{fontSize:13,color:"#1565c0"}}>
+                  ⏳ Crawler đang chạy (~2-3 phút). Trong lúc chờ, hãy <b>upload CV</b> để phân tích ngay khi có kết quả!
+                </span>
+                <button onClick={()=>setActiveTab("cv")} style={{background:"#0a66c2",color:"#fff",border:"none",borderRadius:6,padding:"6px 14px",fontSize:12,cursor:"pointer",fontWeight:700,flexShrink:0}}>
+                  Phân tích CV →
+                </button>
+              </div>
+            )}
           </div>
 
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
@@ -455,6 +471,37 @@ export default function Home() {
 
       {/* ════ TAB 2: CV CHATBOT ════ */}
       {activeTab==="cv" && (
+        <>
+        {/* ── 3-step progress tracker ── */}
+        <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginBottom:20,padding:"14px 20px",background:"#fff",border:"1px solid #e0e0e0",borderRadius:10}}>
+          {([
+            {n:1, label:"Upload CV",       done:!!cvContext},
+            {n:2, label:"Thêm JD",         done:!!jdContext},
+            {n:3, label:"Nhận phân tích",  done:!!analysis},
+          ] as {n:number;label:string;done:boolean}[]).map(({n,label,done},i,arr)=>(
+            <div key={n} style={{display:"flex",alignItems:"center",flex:i<arr.length-1?1:undefined}}>
+              <div style={{display:"flex",flexDirection:"column" as const,alignItems:"center",gap:4,minWidth:80}}>
+                <div style={{
+                  width:34,height:34,borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",
+                  fontWeight:700,fontSize:14,transition:"all .3s",
+                  background: done?"#0a66c2": n===([!!cvContext,!!jdContext,!!analysis].filter(Boolean).length+1)?"#e3f2fd":"#f0f0f0",
+                  color:      done?"#fff":   n===([!!cvContext,!!jdContext,!!analysis].filter(Boolean).length+1)?"#0a66c2":"#bbb",
+                  border:     done?"none":   n===([!!cvContext,!!jdContext,!!analysis].filter(Boolean).length+1)?"2px solid #0a66c2":"2px solid #ddd",
+                  boxShadow:  done?"0 2px 6px rgba(10,102,194,.3)":"none",
+                }}>
+                  {done ? "✓" : n}
+                </div>
+                <span style={{fontSize:11.5,fontWeight:done?700:400,color:done?"#0a66c2":"#999",whiteSpace:"nowrap" as const,textAlign:"center" as const}}>
+                  {label}
+                </span>
+              </div>
+              {i<arr.length-1 && (
+                <div style={{flex:1,height:3,background:done?"#0a66c2":"#e0e0e0",borderRadius:2,margin:"0 4px 16px 4px",transition:"background .3s"}}/>
+              )}
+            </div>
+          ))}
+        </div>
+
         <div style={{display:"flex",gap:16,alignItems:"flex-start",flexWrap:"wrap" as const}}>
 
           {/* ── Left: Chat panel ─────────────────────────────── */}
@@ -473,12 +520,28 @@ export default function Home() {
                     📄 JD: {jdFileName}
                   </span>
                 )}
-                <button
-                  onClick={()=>{ setCvContext(""); setJdContext(""); setCvFileName(""); setJdFileName(""); setMessages([INIT_MSG]); setAnalysis(null); }}
-                  style={{background:"none",border:"none",color:"#888",fontSize:12,cursor:"pointer",padding:"3px 8px",textDecoration:"underline"}}
-                >
-                  Xóa & bắt đầu lại
-                </button>
+                {!confirmReset ? (
+                  <button
+                    onClick={()=>setConfirmReset(true)}
+                    style={{background:"none",border:"none",color:"#888",fontSize:12,cursor:"pointer",padding:"3px 8px",textDecoration:"underline"}}
+                  >
+                    Xóa & bắt đầu lại
+                  </button>
+                ) : (
+                  <span style={{fontSize:12,display:"flex",alignItems:"center",gap:6}}>
+                    <span style={{color:"#c62828"}}>Xóa hết dữ liệu?</span>
+                    <button onClick={()=>{
+                      setCvContext(""); setJdContext(""); setCvFileName(""); setJdFileName("");
+                      setMessages([INIT_MSG]); setAnalysis(null); setImprovedCV("");
+                      setOriginalCV(""); setRightTab("analysis"); setConfirmReset(false);
+                    }} style={{background:"#c62828",color:"#fff",border:"none",borderRadius:4,padding:"2px 8px",fontSize:11,cursor:"pointer",fontWeight:700}}>
+                      Xóa
+                    </button>
+                    <button onClick={()=>setConfirmReset(false)} style={{background:"#eee",color:"#555",border:"none",borderRadius:4,padding:"2px 8px",fontSize:11,cursor:"pointer"}}>
+                      Hủy
+                    </button>
+                  </span>
+                )}
               </div>
             )}
 
@@ -738,47 +801,72 @@ export default function Home() {
                       </div>
                     ) : (
                       <>
-                        {/* Header + copy button */}
-                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-                          <span style={{fontSize:13,fontWeight:700,color:"#333"}}>📝 CV đã cải thiện</span>
+                        {/* Header row */}
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8,flexWrap:"wrap" as const,gap:6}}>
+                          <span style={{fontSize:13,fontWeight:700,color:"#333"}}>📝 So sánh CV</span>
+                          <div style={{display:"flex",gap:6}}>
+                            {/* Copy */}
+                            <button
+                              onClick={()=>{
+                                navigator.clipboard.writeText(cvView==="improved"?improvedCV:originalCV);
+                                setCopied(true); setTimeout(()=>setCopied(false),2000);
+                              }}
+                              style={{background:copied?"#e8f5e9":"#f0f6ff",color:copied?"#2e7d32":"#0a66c2",border:`1px solid ${copied?"#a5d6a7":"#c5d8f6"}`,borderRadius:6,padding:"4px 10px",fontSize:11.5,cursor:"pointer",fontWeight:600}}
+                            >
+                              {copied?"✓ Copied":"📋 Copy"}
+                            </button>
+                            {/* Download */}
+                            <button
+                              onClick={()=>{
+                                const text = cvView==="improved"?improvedCV:originalCV;
+                                const blob = new Blob([text],{type:"text/plain;charset=utf-8"});
+                                const url  = URL.createObjectURL(blob);
+                                const a    = document.createElement("a");
+                                a.href=url; a.download=cvView==="improved"?"CV_improved.txt":"CV_original.txt";
+                                a.click(); URL.revokeObjectURL(url);
+                                setDownloaded(true); setTimeout(()=>setDownloaded(false),2000);
+                              }}
+                              style={{background:downloaded?"#e8f5e9":"#fff3e0",color:downloaded?"#2e7d32":"#e65100",border:`1px solid ${downloaded?"#a5d6a7":"#ffcc80"}`,borderRadius:6,padding:"4px 10px",fontSize:11.5,cursor:"pointer",fontWeight:600}}
+                            >
+                              {downloaded?"✓ Đã tải":"⬇ Tải .txt"}
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Before / After toggle */}
+                        <div style={{display:"flex",background:"#f0f0f0",borderRadius:8,padding:3,marginBottom:10,gap:2}}>
                           <button
-                            onClick={()=>{
-                              navigator.clipboard.writeText(improvedCV);
-                              setCopied(true);
-                              setTimeout(()=>setCopied(false), 2000);
-                            }}
-                            style={{
-                              background: copied?"#e8f5e9":"#f0f6ff",
-                              color: copied?"#2e7d32":"#0a66c2",
-                              border:`1px solid ${copied?"#a5d6a7":"#c5d8f6"}`,
-                              borderRadius:6, padding:"4px 12px",
-                              fontSize:12, cursor:"pointer", fontWeight:600,
-                            }}
+                            onClick={()=>setCvView("original")}
+                            style={{flex:1,padding:"5px 0",fontSize:12,fontWeight:600,cursor:"pointer",border:"none",borderRadius:6,transition:"all .2s",background:cvView==="original"?"#fff":"transparent",color:cvView==="original"?"#333":"#888",boxShadow:cvView==="original"?"0 1px 3px rgba(0,0,0,.12)":"none"}}
                           >
-                            {copied ? "✓ Đã copy!" : "📋 Copy"}
+                            CV gốc
+                          </button>
+                          <button
+                            onClick={()=>setCvView("improved")}
+                            style={{flex:1,padding:"5px 0",fontSize:12,fontWeight:600,cursor:"pointer",border:"none",borderRadius:6,transition:"all .2s",background:cvView==="improved"?"#0a66c2":"transparent",color:cvView==="improved"?"#fff":"#888",boxShadow:cvView==="improved"?"0 1px 4px rgba(10,102,194,.3)":"none"}}
+                          >
+                            ✨ CV cải thiện
                           </button>
                         </div>
 
-                        <div style={{fontSize:11,color:"#888",marginBottom:10,fontStyle:"italic"}}>
-                          ⚠️ Hãy review và chỉnh sửa trước khi dùng — AI có thể thêm chi tiết chưa chính xác.
-                        </div>
+                        {/* Diff hint */}
+                        {cvView==="improved" && (
+                          <div style={{fontSize:11,color:"#888",marginBottom:8,fontStyle:"italic"}}>
+                            ⚠️ Hãy review kỹ trước khi dùng — AI có thể thêm chi tiết chưa chính xác.
+                          </div>
+                        )}
 
-                        {/* CV text */}
+                        {/* CV text display */}
                         <pre style={{
-                          whiteSpace:"pre-wrap" as const,
-                          wordBreak:"break-word" as const,
-                          fontFamily:"inherit",
-                          fontSize:12, lineHeight:1.7,
-                          color:"#222",
-                          background:"#fafafa",
-                          border:"1px solid #e8e8e8",
-                          borderRadius:8,
-                          padding:"14px",
-                          maxHeight:520,
-                          overflowY:"auto" as const,
-                          margin:0,
+                          whiteSpace:"pre-wrap" as const, wordBreak:"break-word" as const,
+                          fontFamily:"inherit", fontSize:12, lineHeight:1.7, color:"#222",
+                          background: cvView==="improved"?"#f8fff8":"#fafafa",
+                          border:`1px solid ${cvView==="improved"?"#c8e6c9":"#e8e8e8"}`,
+                          borderRadius:8, padding:"14px",
+                          maxHeight:480, overflowY:"auto" as const, margin:0,
+                          transition:"background .2s, border-color .2s",
                         }}>
-                          {improvedCV}
+                          {cvView==="improved" ? improvedCV : (originalCV || cvContext)}
                         </pre>
                       </>
                     )}
@@ -790,6 +878,7 @@ export default function Home() {
           </div>
 
         </div>
+        </> // end CV tab wrapper
       )}
 
       {/* Blink animation for typing indicator */}
