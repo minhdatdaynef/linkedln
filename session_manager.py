@@ -1,7 +1,3 @@
-import sys, io
-if sys.platform == "win32":
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-
 from playwright.sync_api import sync_playwright, BrowserContext
 from dotenv import load_dotenv
 import os, json
@@ -35,11 +31,22 @@ def is_session_file_valid() -> bool:
 def verify_session_online(context: BrowserContext) -> bool:
     page = context.new_page()
     try:
-        page.goto("https://www.linkedin.com/feed/", wait_until="domcontentloaded", timeout=30000)
-        page.wait_for_timeout(2000)
-        valid = "/feed" in page.url
+        # Dung "commit" tranh loi HTTP 999 cua LinkedIn
+        try:
+            page.goto("https://www.linkedin.com/feed/",
+                      wait_until="commit", timeout=30000)
+        except Exception:
+            pass
+        page.wait_for_timeout(3000)
+        url = page.url
+        valid = (
+            "linkedin.com" in url
+            and "chrome-error" not in url
+            and "login" not in url
+            and "authwall" not in url
+        )
         status = "HOP LE" if valid else "HET HAN"
-        print(f"[Session] Online check: {status} | url={page.url}")
+        print(f"[Session] Online check: {status} | url={url}")
         return valid
     except Exception as e:
         print(f"[Session] Loi check online: {e}")
@@ -98,25 +105,38 @@ def get_context(playwright, headless=True):
     """
 
     # ── 1. LI_AT cookie tu env (GitHub Actions hoac .env) ──
-    li_at = os.getenv("LI_AT")
+    li_at     = os.getenv("LI_AT",       "").strip()
+    jsession  = os.getenv("JSESSIONID",  "").strip()
+    bcookie   = os.getenv("BCOOKIE",     "").strip()
+    bscookie  = os.getenv("BSCOOKIE",    "").strip()
+
     if li_at:
-        print("[Session] Dung LI_AT cookie tu environment.")
+        print("[Session] Dung cookies tu environment.")
         browser = playwright.chromium.launch(
             headless=headless,
             args=["--disable-blink-features=AutomationControlled", "--no-sandbox"]
         )
         context = browser.new_context(user_agent=UA, viewport={"width": 1280, "height": 800})
-        context.add_cookies([{
-            "name":     "li_at",
-            "value":    li_at,
-            "domain":   ".linkedin.com",
-            "path":     "/",
-            "httpOnly": True,
-            "secure":   True,
-        }])
+
+        # Warmup: linkedin.com truoc khi add cookies
+        _p = context.new_page()
+        try:
+            _p.goto("https://www.linkedin.com", wait_until="domcontentloaded", timeout=30000)
+        except Exception:
+            pass
+        _p.wait_for_timeout(2000)
+        _p.close()
+
+        context.add_cookies([c for c in [
+            {"name": "li_at",      "value": li_at,    "domain": ".linkedin.com", "path": "/", "httpOnly": True,  "secure": True,  "sameSite": "None"},
+            {"name": "JSESSIONID", "value": jsession, "domain": ".linkedin.com", "path": "/", "httpOnly": False, "secure": True,  "sameSite": "None"},
+            {"name": "bcookie",    "value": bcookie,  "domain": ".linkedin.com", "path": "/", "httpOnly": False, "secure": False, "sameSite": "Lax"},
+            {"name": "bscookie",   "value": bscookie, "domain": ".linkedin.com", "path": "/", "httpOnly": True,  "secure": True,  "sameSite": "None"},
+        ] if c["value"]])
+
         if verify_session_online(context):
             return browser, context
-        print("[Session] LI_AT het han hoac sai!")
+        print("[Session] Cookies het han hoac sai!")
         context.close()
         browser.close()
 

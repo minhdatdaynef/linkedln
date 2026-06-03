@@ -7,42 +7,76 @@ export const runtime = "nodejs";
 type Role    = "user" | "assistant";
 type Message = { role: Role; content: string };
 
+// ── Config ────────────────────────────────────────────────────────────────────
+
+const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
+const ALLOWED_EXT    = ["pdf", "docx", "txt"];
+const CV_LIMIT       = 14000; // chars of CV sent to model (llama-3.3-70b ~128k ctx)
+const JD_LIMIT       = 7000;
+
 // ── System prompt ─────────────────────────────────────────────────────────────
 
 const SYSTEM = `Bạn là HR Consultant AI — chuyên gia giúp ứng viên tối ưu CV để phù hợp với công việc mong muốn.
 
 NHIỆM VỤ:
 - Phân tích CV so với JD, chỉ ra điểm mạnh, điểm thiếu và gợi ý cải thiện cụ thể
-- Trả lời câu hỏi follow-up: viết lại từng section, thêm keywords, rút gọn, dịch, v.v.
+- Trả lời câu hỏi follow-up: viết lại từng section, thêm keywords, rút gọn, dịch, viết cover letter, gợi ý câu hỏi phỏng vấn, v.v.
 - Đặt câu hỏi làm rõ khi cần (ví dụ: số năm kinh nghiệm, mức lương mong muốn, kỹ năng bổ sung)
 - Luôn dùng TIẾNG VIỆT, thân thiện và chuyên nghiệp
+
+⛔ NGUYÊN TẮC TRUNG THỰC (RẤT QUAN TRỌNG):
+- TUYỆT ĐỐI KHÔNG được bịa ra: con số/thành tích, tên công ty, chức danh, mốc thời gian, bằng cấp, chứng chỉ mà CV gốc KHÔNG có.
+- Khi một câu cần số liệu định lượng để mạnh hơn nhưng CV gốc không cung cấp → KHÔNG tự bịa số, hãy chèn placeholder dạng [điền số liệu của bạn, vd: tăng __%] để ứng viên tự điền.
+- Bạn được phép: viết lại câu chữ cho mạnh hơn, sắp xếp lại, bổ sung keyword phù hợp với kỹ năng đã có, gợi ý động từ hành động. KHÔNG được phép phát minh kinh nghiệm mới.
 
 QUY TRÌNH KHI BẮT ĐẦU:
 1. Nếu chưa có CV → hỏi người dùng cung cấp (dán text hoặc upload)
 2. Nếu chưa có JD → hỏi xin JD hoặc link LinkedIn
-3. Khi có đủ cả hai → phân tích ngay, kèm <analysis> VÀ <improved_cv> block bên dưới
+3. Khi có đủ cả hai → phân tích ngay, kèm các block bên dưới
 
-FORMAT ĐẶC BIỆT — khi thực hiện phân tích (lần đầu hoặc cập nhật), kèm 2 block ở CUỐI tin nhắn:
+FORMAT ĐẶC BIỆT — khi thực hiện phân tích (lần đầu hoặc cập nhật CV), kèm các block sau ở CUỐI tin nhắn:
 
-Block 1 — điểm phân tích:
+Block 1 — điểm phân tích (ats_checks: tối thiểu 4 mục kiểm tra tính tương thích ATS như độ phủ keyword, dùng động từ hành động, có số liệu định lượng, độ dài hợp lý, có đủ section chuẩn):
 <analysis>
-{"match_score":<0-100>,"summary":"<2-3 câu>","strengths":["..."],"gaps":["..."],"cv_suggestions":["..."],"keywords_to_add":["..."]}
+{"match_score":<0-100>,"summary":"<2-3 câu>","strengths":["..."],"gaps":["..."],"cv_suggestions":["..."],"keywords_to_add":["..."],"ats_checks":[{"label":"<tên kiểm tra>","pass":<true|false>,"hint":"<gợi ý ngắn nếu chưa đạt>"}]}
 </analysis>
 
-Block 2 — phiên bản CV đã được cải thiện hoàn chỉnh (giữ nguyên cấu trúc gốc, thêm keywords còn thiếu, làm nổi bật thành tích bằng số liệu, sửa các phần yếu dựa trên JD):
+Block 2 — danh sách thay đổi chính bạn đã thực hiện so với CV gốc (mỗi dòng 1 thay đổi, ngắn gọn):
+<changes>
+- <thay đổi 1>
+- <thay đổi 2>
+</changes>
+
+Block 3 — phiên bản CV đã cải thiện hoàn chỉnh dạng text (giữ nguyên sự thật trong CV gốc, thêm keyword phù hợp, làm rõ thành tích, dùng placeholder cho số liệu chưa có):
 <improved_cv>
 [Toàn bộ CV dạng text đã cải thiện — rõ ràng, đầy đủ các section, sẵn sàng để dùng]
 </improved_cv>
 
-Khi người dùng yêu cầu viết lại / cập nhật CV → cũng kèm <improved_cv> block mới.
-Khi người dùng chỉ hỏi thông thường (không cần cập nhật) → KHÔNG cần kèm 2 block trên.`;
+Block 4 — CHÍNH CV đó nhưng ở dạng JSON có cấu trúc để xuất file Word (BẮT BUỘC đúng schema, không thêm field lạ, để chuỗi rỗng "" hoặc mảng rỗng [] nếu thiếu):
+<cv_json>
+{"name":"","title":"","contact":{"email":"","phone":"","linkedin":"","location":""},"objective":"","experience":[{"role":"","company":"","period":"","location":"","bullets":[""]}],"education":[{"degree":"","school":"","period":"","detail":""}],"skills":[{"group":"","items":""}],"certifications":[""],"languages":"","activities":[""]}
+</cv_json>
 
-// ── File parsing (reused from cv-review) ─────────────────────────────────────
+Khi người dùng yêu cầu viết lại / cập nhật CV → kèm lại cả 4 block trên với nội dung mới.
+Khi người dùng yêu cầu viết THƯ XIN VIỆC (cover letter) → kèm block:
+<cover_letter>
+[Nội dung thư xin việc hoàn chỉnh theo JD, 3-4 đoạn]
+</cover_letter>
+Khi người dùng chỉ hỏi thông thường (không cần cập nhật CV) → KHÔNG cần kèm các block trên.`;
+
+// ── File parsing (shared) ─────────────────────────────────────────────────────
 
 async function parseFile(file: File): Promise<string> {
-  const bytes  = await file.arrayBuffer();
-  const buf    = Buffer.from(bytes);
-  const ext    = file.name.split(".").pop()?.toLowerCase();
+  if (file.size > MAX_FILE_BYTES)
+    throw new Error(`File quá lớn (tối đa ${MAX_FILE_BYTES / 1024 / 1024}MB)`);
+
+  const ext = file.name.split(".").pop()?.toLowerCase() || "";
+  if (!ALLOWED_EXT.includes(ext))
+    throw new Error(`Định dạng .${ext} không hỗ trợ. Chỉ nhận: ${ALLOWED_EXT.join(", ")}`);
+
+  const bytes = await file.arrayBuffer();
+  const buf   = Buffer.from(bytes);
+
   if (ext === "pdf") {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const pdfParse = require("pdf-parse/lib/pdf-parse.js");
@@ -58,9 +92,9 @@ async function parseFile(file: File): Promise<string> {
 // ── Route handler ─────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  const apiKey = process.env.GROG_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY || process.env.GROG_API_KEY;
   if (!apiKey)
-    return NextResponse.json({ error: "Missing GROG_API_KEY" }, { status: 500 });
+    return NextResponse.json({ error: "Thiếu GROQ_API_KEY trên server" }, { status: 500 });
 
   try {
     const contentType = req.headers.get("content-type") || "";
@@ -90,8 +124,8 @@ export async function POST(req: NextRequest) {
     const contextParts: Message[] = [];
     if (cvText || jdText) {
       let ctx = "=== THÔNG TIN HIỆN CÓ ===\n";
-      if (cvText) ctx += `\n[CV ứng viên]\n${cvText.slice(0, 5000)}\n`;
-      if (jdText) ctx += `\n[Mô tả công việc (JD)]\n${jdText.slice(0, 3500)}\n`;
+      if (cvText) ctx += `\n[CV ứng viên]\n${cvText.slice(0, CV_LIMIT)}\n`;
+      if (jdText) ctx += `\n[Mô tả công việc (JD)]\n${jdText.slice(0, JD_LIMIT)}\n`;
       // Inject as a hidden user/assistant exchange so the model "knows" the docs
       contextParts.push({ role: "user",      content: ctx });
       contextParts.push({ role: "assistant", content: "Đã nhận. Tôi đã đọc toàn bộ CV và JD, sẵn sàng hỗ trợ bạn." });
@@ -106,8 +140,8 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model:       "llama-3.3-70b-versatile",
-        temperature: 0.4,
-        max_tokens:  4096,
+        temperature: 0.3,
+        max_tokens:  6000,
         messages: [
           { role: "system", content: SYSTEM },
           ...contextParts,
@@ -115,6 +149,14 @@ export async function POST(req: NextRequest) {
         ],
       }),
     });
+
+    if (!groqRes.ok) {
+      const errText = await groqRes.text().catch(() => "");
+      return NextResponse.json(
+        { error: `Groq trả về ${groqRes.status}. ${errText.slice(0, 300)}` },
+        { status: 502 }
+      );
+    }
 
     const groqData = await groqRes.json();
     const raw      = (groqData.choices?.[0]?.message?.content as string) || "";
@@ -131,13 +173,40 @@ export async function POST(req: NextRequest) {
     const cvMatch = raw.match(/<improved_cv>([\s\S]*?)<\/improved_cv>/i);
     if (cvMatch) improvedCV = cvMatch[1].trim();
 
-    // Strip both special blocks from the visible reply
+    // ── Parse <cv_json> block (structured, for DOCX export) ───────────────────
+    let cvJson: Record<string, unknown> | null = null;
+    const jMatch = raw.match(/<cv_json>([\s\S]*?)<\/cv_json>/i);
+    if (jMatch) {
+      try { cvJson = JSON.parse(jMatch[1].trim()); } catch { /* ignore */ }
+    }
+
+    // ── Parse <changes> block ─────────────────────────────────────────────────
+    let changes: string[] = [];
+    const chMatch = raw.match(/<changes>([\s\S]*?)<\/changes>/i);
+    if (chMatch) {
+      changes = chMatch[1]
+        .split("\n")
+        .map(l => l.replace(/^[-*•]\s*/, "").trim())
+        .filter(Boolean);
+    }
+
+    // ── Parse <cover_letter> block ────────────────────────────────────────────
+    let coverLetter: string | null = null;
+    const clMatch = raw.match(/<cover_letter>([\s\S]*?)<\/cover_letter>/i);
+    if (clMatch) coverLetter = clMatch[1].trim();
+
+    // Strip all special blocks from the visible reply
     const reply = raw
       .replace(/<analysis>[\s\S]*?<\/analysis>/gi, "")
       .replace(/<improved_cv>[\s\S]*?<\/improved_cv>/gi, "")
+      .replace(/<cv_json>[\s\S]*?<\/cv_json>/gi, "")
+      .replace(/<changes>[\s\S]*?<\/changes>/gi, "")
+      .replace(/<cover_letter>[\s\S]*?<\/cover_letter>/gi, "")
       .trim();
 
-    return NextResponse.json({ reply, analysis, improvedCV, cvText, jdText });
+    return NextResponse.json({
+      reply, analysis, improvedCV, cvJson, changes, coverLetter, cvText, jdText,
+    });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     return NextResponse.json({ error: msg }, { status: 500 });

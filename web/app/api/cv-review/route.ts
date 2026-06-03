@@ -59,9 +59,9 @@ async function parseCVFile(file: File): Promise<string> {
 // ── Route handler ─────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  const apiKey = process.env.GROG_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY || process.env.GROG_API_KEY;
   if (!apiKey)
-    return NextResponse.json({ error: "Missing GROG_API_KEY on server" }, { status: 500 });
+    return NextResponse.json({ error: "Thiếu GROQ_API_KEY trên server" }, { status: 500 });
 
   try {
     let cvText = "";
@@ -102,12 +102,12 @@ export async function POST(req: NextRequest) {
     // ── Call Groq ──────────────────────────────────────────
     const prompt = `CV của ứng viên:
 ---
-${cvText.slice(0, 6000)}
+${cvText.slice(0, 14000)}
 ---
 
 Yêu cầu công việc (JD):
 ---
-${jdText.slice(0, 4000)}
+${jdText.slice(0, 7000)}
 ---
 
 Phân tích CV theo JD và trả về JSON CHÍNH XÁC theo format sau (không markdown, không text ngoài JSON):
@@ -132,7 +132,7 @@ Phân tích CV theo JD và trả về JSON CHÍNH XÁC theo format sau (không m
         messages: [
           {
             role:    "system",
-            content: "Bạn là chuyên gia HR cao cấp và tư vấn nghề nghiệp. Phân tích CV của ứng viên và so sánh với yêu cầu công việc để đưa ra gợi ý cải thiện cụ thể, thực tế. Luôn dùng TIẾNG VIỆT. Chỉ trả về JSON thuần túy, không có markdown, không có bất kỳ text nào ngoài JSON.",
+            content: "Bạn là chuyên gia HR cao cấp và tư vấn nghề nghiệp. Phân tích CV của ứng viên và so sánh với yêu cầu công việc để đưa ra gợi ý cải thiện cụ thể, thực tế. TUYỆT ĐỐI KHÔNG bịa ra số liệu, thành tích, công ty hay bằng cấp mà CV gốc không có; nếu cần số liệu hãy gợi ý ứng viên tự bổ sung. Luôn dùng TIẾNG VIỆT. Chỉ trả về JSON thuần túy, không có markdown, không có bất kỳ text nào ngoài JSON.",
           },
           { role: "user", content: prompt },
         ],

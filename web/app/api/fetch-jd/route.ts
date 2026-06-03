@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     const html = await res.text();
 
-    // ── Extract fields ───────────────────────────────────────
+    // ── Primary extraction (LinkedIn guest markup) ───────────
     const descEl = html.match(
       /<div[^>]*class="[^"]*show-more-less-html__markup[^"]*"[^>]*>([\s\S]*?)<\/div>/
     );
@@ -67,19 +67,41 @@ export async function POST(req: NextRequest) {
       /<a[^>]*class="[^"]*topcard__org-name-link[^"]*"[^>]*>([\s\S]*?)<\/a>/
     );
 
-    if (!descEl?.[1]) {
+    let description = descEl?.[1] ? stripHtml(descEl[1]) : "";
+    let title       = stripHtml(titleEl?.[1]  || "");
+    let company     = stripHtml(companyEl?.[1] || "");
+
+    // ── Fallback 1: JSON-LD structured data ──────────────────
+    if (!description) {
+      const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+      if (ld?.[1]) {
+        try {
+          const data = JSON.parse(ld[1]);
+          const node = Array.isArray(data) ? data.find(d => d.description) : data;
+          if (node?.description) description = stripHtml(String(node.description));
+          if (!title && node?.title)             title = stripHtml(String(node.title));
+          if (!company && node?.hiringOrganization?.name)
+            company = stripHtml(String(node.hiringOrganization.name));
+        } catch { /* ignore */ }
+      }
+    }
+
+    // ── Fallback 2: meta description ─────────────────────────
+    if (!description) {
+      const meta = html.match(/<meta[^>]+name="description"[^>]+content="([^"]+)"/i)
+                || html.match(/<meta[^>]+property="og:description"[^>]+content="([^"]+)"/i);
+      if (meta?.[1]) description = stripHtml(meta[1]);
+    }
+
+    if (!description) {
       return NextResponse.json(
         {
           error:
-            "Không tìm thấy mô tả job (LinkedIn có thể đã chặn). Vui lòng dán JD thủ công.",
+            "Không tìm thấy mô tả job (LinkedIn có thể đã chặn). Vui lòng dán JD thủ công hoặc đính kèm file JD.",
         },
         { status: 400 }
       );
     }
-
-    const description = stripHtml(descEl[1]);
-    const title       = stripHtml(titleEl?.[1]  || "");
-    const company     = stripHtml(companyEl?.[1] || "");
 
     const jdText = [
       title   ? `Vị trí: ${title}`    : "",

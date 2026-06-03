@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scout — Job Crawler & AI CV Advisor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ─────────────────────────────────────────────────────────────
+   SCOUT · design tokens — 3 visual directions via [data-theme]
+   ───────────────────────────────────────────────────────────── */
+:root,
+[data-theme="indigo"]{
+  --bg:#f6f5f2; --surface:#ffffff; --surface-2:#faf9f6; --surface-3:#f1efea;
+  --border:#e8e5df; --border-strong:#d8d4cc;
+  --text:#1d1c1a; --text-muted:#6a665f; --text-faint:#9a958c;
+  --primary:#4b46c9; --primary-hover:#3f3ab0; --primary-fg:#ffffff;
+  --primary-soft:#ecebfb; --primary-soft-fg:#3a35a3;
+  --success:#1f8a5b; --success-soft:#e3f4ec; --success-fg:#15663f;
+  --warning:#c87a16; --warning-soft:#fbefdc; --warning-fg:#8f560d;
+  --danger:#cf3b3b; --danger-soft:#fbe6e6; --danger-fg:#9c2626;
+  --info:#2563c9; --info-soft:#e6effb; --info-fg:#1c4d9c;
+  --accent:#8b46c9; --accent-soft:#f2e9fb; --accent-fg:#6a2ea0;
+  --ring:rgba(75,70,201,.28);
+  --shadow-sm:0 1px 2px rgba(28,27,25,.05), 0 1px 3px rgba(28,27,25,.04);
+  --shadow-md:0 4px 12px rgba(28,27,25,.07), 0 2px 4px rgba(28,27,25,.04);
+  --shadow-lg:0 18px 48px rgba(28,27,25,.12), 0 4px 12px rgba(28,27,25,.06);
+}
+[data-theme="evergreen"]{
+  --bg:#f4f3ec; --surface:#ffffff; --surface-2:#fbfaf4; --surface-3:#eeece2;
+  --border:#e4e2d6; --border-strong:#d3d0c2;
+  --text:#1c211c; --text-muted:#5f665d; --text-faint:#969c8f;
+  --primary:#1d7a52; --primary-hover:#176243; --primary-fg:#ffffff;
+  --primary-soft:#dff1e7; --primary-soft-fg:#155f3f;
+  --success:#1d7a52; --success-soft:#dff1e7; --success-fg:#155f3f;
+  --warning:#b87613; --warning-soft:#f7ecd6; --warning-fg:#85540b;
+  --danger:#c23b34; --danger-soft:#f8e5e3; --danger-fg:#922822;
+  --info:#1f6b8f; --info-soft:#e0eef4; --info-fg:#175068;
+  --accent:#a05a1e; --accent-soft:#f6ebdd; --accent-fg:#7c4314;
+  --ring:rgba(29,122,82,.26);
+  --shadow-sm:0 1px 2px rgba(28,33,28,.05), 0 1px 3px rgba(28,33,28,.04);
+  --shadow-md:0 4px 12px rgba(28,33,28,.07), 0 2px 4px rgba(28,33,28,.04);
+  --shadow-lg:0 18px 48px rgba(28,33,28,.12), 0 4px 12px rgba(28,33,28,.06);
+}
+[data-theme="midnight"]{
+  --bg:#0e1014; --surface:#171a21; --surface-2:#1c2029; --surface-3:#232834;
+  --border:#2a303c; --border-strong:#3a414f;
+  --text:#e8ebf1; --text-muted:#9aa3b4; --text-faint:#6b7384;
+  --primary:#37cdbe; --primary-hover:#4ad9ca; --primary-fg:#06201d;
+  --primary-soft:#16312f; --primary-soft-fg:#5fe3d4;
+  --success:#3bcf8a; --success-soft:#16302a; --success-fg:#6ee2b0;
+  --warning:#e0a64a; --warning-soft:#312814; --warning-fg:#f0c479;
+  --danger:#e8675f; --danger-soft:#331e1c; --danger-fg:#f2918a;
+  --info:#5aa6ef; --info-soft:#16263a; --info-fg:#8cc2f6;
+  --accent:#a87de8; --accent-soft:#241c38; --accent-fg:#c1a4f1;
+  --ring:rgba(55,205,190,.32);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 6px 18px rgba(0,0,0,.4);
+  --shadow-lg:0 22px 56px rgba(0,0,0,.55), 0 6px 16px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font, "Be Vietnam Pro"), system-ui, sans-serif;
+  font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  transition:background .35s ease, color .35s ease;
+}
+:root[data-font="jakarta"]{ --font:"Plus Jakarta Sans"; }
+:root[data-font="public"]{ --font:"Public Sans"; }
+
+#root{min-height:100vh}
+a{color:inherit; text-decoration:none}
+button{font-family:inherit}
+::selection{background:var(--primary-soft); color:var(--primary-soft-fg)}
+
+/* nice thin scrollbars throughout */
+.scroll{scrollbar-width:thin; scrollbar-color:var(--border-strong) transparent}
+.scroll::-webkit-scrollbar{width:9px; height:9px}
+.scroll::-webkit-scrollbar-track{background:transparent}
+.scroll::-webkit-scrollbar-thumb{background:var(--border-strong); border-radius:6px; border:2px solid transparent; background-clip:content-box}
+
+/* keyframes */
+@keyframes scout-pop{from{opacity:0; transform:translateY(8px) scale(.99)} to{opacity:1; transform:none}}
+@keyframes scout-fade{from{opacity:0} to{opacity:1}}
+@keyframes scout-blink{0%,80%,100%{opacity:.25; transform:translateY(0)} 40%{opacity:1; transform:translateY(-3px)}}
+@keyframes scout-spin{to{transform:rotate(360deg)}}
+@keyframes scout-pulse{0%,100%{opacity:1} 50%{opacity:.45}}
+@keyframes scout-sheen{to{background-position:200% 0}}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="data.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="ui.jsx"></script>
+<script type="text/babel" src="JobsTab.jsx"></script>
+<script type="text/babel" src="CVTab.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
