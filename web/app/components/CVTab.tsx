@@ -163,13 +163,13 @@ function AnalysisView({ analysis }: { analysis: CVAnalysis }) {
 // ── Improved CV view (diff + changes + export) ──────────────────
 function ImprovedCVView(props: {
   improvedCV: string; originalCV: string; cvContext: string;
-  changes: string[]; cvView: "improved" | "original"; setCvView: (v: "improved" | "original") => void;
+  cvView: "improved" | "original"; setCvView: (v: "improved" | "original") => void;
   showDiff: boolean; setShowDiff: (b: boolean) => void;
   copied: boolean; onCopy: () => void;
   docxLoading: boolean; onDocx: () => void; onTxt: () => void;
   diffLines: (a: string, b: string) => { text: string; added: boolean }[];
 }) {
-  const { improvedCV, originalCV, cvContext, changes, cvView, setCvView, showDiff, setShowDiff, copied, onCopy, docxLoading, onDocx, onTxt, diffLines } = props;
+  const { improvedCV, originalCV, cvContext, cvView, setCvView, showDiff, setShowDiff, copied, onCopy, docxLoading, onDocx, onTxt, diffLines } = props;
   if (!improvedCV) {
     return (
       <div style={{ display: "grid", placeItems: "center", height: "100%", color: "var(--text-faint)", textAlign: "center", padding: 32 }}>
@@ -210,17 +210,6 @@ function ImprovedCVView(props: {
         })}
       </div>
 
-      {cvView === "improved" && changes.length > 0 && (
-        <div style={{ background: "var(--warning-soft)", color: "var(--warning-fg)", borderRadius: 11, padding: "10px 14px" }}>
-          <div style={{ fontSize: 12.5, fontWeight: 700, marginBottom: 4, display: "flex", alignItems: "center", gap: 6 }}>
-            <Icon name="sparkles" size={14} /> Những thay đổi chính
-          </div>
-          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 12.5, lineHeight: 1.6 }}>
-            {changes.map((c, i) => <li key={i}>{c}</li>)}
-          </ul>
-        </div>
-      )}
-
       {cvView === "improved" && (
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
           <span style={{ display: "flex", gap: 8, alignItems: "flex-start", fontSize: 12.5, color: "var(--warning-fg)" }}>
@@ -251,6 +240,35 @@ function ImprovedCVView(props: {
   );
 }
 
+function ChangesView({ changes }: { changes: string[] }) {
+  if (!changes.length) {
+    return (
+      <div style={{ display: "grid", placeItems: "center", height: "100%", color: "var(--text-faint)", textAlign: "center", padding: 32 }}>
+        <div>
+          <Icon name="sparkles" size={32} style={{ margin: "0 auto 10px" }} />
+          Chưa có thay đổi. Gửi CV + JD để Scout viết lại và liệt kê điểm đã sửa.
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, animation: "scout-fade .4s ease" }}>
+      <OutputSection icon="sparkles" tone="warning" title="Những thay đổi chính">
+        <ol style={{ ...olist }}>{changes.map((c, i) => (
+          <li key={i} style={oitem}>
+            <span style={{ width: 22, height: 22, borderRadius: 7, background: "var(--warning-soft)", color: "var(--warning-fg)", fontSize: 12, fontWeight: 700, display: "grid", placeItems: "center", flex: "0 0 auto", marginTop: 1 }}>{i + 1}</span>
+            {c}
+          </li>
+        ))}</ol>
+      </OutputSection>
+      <div style={{ display: "flex", gap: 9, alignItems: "flex-start", padding: "11px 14px", borderRadius: 11, background: "var(--surface-2)", border: "1px solid var(--border)", color: "var(--text-muted)", fontSize: 13, lineHeight: 1.55 }}>
+        <Icon name="warn" size={16} style={{ marginTop: 1, flex: "0 0 auto", color: "var(--warning)" }} />
+        <span>Đây là các thay đổi AI đề xuất so với CV gốc. Mở tab <strong style={{ color: "var(--text)" }}>CV cải thiện</strong> để xem chi tiết (dòng tô xanh là phần được thêm).</span>
+      </div>
+    </div>
+  );
+}
+
 function CoverLetterView({ text, copied, onCopy }: { text: string; copied: boolean; onCopy: () => void }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 14, height: "100%", animation: "scout-fade .4s ease" }}>
@@ -267,13 +285,15 @@ function CoverLetterView({ text, copied, onCopy }: { text: string; copied: boole
   );
 }
 
+type OutTab = "analysis" | "improved" | "changes" | "cover";
+
 function OutputPanel(props: {
-  analysis: CVAnalysis | null; improvedCV: string; coverLetter: string;
-  outTab: "analysis" | "improved" | "cover"; setOutTab: (t: "analysis" | "improved" | "cover") => void; newCV: boolean;
+  analysis: CVAnalysis | null; improvedCV: string; coverLetter: string; changes: string[];
+  outTab: OutTab; setOutTab: (t: OutTab) => void; newCV: boolean;
   improvedProps: React.ComponentProps<typeof ImprovedCVView>;
   coverCopied: boolean; onCoverCopy: () => void;
 }) {
-  const { analysis, improvedCV, coverLetter, outTab, setOutTab, newCV, improvedProps, coverCopied, onCoverCopy } = props;
+  const { analysis, improvedCV, coverLetter, changes, outTab, setOutTab, newCV, improvedProps, coverCopied, onCoverCopy } = props;
   if (!analysis && !improvedCV && !coverLetter) {
     return (
       <div style={{ display: "grid", placeItems: "center", height: "100%", padding: 40, textAlign: "center" }}>
@@ -289,9 +309,10 @@ function OutputPanel(props: {
       </div>
     );
   }
-  const tabs: { id: "analysis" | "improved" | "cover"; label: string; icon: string; badge?: boolean; show: boolean }[] = [
+  const tabs: { id: OutTab; label: string; icon: string; badge?: boolean; show: boolean }[] = [
     { id: "analysis", label: "Phân tích", icon: "gauge", show: !!analysis },
     { id: "improved", label: "CV cải thiện", icon: "doc", badge: newCV, show: !!improvedCV },
+    { id: "changes", label: "Thay đổi", icon: "sparkles", show: changes.length > 0 },
     { id: "cover", label: "Thư xin việc", icon: "mail", show: !!coverLetter },
   ];
   const visible = tabs.filter(t => t.show);
@@ -318,6 +339,7 @@ function OutputPanel(props: {
       <div className="scroll" style={{ flex: 1, minHeight: 0, overflow: "auto", paddingRight: 4 }}>
         {outTab === "analysis" && analysis && <AnalysisView analysis={analysis} />}
         {outTab === "improved" && <ImprovedCVView {...improvedProps} />}
+        {outTab === "changes" && <ChangesView changes={changes} />}
         {outTab === "cover" && <CoverLetterView text={coverLetter} copied={coverCopied} onCopy={onCoverCopy} />}
       </div>
     </div>
@@ -355,7 +377,7 @@ export default function CVTab({ incoming, clearIncoming }: { incoming: Job | nul
   const [cvJson, setCvJson] = useState<CVJson | null>(null);
   const [changes, setChanges] = useState<string[]>([]);
   const [coverLetter, setCoverLetter] = useState("");
-  const [outTab, setOutTab] = useState<"analysis" | "improved" | "cover">("analysis");
+  const [outTab, setOutTab] = useState<OutTab>("analysis");
   const [cvView, setCvView] = useState<"improved" | "original">("improved");
   const [showDiff, setShowDiff] = useState(true);
   const [newCV, setNewCV] = useState(false);
@@ -706,11 +728,11 @@ export default function CVTab({ incoming, clearIncoming }: { incoming: Job | nul
         {/* OUTPUT PANEL */}
         <section style={{ display: "flex", flexDirection: "column", minHeight: 0, background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 20, padding: 22, boxShadow: "var(--shadow-sm)" }}>
           <OutputPanel
-            analysis={analysis} improvedCV={improvedCV} coverLetter={coverLetter}
+            analysis={analysis} improvedCV={improvedCV} coverLetter={coverLetter} changes={changes}
             outTab={outTab} setOutTab={setOutTab} newCV={newCV}
             coverCopied={coverCopied} onCoverCopy={copyCover}
             improvedProps={{
-              improvedCV, originalCV, cvContext, changes, cvView, setCvView, showDiff, setShowDiff,
+              improvedCV, originalCV, cvContext, cvView, setCvView, showDiff, setShowDiff,
               copied, onCopy: copyImproved, docxLoading, onDocx: downloadDocx, onTxt: downloadTxt, diffLines,
             }}
           />
