@@ -20,14 +20,22 @@ NHIỆM VỤ:
 QUY TRÌNH KHI BẮT ĐẦU:
 1. Nếu chưa có CV → hỏi người dùng cung cấp (dán text hoặc upload)
 2. Nếu chưa có JD → hỏi xin JD hoặc link LinkedIn
-3. Khi có đủ cả hai → phân tích ngay và kèm <analysis> block bên dưới
+3. Khi có đủ cả hai → phân tích ngay, kèm <analysis> VÀ <improved_cv> block bên dưới
 
-FORMAT ĐẶC BIỆT — Mỗi khi bạn thực hiện phân tích (lần đầu hoặc cập nhật), hãy kèm JSON trong thẻ sau ở CUỐI tin nhắn (không có markdown/backtick bọc ngoài):
+FORMAT ĐẶC BIỆT — khi thực hiện phân tích (lần đầu hoặc cập nhật), kèm 2 block ở CUỐI tin nhắn:
+
+Block 1 — điểm phân tích:
 <analysis>
-{"match_score":<0-100>,"summary":"<2-3 câu tóm tắt>","strengths":["..."],"gaps":["..."],"cv_suggestions":["..."],"keywords_to_add":["..."]}
+{"match_score":<0-100>,"summary":"<2-3 câu>","strengths":["..."],"gaps":["..."],"cv_suggestions":["..."],"keywords_to_add":["..."]}
 </analysis>
 
-Nếu người dùng chỉ hỏi câu hỏi thông thường (không cần cập nhật phân tích) thì KHÔNG cần kèm <analysis>.`;
+Block 2 — phiên bản CV đã được cải thiện hoàn chỉnh (giữ nguyên cấu trúc gốc, thêm keywords còn thiếu, làm nổi bật thành tích bằng số liệu, sửa các phần yếu dựa trên JD):
+<improved_cv>
+[Toàn bộ CV dạng text đã cải thiện — rõ ràng, đầy đủ các section, sẵn sàng để dùng]
+</improved_cv>
+
+Khi người dùng yêu cầu viết lại / cập nhật CV → cũng kèm <improved_cv> block mới.
+Khi người dùng chỉ hỏi thông thường (không cần cập nhật) → KHÔNG cần kèm 2 block trên.`;
 
 // ── File parsing (reused from cv-review) ─────────────────────────────────────
 
@@ -99,7 +107,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model:       "llama-3.3-70b-versatile",
         temperature: 0.4,
-        max_tokens:  2048,
+        max_tokens:  4096,
         messages: [
           { role: "system", content: SYSTEM },
           ...contextParts,
@@ -111,19 +119,25 @@ export async function POST(req: NextRequest) {
     const groqData = await groqRes.json();
     const raw      = (groqData.choices?.[0]?.message?.content as string) || "";
 
-    // ── Parse <analysis> block out of the reply ───────────────────────────────
+    // ── Parse <analysis> block ────────────────────────────────────────────────
     let analysis: Record<string, unknown> | null = null;
     const aMatch = raw.match(/<analysis>([\s\S]*?)<\/analysis>/i);
     if (aMatch) {
-      try {
-        analysis = JSON.parse(aMatch[1].trim());
-      } catch { /* ignore malformed JSON */ }
+      try { analysis = JSON.parse(aMatch[1].trim()); } catch { /* ignore */ }
     }
 
-    // Strip the <analysis> tag from the visible reply
-    const reply = raw.replace(/<analysis>[\s\S]*?<\/analysis>/gi, "").trim();
+    // ── Parse <improved_cv> block ─────────────────────────────────────────────
+    let improvedCV: string | null = null;
+    const cvMatch = raw.match(/<improved_cv>([\s\S]*?)<\/improved_cv>/i);
+    if (cvMatch) improvedCV = cvMatch[1].trim();
 
-    return NextResponse.json({ reply, analysis, cvText, jdText });
+    // Strip both special blocks from the visible reply
+    const reply = raw
+      .replace(/<analysis>[\s\S]*?<\/analysis>/gi, "")
+      .replace(/<improved_cv>[\s\S]*?<\/improved_cv>/gi, "")
+      .trim();
+
+    return NextResponse.json({ reply, analysis, improvedCV, cvText, jdText });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err);
     return NextResponse.json({ error: msg }, { status: 500 });

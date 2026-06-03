@@ -117,6 +117,9 @@ export default function Home() {
   const [jdFileName,  setJdFileName]  = useState("");
   const [analysis,    setAnalysis]    = useState<CVAnalysis | null>(null);
   const [chatError,   setChatError]   = useState("");
+  const [improvedCV,  setImprovedCV]  = useState("");
+  const [rightTab,    setRightTab]    = useState<"analysis" | "improved">("analysis");
+  const [copied,      setCopied]      = useState(false);
 
   const cvFileRef    = useRef<HTMLInputElement>(null);
   const jdFileRef    = useRef<HTMLInputElement>(null);
@@ -272,7 +275,8 @@ export default function Home() {
       if (data.jdText && data.jdText !== jd) { setJdContext(data.jdText); jd = data.jdText; }
 
       // ── Update analysis panel ──────────────────────────────
-      if (data.analysis) setAnalysis(data.analysis);
+      if (data.analysis)   setAnalysis(data.analysis);
+      if (data.improvedCV) { setImprovedCV(data.improvedCV); setRightTab("improved"); }
 
       // ── Add AI reply to chat ───────────────────────────────
       if (data.reply) addMsg({ role: "assistant", content: data.reply });
@@ -608,7 +612,7 @@ export default function Home() {
 
           {/* ── Right: Analysis panel ────────────────────────── */}
           <div style={{flex:"1 1 280px",minWidth:260}}>
-            {!analysis ? (
+            {!analysis && !improvedCV ? (
               <div style={{
                 ...S.card, textAlign:"center" as const,
                 color:"#aaa", padding:"48px 24px",
@@ -618,80 +622,169 @@ export default function Home() {
                 <div style={{fontSize:14}}>Kết quả phân tích sẽ hiển thị ở đây sau khi bạn cung cấp CV + JD</div>
               </div>
             ) : (
-              <div style={{...S.card,padding:20}}>
-                {/* Score */}
-                <div style={{marginBottom:18}}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
-                    <span style={{fontSize:14,fontWeight:700,color:"#333"}}>📊 Mức độ phù hợp</span>
-                    <span style={{
-                      fontSize:24,fontWeight:800,
-                      color:scoreColor(analysis.match_score),
-                      background: analysis.match_score>=70?"#e8f5e9":analysis.match_score>=40?"#fff3e0":"#ffebee",
-                      padding:"3px 14px",borderRadius:20,
-                    }}>
-                      {analysis.match_score}%
-                    </span>
-                  </div>
-                  <div style={{background:"#e0e0e0",borderRadius:8,height:9,overflow:"hidden"}}>
-                    <div style={{
-                      height:9,borderRadius:8,
-                      background:scoreColor(analysis.match_score),
-                      width:`${analysis.match_score}%`,
-                      transition:"width .6s ease",
-                    }}/>
-                  </div>
+              <div style={{...S.card,padding:0,overflow:"hidden"}}>
+
+                {/* ── Tab bar ── */}
+                <div style={{display:"flex",borderBottom:"1px solid #e0e0e0"}}>
+                  <button
+                    onClick={()=>setRightTab("analysis")}
+                    style={{
+                      flex:1, padding:"10px 0", fontSize:13, fontWeight:600, cursor:"pointer",
+                      border:"none", borderBottom: rightTab==="analysis"?"2px solid #0a66c2":"2px solid transparent",
+                      background: rightTab==="analysis"?"#f0f6ff":"#fff",
+                      color: rightTab==="analysis"?"#0a66c2":"#666",
+                    }}
+                  >
+                    📊 Phân tích
+                  </button>
+                  <button
+                    onClick={()=>setRightTab("improved")}
+                    style={{
+                      flex:1, padding:"10px 0", fontSize:13, fontWeight:600, cursor:"pointer",
+                      border:"none", borderBottom: rightTab==="improved"?"2px solid #0a66c2":"2px solid transparent",
+                      background: rightTab==="improved"?"#f0f6ff":"#fff",
+                      color: rightTab==="improved"?"#0a66c2":"#666",
+                      position:"relative" as const,
+                    }}
+                  >
+                    📝 CV cải thiện
+                    {improvedCV && rightTab!=="improved" && (
+                      <span style={{
+                        position:"absolute" as const, top:6, right:10,
+                        background:"#0a66c2", color:"#fff",
+                        fontSize:9, fontWeight:700, borderRadius:8,
+                        padding:"1px 5px",
+                      }}>MỚI</span>
+                    )}
+                  </button>
                 </div>
 
-                {/* Summary */}
-                {analysis.summary && (
-                  <div style={{background:"#f5f5f5",borderRadius:8,padding:"10px 12px",fontSize:13,color:"#333",lineHeight:1.6,marginBottom:16}}>
-                    💬 {analysis.summary}
-                  </div>
-                )}
-
-                {/* Strengths */}
-                {analysis.strengths?.length>0 && (
-                  <div style={{marginBottom:14}}>
-                    <div style={{fontSize:13,fontWeight:700,color:"#2e7d32",marginBottom:6}}>✅ Điểm mạnh</div>
-                    <ul style={{margin:0,paddingLeft:16,fontSize:12.5,color:"#333",lineHeight:1.8}}>
-                      {analysis.strengths.map((s,i)=><li key={i}>{s}</li>)}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Gaps */}
-                {analysis.gaps?.length>0 && (
-                  <div style={{marginBottom:14}}>
-                    <div style={{fontSize:13,fontWeight:700,color:"#e65100",marginBottom:6}}>⚠️ Cần cải thiện</div>
-                    <ul style={{margin:0,paddingLeft:16,fontSize:12.5,color:"#333",lineHeight:1.8}}>
-                      {analysis.gaps.map((g,i)=><li key={i}>{g}</li>)}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Suggestions */}
-                {analysis.cv_suggestions?.length>0 && (
-                  <div style={{marginBottom:14}}>
-                    <div style={{fontSize:13,fontWeight:700,color:"#0a66c2",marginBottom:6}}>💡 Gợi ý sửa CV</div>
-                    <ol style={{margin:0,paddingLeft:17,fontSize:12.5,color:"#333",lineHeight:1.9}}>
-                      {analysis.cv_suggestions.map((s,i)=><li key={i}>{s}</li>)}
-                    </ol>
-                  </div>
-                )}
-
-                {/* Keywords */}
-                {analysis.keywords_to_add?.length>0 && (
-                  <div>
-                    <div style={{fontSize:13,fontWeight:700,color:"#6a1b9a",marginBottom:6}}>🔑 Keywords nên thêm</div>
-                    <div style={{display:"flex",flexWrap:"wrap" as const,gap:5}}>
-                      {analysis.keywords_to_add.map((kw,i)=>(
-                        <span key={i} style={{background:"#f3e5f5",color:"#6a1b9a",border:"1px solid #ce93d8",borderRadius:4,padding:"3px 9px",fontSize:11.5,fontWeight:600}}>
-                          {kw}
+                {/* ── Tab: Phân tích ── */}
+                {rightTab==="analysis" && analysis && (
+                  <div style={{padding:18}}>
+                    {/* Score */}
+                    <div style={{marginBottom:16}}>
+                      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+                        <span style={{fontSize:13,fontWeight:700,color:"#333"}}>📊 Mức độ phù hợp</span>
+                        <span style={{
+                          fontSize:22,fontWeight:800,
+                          color:scoreColor(analysis.match_score),
+                          background: analysis.match_score>=70?"#e8f5e9":analysis.match_score>=40?"#fff3e0":"#ffebee",
+                          padding:"3px 14px",borderRadius:20,
+                        }}>
+                          {analysis.match_score}%
                         </span>
-                      ))}
+                      </div>
+                      <div style={{background:"#e0e0e0",borderRadius:8,height:9,overflow:"hidden"}}>
+                        <div style={{height:9,borderRadius:8,background:scoreColor(analysis.match_score),width:`${analysis.match_score}%`,transition:"width .6s ease"}}/>
+                      </div>
                     </div>
+
+                    {analysis.summary && (
+                      <div style={{background:"#f5f5f5",borderRadius:8,padding:"10px 12px",fontSize:13,color:"#333",lineHeight:1.6,marginBottom:14}}>
+                        💬 {analysis.summary}
+                      </div>
+                    )}
+
+                    {analysis.strengths?.length>0 && (
+                      <div style={{marginBottom:12}}>
+                        <div style={{fontSize:12.5,fontWeight:700,color:"#2e7d32",marginBottom:5}}>✅ Điểm mạnh</div>
+                        <ul style={{margin:0,paddingLeft:16,fontSize:12,color:"#333",lineHeight:1.8}}>
+                          {analysis.strengths.map((s,i)=><li key={i}>{s}</li>)}
+                        </ul>
+                      </div>
+                    )}
+
+                    {analysis.gaps?.length>0 && (
+                      <div style={{marginBottom:12}}>
+                        <div style={{fontSize:12.5,fontWeight:700,color:"#e65100",marginBottom:5}}>⚠️ Cần cải thiện</div>
+                        <ul style={{margin:0,paddingLeft:16,fontSize:12,color:"#333",lineHeight:1.8}}>
+                          {analysis.gaps.map((g,i)=><li key={i}>{g}</li>)}
+                        </ul>
+                      </div>
+                    )}
+
+                    {analysis.cv_suggestions?.length>0 && (
+                      <div style={{marginBottom:12}}>
+                        <div style={{fontSize:12.5,fontWeight:700,color:"#0a66c2",marginBottom:5}}>💡 Gợi ý sửa CV</div>
+                        <ol style={{margin:0,paddingLeft:17,fontSize:12,color:"#333",lineHeight:1.9}}>
+                          {analysis.cv_suggestions.map((s,i)=><li key={i}>{s}</li>)}
+                        </ol>
+                      </div>
+                    )}
+
+                    {analysis.keywords_to_add?.length>0 && (
+                      <div>
+                        <div style={{fontSize:12.5,fontWeight:700,color:"#6a1b9a",marginBottom:5}}>🔑 Keywords nên thêm</div>
+                        <div style={{display:"flex",flexWrap:"wrap" as const,gap:5}}>
+                          {analysis.keywords_to_add.map((kw,i)=>(
+                            <span key={i} style={{background:"#f3e5f5",color:"#6a1b9a",border:"1px solid #ce93d8",borderRadius:4,padding:"3px 9px",fontSize:11,fontWeight:600}}>
+                              {kw}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
+
+                {/* ── Tab: CV cải thiện ── */}
+                {rightTab==="improved" && (
+                  <div style={{padding:16}}>
+                    {!improvedCV ? (
+                      <div style={{textAlign:"center" as const,color:"#aaa",padding:"32px 0",fontSize:13}}>
+                        <div style={{fontSize:28,marginBottom:8}}>📝</div>
+                        Gửi CV + JD để AI tạo phiên bản cải thiện
+                      </div>
+                    ) : (
+                      <>
+                        {/* Header + copy button */}
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
+                          <span style={{fontSize:13,fontWeight:700,color:"#333"}}>📝 CV đã cải thiện</span>
+                          <button
+                            onClick={()=>{
+                              navigator.clipboard.writeText(improvedCV);
+                              setCopied(true);
+                              setTimeout(()=>setCopied(false), 2000);
+                            }}
+                            style={{
+                              background: copied?"#e8f5e9":"#f0f6ff",
+                              color: copied?"#2e7d32":"#0a66c2",
+                              border:`1px solid ${copied?"#a5d6a7":"#c5d8f6"}`,
+                              borderRadius:6, padding:"4px 12px",
+                              fontSize:12, cursor:"pointer", fontWeight:600,
+                            }}
+                          >
+                            {copied ? "✓ Đã copy!" : "📋 Copy"}
+                          </button>
+                        </div>
+
+                        <div style={{fontSize:11,color:"#888",marginBottom:10,fontStyle:"italic"}}>
+                          ⚠️ Hãy review và chỉnh sửa trước khi dùng — AI có thể thêm chi tiết chưa chính xác.
+                        </div>
+
+                        {/* CV text */}
+                        <pre style={{
+                          whiteSpace:"pre-wrap" as const,
+                          wordBreak:"break-word" as const,
+                          fontFamily:"inherit",
+                          fontSize:12, lineHeight:1.7,
+                          color:"#222",
+                          background:"#fafafa",
+                          border:"1px solid #e8e8e8",
+                          borderRadius:8,
+                          padding:"14px",
+                          maxHeight:520,
+                          overflowY:"auto" as const,
+                          margin:0,
+                        }}>
+                          {improvedCV}
+                        </pre>
+                      </>
+                    )}
+                  </div>
+                )}
+
               </div>
             )}
           </div>
