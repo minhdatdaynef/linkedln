@@ -497,5 +497,9 @@ if __name__ == "__main__":
 
     save_results(filtered, "data/jobs.json")
 
-    # Gui email ket qua
-    send_email(filtered, keywords=SEARCH_KEYWORDS, location=LOCATION)
+    # Gui email ket qua — TAM THOI TAT.
+    # Bat lai bang cach dat bien moi truong SEND_EMAIL=1 (hoac "true").
+    if os.getenv("SEND_EMAIL", "0").lower() in ("1", "true", "yes"):
+        send_email(filtered, keywords=SEARCH_KEYWORDS, location=LOCATION)
+    else:
+        print("[Email] Da tat (SEND_EMAIL chua bat). Bo qua buoc gui email.")
