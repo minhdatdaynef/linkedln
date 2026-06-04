@@ -18,7 +18,7 @@ function Brand() {
         <Icon name="compass" size={22} stroke={1.8} />
       </div>
       <div style={{ lineHeight: 1.05 }}>
-        <div style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-.02em" }}>Scout</div>
+        <div style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-.02em" }}>review_your_cv.app</div>
         <div style={{ fontSize: 11.5, color: "var(--text-faint)", fontWeight: 500 }}>Job Crawler · AI CV</div>
       </div>
     </div>
