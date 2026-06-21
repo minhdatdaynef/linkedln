@@ -79,6 +79,12 @@ def find_cv_path() -> str:
 
 def load_cv_text(path: str = None) -> tuple[str, str]:
     """Tra ve (cv_text, path_da_dung)."""
+    # Uu tien CV_TEXT tu env (dung cho CI/GitHub Actions - khong can file CV)
+    env_text = os.getenv("CV_TEXT", "").strip()
+    if env_text and not path:
+        print(f"[CV] Dung CV_TEXT tu environment ({len(env_text)} ky tu)")
+        return _maybe_despace(env_text), "env:CV_TEXT"
+
     path = path or find_cv_path()
     ext = path.rsplit(".", 1)[-1].lower()
     if ext == "pdf":

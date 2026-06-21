@@ -25,14 +25,10 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Khôi phục CV (từ secret CV_BASE64)
-        run: |
-          mkdir -p cv
-          echo "${{ secrets.CV_BASE64 }}" | base64 -d > cv/cv.pdf
-
       - name: Crawl + APPEND + chấm điểm + sinh web
         env:
           GROG_API_KEY: ${{ secrets.GROG_API_KEY }}
+          CV_TEXT: ${{ secrets.CV_TEXT }}
         run: |
           python match_jobs.py            # append: chỉ chấm job MỚI
           python filter_jobs.py           # lọc cấp bậc Executive/Specialist
