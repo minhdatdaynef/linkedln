@@ -139,7 +139,7 @@ function render(){
     (a[sort]||'').localeCompare(b[sort]||''));
   document.getElementById('count').textContent=arr.length+' job';
   const L=document.getElementById('list');
-  if(!arr.length){L.innerHTML='<div class="empty">Khong co job nao khop.</div>';return;}
+  if(!arr.length){L.innerHTML='<div class="empty">'+(JOBS.length?'Không có job khớp bộ lọc.':'🕐 Chưa có job — hệ thống sẽ tự cập nhật job mới mỗi sáng.')+'</div>';return;}
   L.innerHTML=arr.map(j=>`
    <div class="card">
     <div class="row1">
