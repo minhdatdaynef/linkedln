@@ -9,3 +9,16 @@ __pycache__/
 debug.py
 debug_screenshot.png
 *.png
+
+# CV ca nhan — khong commit (rieng tu). Giu lai huong dan.
+cv/*
+!cv/README.md
+# Khoa Google Service Account — bi mat, khong commit
+service_account.json
+# Ket qua xep hang (tao lai duoc)
+data/jobs_ranked.json
+data/jobs_ranked.md
+
+# rac / khong lien quan
+match_run.log
+e2ee-chat/

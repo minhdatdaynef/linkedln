@@ -1,0 +1,6 @@
+{
+  "alias": ["reviewyourcv.vercel.app"],
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": "."
+}

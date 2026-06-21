@@ -1,43 +1,20 @@
-name: LinkedIn Daily Crawler
+name: Daily Job Match
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 7:00 sáng GMT+7 mỗi ngày
-  workflow_dispatch:
-    inputs:
-      keywords:
-        description: 'Keywords (comma separated)'
-        default: 'marketing,truyen thong,su kien'
-      location:
-        description: 'Location'
-        default: 'Hanoi'
-      date_posted:
-        description: 'Date posted (24h/week/month/any)'
-        default: '24h'
-      max_pages:
-        description: 'Max pages per keyword'
-        default: '4'
-      experience:
-        description: 'Experience level (entry/mid_senior/...)'
-        default: ''
-      work_type:
-        description: 'Work type (remote/hybrid/onsite)'
-        default: ''
-      job_type:
-        description: 'Job type (fulltime/parttime/...)'
-        default: ''
+    - cron: '0 0 * * *'        # 07:00 sáng GMT+7 mỗi ngày (append 1 lần/ngày)
+  workflow_dispatch:           # cho phép chạy tay khi cần
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  crawl:
+  match:
     runs-on: ubuntu-22.04
     permissions:
       contents: write
-
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -45,41 +22,33 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-
-      - name: Install dependencies
+      - name: Install deps
         run: pip install -r requirements.txt
 
-      - name: Run crawler
-        run: python crawler.py
-        env:
-          CRAWL_KEYWORDS: ${{ github.event.inputs.keywords || 'marketing,truyen thong,su kien' }}
-          CRAWL_LOCATION: ${{ github.event.inputs.location || 'Hanoi' }}
-          CRAWL_DATE_POSTED: ${{ github.event.inputs.date_posted || '24h' }}
-          CRAWL_MAX_PAGES: ${{ github.event.inputs.max_pages || '4' }}
-          CRAWL_EXPERIENCE: ${{ github.event.inputs.experience || '' }}
-          CRAWL_WORK_TYPE: ${{ github.event.inputs.work_type || '' }}
-          CRAWL_JOB_TYPE: ${{ github.event.inputs.job_type || '' }}
-          GROG_API_KEY: ${{ secrets.GROG_API_KEY }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
-
-      - name: Upload results
-        uses: actions/upload-artifact@v4
-        with:
-          name: jobs-${{ github.run_number }}
-          path: data/jobs.json
-          retention-days: 30
-
-      - name: Commit results to repo
+      - name: Khôi phục CV (từ secret CV_BASE64)
         run: |
-          git config user.name "github-actions[bot]"
+          mkdir -p cv
+          echo "${{ secrets.CV_BASE64 }}" | base64 -d > cv/cv.pdf
+
+      - name: Crawl + APPEND + chấm điểm + sinh web
+        env:
+          GROG_API_KEY: ${{ secrets.GROG_API_KEY }}
+        run: |
+          python match_jobs.py            # append: chỉ chấm job MỚI
+          python filter_jobs.py           # lọc cấp bậc Executive/Specialist
+          python gen_html.py site/index.html
+
+      - name: Commit kho + web (giữ lịch sử để hôm sau append tiếp)
+        run: |
+          git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/
-          git diff --staged --quiet || git commit -m "chore: crawl jobs $(date +'%Y-%m-%d %H:%M')"
+          git add data/jobs_db.json site/index.html
+          git diff --staged --quiet || git commit -m "chore: daily job match $(date +'%Y-%m-%d')"
           git push
+
+      - name: Deploy web lên Vercel (production)
+        working-directory: site
+        env:
+          VERCEL_ORG_ID: team_ANvEGkjcTK84M75DOj814rtB
+          VERCEL_PROJECT_ID: prj_OOflP4xd9LK7OUuV6c7lPxo9sfzB
+        run: npx vercel@latest --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
