@@ -171,19 +171,22 @@ def merge_with_db(crawled, cv_text, prefs_text=""):
     """
     db = load_db()
     today = date.today().isoformat()
-    out = {}
-    to_score = []
 
+    # Bat dau out = toan bo kho cu (giu lich su); cap nhat is_new theo ngay
+    out = {}
+    for jid, rec in db.items():
+        rec["is_new"] = (rec.get("date_added") == today)
+        out[jid] = rec
+
+    to_score = []
     for job in crawled:
         jid = job_id(job)
-        old = db.get(jid)
+        old = out.get(jid)
         if old and old.get("match", {}).get("match_score", -1) >= 0:
             # da co -> giu diem cu, chi lam tuoi field co ban
             for k, v in job.items():
                 if v and k not in ("match", "date_added", "is_new"):
                     old[k] = v
-            old["is_new"] = (old.get("date_added") == today)
-            out[jid] = old
         else:
             to_score.append((jid, job))
 
@@ -196,12 +199,7 @@ def merge_with_db(crawled, cv_text, prefs_text=""):
         _score_print(i, len(to_score), job, res)
         if res.get("match_score", -1) >= 0:
             out[jid] = job
-
-    # giu lai job cu khong xuat hien trong lan crawl nay (lich su)
-    for jid, rec in db.items():
-        if jid not in out:
-            rec["is_new"] = False
-            out[jid] = rec
+            save_db(out)   # luu NGAY sau moi job -> bi ngat van khong mat tien do
 
     save_db(out)
     print(f"[Append] Kho sau khi gop: {len(out)} job | moi hom nay: {sum(1 for j in out.values() if j.get('is_new'))}")

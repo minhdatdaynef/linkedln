@@ -6,7 +6,9 @@ import time
 import requests
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
-MODEL = "llama-3.3-70b-versatile"
+# 8B-instant: nhanh + gioi han rate cao hon nhieu (tranh nghen free tier).
+# Doi lai 70b bang env MATCH_MODEL=llama-3.3-70b-versatile neu can chinh xac hon.
+MODEL = os.getenv("MATCH_MODEL", "llama-3.1-8b-instant")
 
 # Trong so diem tong (theo lua chon cua ung vien): 60% CV + 40% Tieu chi
 CV_W = 0.6
