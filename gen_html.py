@@ -94,10 +94,43 @@ ul{margin:6px 0;padding-left:18px;font-size:13.5px;color:#444}
 a.open{display:inline-block;margin-top:10px;background:var(--pri);color:#fff;text-decoration:none;
 padding:7px 16px;border-radius:8px;font-size:13.5px;font-weight:600}
 .empty{text-align:center;color:var(--mut);padding:40px}
+.cvbox{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:6px 18px 14px;margin-bottom:16px}
+.cvbox>summary{cursor:pointer;font-size:16px;font-weight:700;color:#3a35a3;padding:12px 0;list-style:none}
+.cvbox>summary::-webkit-details-marker{display:none}
+.cvbox>summary::before{content:"▸ ";color:#3a35a3} .cvbox[open]>summary::before{content:"▾ "}
+.cvnote{font-size:12.5px;color:var(--mut);margin:0 0 12px;font-style:italic}
+.cvinput{width:100%;border:1px solid var(--bd);border-radius:8px;padding:10px 12px;font:inherit;font-size:14px;background:#fff;margin-bottom:8px}
+.cvinput:focus{outline:none;border-color:#3a35a3}
+.cvta{min-height:120px;resize:vertical;line-height:1.5}
+.cvactions{display:flex;align-items:center;gap:12px;margin:4px 0 8px}
+.sgbtn{background:#3a35a3;color:#fff;border:none;border-radius:8px;padding:10px 20px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.sgbtn:hover{background:#2c2880} .sgbtn:disabled{opacity:.55;cursor:default}
+.sgstatus{font-size:13px;color:var(--mut)}
+.sg{border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin-bottom:10px;background:#fbfaf8}
+.sg-muc{font-size:13px;font-weight:700;color:#1d1c1a;margin-bottom:8px}
+.sg-ba{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.sg-before,.sg-after{flex:1;min-width:220px;border-radius:8px;padding:8px 10px;font-size:13.5px;line-height:1.45}
+.sg-before{background:#fbe9e9;color:#7a2323;border:1px solid #f0cfcf}
+.sg-after{background:#e6f5ec;color:#155b38;border:1px solid #c7e7d4}
+.sg-lab{display:block;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;opacity:.75;margin-bottom:3px}
+.sg-arrow{display:flex;align-items:center;color:var(--mut);font-size:20px;font-weight:700}
+.sg-why{font-size:12.5px;color:#555;margin-top:8px}
+@media(max-width:560px){.sg-arrow{display:none}}
 </style></head><body><div class="wrap">
 <h1>🎯 Job phù hợp với CV của bạn</h1>
 <p class="sub">__N__ job · cập nhật __DATE__</p>
 <p class="sub" style="color:#3a35a3;font-weight:600">__PREFS__</p>
+<details class="cvbox" open>
+<summary>✍️ Đề xuất chỉnh sửa CV theo 1 tin tuyển dụng</summary>
+<p class="cvnote">Dán link LinkedIn của 1 job HOẶC paste nội dung JD vào ô bên dưới — hệ thống đối chiếu với CV của bạn rồi gợi ý chỉnh sửa dạng <b>trước → sau</b>. Chỉ gợi ý, KHÔNG tự sửa CV, không thêm thông tin không có thật.</p>
+<input id="joburl" class="cvinput" placeholder="🔗 Dán link LinkedIn job (tùy chọn)"/>
+<textarea id="jd" class="cvinput cvta" placeholder="… hoặc paste toàn bộ nội dung JD vào đây"></textarea>
+<div class="cvactions">
+  <button id="sgBtn" class="sgbtn">✍️ Đề xuất sửa CV</button>
+  <span id="sgStatus" class="sgstatus"></span>
+</div>
+<div id="sgResult"></div>
+</details>
 <div class="bar">
   <input id="q" placeholder="🔍 Tìm theo vị trí / công ty..."/>
   <select id="sort">
@@ -179,6 +212,41 @@ document.getElementById('reset').onclick=()=>{
   render();
 };
 render();
+
+// ===== Cong cu de xuat sua CV theo 1 JD (paste JD hoac link LinkedIn) =====
+const sgBtn=document.getElementById('sgBtn');
+const sgStatus=document.getElementById('sgStatus');
+const sgResult=document.getElementById('sgResult');
+function sgCard(s){
+  const truoc=esc(s.truoc)||'(CV chưa có mục này)';
+  return '<div class="sg">'
+    +(s.muc?'<div class="sg-muc">📌 '+esc(s.muc)+'</div>':'')
+    +'<div class="sg-ba">'
+    +'<div class="sg-before"><span class="sg-lab">Hiện tại</span>'+truoc+'</div>'
+    +'<div class="sg-arrow">→</div>'
+    +'<div class="sg-after"><span class="sg-lab">Đề xuất sửa thành</span>'+esc(s.sau)+'</div>'
+    +'</div>'
+    +(s.ly_do?'<div class="sg-why">💡 '+esc(s.ly_do)+'</div>':'')
+    +'</div>';
+}
+async function runSuggest(){
+  const jd=document.getElementById('jd').value.trim();
+  const url=document.getElementById('joburl').value.trim();
+  if(!jd && !url){ sgStatus.textContent='Hãy dán link LinkedIn hoặc paste JD.'; return; }
+  sgBtn.disabled=true; sgResult.innerHTML=''; sgStatus.textContent='⏳ Đang phân tích CV ↔ JD...';
+  try{
+    const r=await fetch('/api/suggest',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({jd,url})});
+    const data=await r.json();
+    if(!r.ok || data.error){ sgStatus.textContent='⚠️ '+(data.error||('Lỗi '+r.status)); sgBtn.disabled=false; return; }
+    const list=data.suggestions||[];
+    if(!list.length){ sgStatus.textContent='Không có đề xuất nào.'; sgBtn.disabled=false; return; }
+    sgStatus.textContent=list.length+' đề xuất'+(data.jd_source?' · '+data.jd_source:'')+':';
+    sgResult.innerHTML=list.map(sgCard).join('');
+  }catch(e){ sgStatus.textContent='⚠️ Lỗi mạng: '+e.message; }
+  sgBtn.disabled=false;
+}
+sgBtn.addEventListener('click',runSuggest);
 </script></body></html>"""
 
 
