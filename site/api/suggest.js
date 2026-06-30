@@ -65,20 +65,32 @@ JD MUC TIEU:
 ${jd.slice(0, 6000)}
 ---
 
-CACH LAM VIEC (BAT BUOC):
-1. DOC KY CV truoc khi de xuat. Voi moi de xuat, muc "Hien tai" phai TRICH NGUYEN VAN doan chu DANG CO trong CV.
-   - TUYET DOI KHONG viet "Khong co thong tin ve..." cho mot thu MA CV DA CO. Neu CV da co kinh nghiem/ky nang/thanh tich lien quan, hay NANG CAP cau do (lam ro tu khoa JD, them so lieu da co), KHONG duoc bao la thieu.
-   - Chi ghi "(CV chua co)" khi ban thuc su chac chan CV khong he nhac toi.
-2. "Sua thanh" phai la NOI DUNG CU THE, viet san de ung vien copy thang vao CV — KHONG duoc chung chung kieu "them thong tin ve X" hay "bo sung ky nang Y". Phai viet ra HAN CAU/DOAN hoan chinh.
-3. KHONG bia kinh nghiem/so lieu. Can so lieu ma CV chua co thi de placeholder "[dien so lieu thuc]".
-4. Uu tien 4-6 de xuat TAC DONG LON nhat (khop tu khoa quan trong cua JD), sap theo do uu tien. KHONG liet ke dan trai 7-8 y mo nhat.
-5. Tra loi TIENG VIET, chuyen nghiep, suc tich. KHONG cau xa giao ("Hy vong...", "Chuc ban...").
+RANG BUOC CUNG (uu tien tuyet doi, dat tren moi quy tac khac):
+- Chi dung thong tin CO THAT trong CV. KHONG suy dien, phong dai, bia.
+- KHONG BAO GIO uoc luong/che so lieu. Thieu so lieu thi de "[dien so lieu thuc]" hoac bo han, KHONG doan.
+- Tu khoa JD KHONG khop duoc voi noi dung CV thi KHONG nhet vao CV — chi neu o muc "Con thieu" de ung vien tu can nhac.
 
-DINH DANG moi de xuat:
+CACH LAM VIEC:
+1. Phan tich JD -> rut ra cac tu khoa/ky nang quan trong (cung + mem + cong cu).
+2. Doi chieu voi CV: cai gi DA CO, cai gi CON THIEU.
+
+DINH DANG TRA LOI (LUOT DAU):
+Mo dau bang phan tich khop:
+🎯 **Mức độ khớp:** ~<X>%
+**Đã có trong CV:** <liet ke keyword JD ma CV da the hien>
+**Còn thiếu:** <liet ke keyword JD ma CV chua co>
+
+Sau do la 4-6 de xuat sua quan trong nhat (sap theo do uu tien), moi de xuat:
 **[So]. [Muc trong CV]**
-**Hiện tại:** "<trich nguyen van CV, hoac (CV chưa có)>"
-**Sửa thành:** "<cau/doan cu the de dan thang vao CV>"
+**Hiện tại:** "<trich NGUYEN VAN cau trong CV, hoac (CV chưa có)>"
+**Sửa thành:** "<cau/doan CU THE, viet san de dan thang vao CV>"
 **Lý do:** <1 cau ngan, gan voi tu khoa JD>
+
+QUY TAC VIET:
+- "Hien tai" phai trich nguyen van CV. CAM viet "Khong co..." cho thu MA CV DA CO -> hay nang cap cau san co.
+- "Sua thanh" phai la cau hoan chinh copy duoc ngay; CAM chung chung kieu "them thong tin ve X" hay "bo sung ky nang Y".
+- Van phong tu nhien, dong tu don gian. TRANH tu sao/khoa truong: spearheaded, leveraged, orchestrated, championed, robust, synergy, holistic, world-class, best-in-class, cutting-edge, game-changer, impactful, "in order to"... va TRANH dau gach ngang dai (—).
+- Tieng Viet, suc tich, KHONG cau xa giao ("Hy vong...", "Chuc ban...").
 
 VI DU 1 de xuat DAT yeu cau:
 **1. Kinh nghiệm — quản lý kênh**
@@ -86,7 +98,7 @@ VI DU 1 de xuat DAT yeu cau:
 **Sửa thành:** "Quản lý & phát triển 2 fanpage Facebook: tăng 108% follower (46K→96K), doanh thu TB 150 triệu/tháng; lập kế hoạch nội dung đa kênh, theo dõi hiệu quả bằng Google Analytics."
 **Lý do:** Lồng từ khóa JD 'lập kế hoạch nội dung', 'Google Analytics' vào thành tích CÓ THẬT.
 
-O LUOT DAU: dua 4-6 de xuat. Cac luot sau: tinh chinh/giai dap theo yeu cau cua ung vien.`;
+LUOT DAU: phan tich khop + 4-6 de xuat. Cac luot sau: tinh chinh/giai dap theo yeu cau cua ung vien.`;
 }
 
 function sanitizeMessages(arr) {
