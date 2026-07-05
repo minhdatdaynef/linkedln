@@ -18,6 +18,7 @@ service_account.json
 # Ket qua xep hang (tao lai duoc)
 data/jobs_ranked.json
 data/jobs_ranked.md
+data/digest_preview.html
 
 # rac / khong lien quan
 match_run.log

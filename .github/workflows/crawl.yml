@@ -34,6 +34,15 @@ jobs:
           python filter_jobs.py           # lọc cấp bậc Executive/Specialist
           python gen_html.py site/index.html
 
+      - name: Email digest "Top 3 job nên nộp hôm nay"
+        env:
+          SEND_EMAIL: ${{ secrets.SEND_EMAIL }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          SITE_URL: https://linchicolen.vercel.app
+        run: python send_digest.py
+
       - name: Commit kho + web (giữ lịch sử để hôm sau append tiếp)
         run: |
           git config user.name  "github-actions[bot]"
