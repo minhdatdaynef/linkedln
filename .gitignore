@@ -19,6 +19,7 @@ service_account.json
 data/jobs_ranked.json
 data/jobs_ranked.md
 data/digest_preview.html
+data/index_preview.html
 
 # rac / khong lien quan
 match_run.log

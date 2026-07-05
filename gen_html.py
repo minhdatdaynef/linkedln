@@ -6,7 +6,10 @@ Nguon: data/jobs_filtered.json -> data/jobs_ranked.json
 Chay: python gen_html.py  ->  data/jobs.html
 """
 import os, sys, json
-from datetime import date
+from datetime import date, timedelta
+
+# Chi hien thi job co posted trong DUNG 7 ngay gan nhat (current - 7).
+POSTED_WINDOW_DAYS = int(os.getenv("POSTED_WINDOW_DAYS", "7"))
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -22,6 +25,19 @@ def load():
         if os.path.exists(p):
             return json.load(open(p, encoding="utf-8")), p
     raise SystemExit("Khong tim thay file ket qua. Chay match_jobs.py truoc.")
+
+
+def within_posted_window(jobs):
+    """Bo job co posted CU HON current - POSTED_WINDOW_DAYS. Giu job posted trong khoang,
+    hoac posted rong/khong ro (khong du can cu de loai)."""
+    cutoff = (date.today() - timedelta(days=POSTED_WINDOW_DAYS)).isoformat()
+    kept = []
+    for j in jobs:
+        p = (j.get("posted") or "").strip()[:10]
+        if len(p) == 10 and p < cutoff:
+            continue  # cu hon 7 ngay -> an han
+        kept.append(j)
+    return kept, cutoff
 
 
 def prefs_summary():
@@ -106,6 +122,7 @@ font-size:14px;padding:9px 16px;border-radius:9px}
   <input id="q" placeholder="🔍 Tìm theo vị trí / công ty..."/>
   <select id="sort">
     <option value="score">Sắp xếp: Độ phù hợp</option>
+    <option value="posted">Mới đăng nhất</option>
     <option value="company">Công ty (A-Z)</option>
     <option value="title">Vị trí (A-Z)</option>
   </select>
@@ -140,6 +157,7 @@ function render(){
     && (!onlyOk || !(j.flags||[]).some(f=>f.includes('✘')))
     && (!onlyNew || j.new));
   arr.sort((a,b)=> sort==='score'? b.score-a.score :
+    sort==='posted'? (b.posted||'').localeCompare(a.posted||'') :
     (a[sort]||'').localeCompare(b[sort]||''));
   document.getElementById('count').textContent=arr.length+' job';
   const L=document.getElementById('list');
@@ -188,6 +206,9 @@ render();
 
 def main():
     jobs, src = load()
+    n_all = len(jobs)
+    jobs, cutoff = within_posted_window(jobs)
+    print(f"[Loc 7 ngay] Giu {len(jobs)}/{n_all} job (posted >= {cutoff}); an {n_all - len(jobs)} job cu.")
     data = slim(jobs)
     html = (HTML
             .replace("__DATA__", json.dumps(data, ensure_ascii=False))
