@@ -58,11 +58,18 @@ def slim(jobs):
         m = j.get("match", {})
         out.append({
             "score": m.get("match_score", 0) or 0,
+            "cvfit": m.get("cv_fit", ""),
+            "critfit": m.get("criteria_fit", ""),
+            "level": m.get("level", ""),
             "title": j.get("title", ""),
             "company": j.get("company", ""),
             "location": j.get("work_location_detail") or j.get("location") or "",
             "salary": j.get("salary") or "",
+            "seniority": (j.get("seniority") or "").strip(),
+            "industries": (j.get("industries") or "").strip(),
             "posted": j.get("posted") or "",
+            "added": j.get("date_added") or "",
+            "desc": " ".join((j.get("description") or "").split())[:160],
             "url": j.get("url", ""),
             "reason": m.get("one_line_reason", ""),
             "strengths": m.get("strengths", []),
@@ -100,6 +107,14 @@ font-weight:800;font-size:18px;color:#fff}
 .t:hover{color:var(--pri)}
 .meta{color:var(--mut);font-size:13.5px;margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 14px}
 .new{background:#0a66c2;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:8px}
+.sub2{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.pill{font-size:11.5px;font-weight:600;color:#3a35a3;background:#f2eefb;border-radius:6px;padding:2px 8px}
+.pill.lv{color:#15663f;background:#e6f5ec}
+.desc{color:#555;font-size:13px;line-height:1.5;margin:10px 0 2px}
+.pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0 6px}
+.pg{border:1px solid var(--bd);background:#fff;color:var(--tx);border-radius:8px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.pg:hover:not(:disabled){border-color:var(--pri);color:var(--pri)} .pg.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.pg:disabled{opacity:.4;cursor:default}
 .reason{margin:12px 0 8px;font-size:14px;color:#333}
 .flags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
 .flag{font-size:12px;font-weight:600;padding:3px 9px;border-radius:7px}
@@ -141,11 +156,13 @@ font-size:14px;padding:9px 16px;border-radius:9px}
   <span class="count" id="count"></span>
 </div>
 <div id="list"></div>
+<div id="pager" class="pager"></div>
 </div>
 <script>
 const JOBS = __DATA__;
 const color = s => s>=70?'#1f8a5b':s>=50?'#c87a16':'#cf3b3b';
 const esc = t => (t||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let page=1; const PER=10;
 function render(){
   const q=document.getElementById('q').value.toLowerCase();
   const sort=document.getElementById('sort').value;
@@ -161,10 +178,15 @@ function render(){
   arr.sort((a,b)=> sort==='score'? b.score-a.score :
     sort==='posted'? (b.posted||'').localeCompare(a.posted||'') :
     (a[sort]||'').localeCompare(b[sort]||''));
-  document.getElementById('count').textContent=arr.length+' job';
-  const L=document.getElementById('list');
-  if(!arr.length){L.innerHTML='<div class="empty">'+(JOBS.length?'Không có job khớp bộ lọc.':'🕐 Chưa có job — hệ thống sẽ tự cập nhật job mới mỗi sáng.')+'</div>';return;}
-  L.innerHTML=arr.map(j=>`
+  const total=arr.length;
+  const totalPages=Math.max(1,Math.ceil(total/PER));
+  if(page>totalPages)page=totalPages; if(page<1)page=1;
+  const pageArr=arr.slice((page-1)*PER, page*PER);
+  document.getElementById('count').textContent=total+' job'+(totalPages>1?' · trang '+page+'/'+totalPages:'');
+  const L=document.getElementById('list'), P=document.getElementById('pager');
+  if(!total){L.innerHTML='<div class="empty">'+(JOBS.length?'Không có job khớp bộ lọc.':'🕐 Chưa có job — hệ thống sẽ tự cập nhật job mới mỗi sáng.')+'</div>';P.innerHTML='';return;}
+  const dd=s=>s&&s.length>=10?s.slice(8,10)+'/'+s.slice(5,7):'';
+  L.innerHTML=pageArr.map(j=>`
    <div class="card">
     <div class="row1">
      <div class="badge" style="background:${color(j.score)}">${j.score}<small style="font-size:11px">%</small></div>
@@ -172,10 +194,17 @@ function render(){
       <a class="t" href="${esc(j.url)}" target="_blank">${esc(j.title)}${j.new?'<span class="new">MOI</span>':''}</a>
       <div class="meta"><b style="color:#1d1c1a">${esc(j.company)}</b>
         ${j.location?'<span>📍 '+esc(j.location)+'</span>':''}
-        ${j.salary?'<span>💰 '+esc(j.salary)+'</span>':''}
-        ${j.posted?'<span>📅 '+esc(j.posted)+'</span>':''}</div>
+        ${j.seniority?'<span>📊 '+esc(j.seniority)+'</span>':''}
+        ${j.industries?'<span>🏢 '+esc(j.industries)+'</span>':''}
+        ${j.posted?'<span>📅 đăng '+esc(j.posted)+'</span>':''}
+        ${j.added?'<span>🗓️ thấy '+dd(j.added)+'</span>':''}</div>
+      <div class="sub2">
+        ${j.cvfit!==''?'<span class="pill">CV khớp '+j.cvfit+'%</span>':''}
+        ${j.critfit!==''?'<span class="pill">Tiêu chí '+j.critfit+'%</span>':''}
+        ${j.level?'<span class="pill lv">'+esc(j.level)+'</span>':''}</div>
      </div>
     </div>
+    ${j.desc?'<div class="desc">'+esc(j.desc)+'…</div>':''}
     ${j.reason?'<div class="reason">💬 '+esc(j.reason)+'</div>':''}
     ${j.flags&&j.flags.length?'<div class="flags">'+j.flags.map(f=>{
       const no=f.includes('✘');return '<span class="flag '+(no?'no':'ok')+'">'+esc(f)+'</span>';}).join('')+'</div>':''}
@@ -184,9 +213,21 @@ function render(){
       ${j.gaps&&j.gaps.length?'<b style="font-size:13px;color:#8f560d">Con thieu:</b><ul>'+j.gaps.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ul>':''}
       ${j.keywords&&j.keywords.length?'<div>'+j.keywords.map(k=>'<span class="kw">'+esc(k)+'</span>').join('')+'</div>':''}
      </details>`:''}
-    ${j.url?'<a class="open" href="'+esc(j.url)+'" target="_blank">Mo job ↗</a>':''}
+    ${j.url?'<a class="open" href="'+esc(j.url)+'" target="_blank">Mở job ↗</a>':''}
    </div>`).join('');
+  if(totalPages<=1){P.innerHTML='';}
+  else{
+    let b='<button class="pg" data-pg="'+(page-1)+'"'+(page===1?' disabled':'')+'>‹ Trước</button>';
+    for(let i=1;i<=totalPages;i++) b+='<button class="pg'+(i===page?' on':'')+'" data-pg="'+i+'">'+i+'</button>';
+    b+='<button class="pg" data-pg="'+(page+1)+'"'+(page===totalPages?' disabled':'')+'>Sau ›</button>';
+    P.innerHTML=b;
+  }
 }
+// chuyen trang
+document.getElementById('pager').addEventListener('click',e=>{
+  const p=e.target.getAttribute('data-pg'); if(p===null)return;
+  page=+p; render(); window.scrollTo({top:0,behavior:'smooth'});
+});
 // nap danh sach cong ty
 [...new Set(JOBS.map(j=>j.company).filter(Boolean))].sort().forEach(c=>{
   const o=document.createElement('option'); o.value=c; o.textContent=c;
@@ -194,13 +235,14 @@ function render(){
 });
 ['q','sort','minf','company','onlyOk','onlyNew'].forEach(id=>{
   const el=document.getElementById(id);
-  el.addEventListener('input',render); el.addEventListener('change',render);
+  const h=()=>{page=1;render();};
+  el.addEventListener('input',h); el.addEventListener('change',h);
 });
 document.getElementById('reset').onclick=()=>{
   document.getElementById('q').value=''; document.getElementById('sort').value='score';
   document.getElementById('minf').value='0'; document.getElementById('company').value='';
   document.getElementById('onlyOk').checked=false; document.getElementById('onlyNew').checked=false;
-  render();
+  page=1; render();
 };
 render();
 </script></body></html>"""
