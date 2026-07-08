@@ -40,6 +40,19 @@ def within_posted_window(jobs):
     return kept, cutoff
 
 
+def cap_per_source(jobs, n=30):
+    """Moi nguon toi da N job, sort theo (diem cao nhat, ngay dang gan hien tai nhat)."""
+    groups = {}
+    for j in jobs:
+        groups.setdefault(j.get("source") or "linkedin", []).append(j)
+    out = []
+    for src, lst in groups.items():
+        lst.sort(key=lambda j: (j.get("match", {}).get("match_score", 0) or 0, j.get("posted") or ""),
+                 reverse=True)
+        out.extend(lst[:n])
+    return out
+
+
 def prefs_summary():
     if not os.path.exists("prefs.json"):
         return ""
@@ -63,7 +76,6 @@ def slim(jobs):
             "location": j.get("work_location_detail") or j.get("location") or "",
             "posted": j.get("posted") or "",
             "added": j.get("date_added") or "",
-            "highlights": j.get("highlights") or [],
             "source": j.get("source") or "linkedin",
             "url": j.get("url", ""),
             "reason": m.get("one_line_reason", ""),
@@ -104,8 +116,6 @@ font-weight:800;font-size:18px;color:#fff}
 .new{background:#0a66c2;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:8px}
 .srcb{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px}
 .srcb.li{background:#e8f1fb;color:#0a66c2} .srcb.vnw{background:#eafaf0;color:#0a8f4f}
-.hl{margin:12px 0 4px;padding-left:20px;font-size:13.5px;color:#333;line-height:1.55}
-.hl li{margin:3px 0}
 .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0 6px}
 .pg{border:1px solid var(--bd);background:#fff;color:var(--tx);border-radius:8px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
 .pg:hover:not(:disabled){border-color:var(--pri);color:var(--pri)} .pg.on{background:var(--pri);color:#fff;border-color:var(--pri)}
@@ -133,7 +143,7 @@ font-size:14px;padding:9px 16px;border-radius:9px}
 <div class="bar">
   <input id="q" placeholder="🔍 Tìm theo vị trí / công ty..."/>
   <select id="sort">
-    <option value="score">Sắp xếp: Độ phù hợp</option>
+    <option value="score">Phù hợp + mới nhất</option>
     <option value="posted">Mới đăng nhất</option>
     <option value="company">Công ty (A-Z)</option>
     <option value="title">Vị trí (A-Z)</option>
@@ -177,7 +187,7 @@ function render(){
     && (!src || j.source===src)
     && (!onlyOk || !(j.flags||[]).some(f=>f.includes('✘')))
     && (!onlyNew || j.new));
-  arr.sort((a,b)=> sort==='score'? b.score-a.score :
+  arr.sort((a,b)=> sort==='score'? ((b.score-a.score) || (b.posted||'').localeCompare(a.posted||'')) :
     sort==='posted'? (b.posted||'').localeCompare(a.posted||'') :
     (a[sort]||'').localeCompare(b[sort]||''));
   const total=arr.length;
@@ -201,7 +211,6 @@ function render(){
         ${j.added?'<span>🗓️ thấy '+dd(j.added)+'</span>':''}</div>
      </div>
     </div>
-    ${j.highlights&&j.highlights.length?'<ul class="hl">'+j.highlights.map(h=>'<li>'+esc(h)+'</li>').join('')+'</ul>':''}
     ${j.reason?'<div class="reason">💬 '+esc(j.reason)+'</div>':''}
     ${j.flags&&j.flags.length?'<div class="flags">'+j.flags.map(f=>{
       const no=f.includes('✘');return '<span class="flag '+(no?'no':'ok')+'">'+esc(f)+'</span>';}).join('')+'</div>':''}
@@ -250,7 +259,9 @@ def main():
     jobs, src = load()
     n_all = len(jobs)
     jobs, cutoff = within_posted_window(jobs)
-    print(f"[Loc 7 ngay] Giu {len(jobs)}/{n_all} job (posted >= {cutoff}); an {n_all - len(jobs)} job cu.")
+    per = int(os.getenv("MAX_PER_SOURCE", "30"))
+    jobs = cap_per_source(jobs, per)
+    print(f"[Loc] posted >= {cutoff}; toi da {per}/nguon -> {len(jobs)} job.")
     data = slim(jobs)
     html = (HTML
             .replace("__DATA__", json.dumps(data, ensure_ascii=False))
