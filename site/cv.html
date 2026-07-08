@@ -41,7 +41,7 @@ h1{font-size:23px;margin:0 0 4px} .sub{color:var(--mut);margin:0 0 14px;font-siz
 </style></head><body><div class="wrap">
 <a class="back" href="index.html">← Danh sách job phù hợp</a>
 <h1>✍️ Đề xuất chỉnh sửa CV theo JD</h1>
-<p class="sub">Mỗi JD là một khung chat riêng. Dán JD/​link rồi bấm: <b>✍️ Sửa CV</b> · <b>📄 Cover letter</b> · <b>📊 Chấm fit</b> · <b>📋 CV đầy đủ</b> — hoặc hỏi tiếp để tinh chỉnh. Bám CV thật, không bịa thông tin.</p>
+<p class="sub">Mỗi JD là một khung chat riêng. Dán JD/​link rồi bấm: <b>✍️ Sửa CV</b> · <b>📄 Cover letter</b> · <b>📊 Chấm fit</b> · <b>📋 CV đầy đủ</b> · <b>🎤 Luyện PV</b> — hoặc hỏi tiếp để tinh chỉnh. Bám CV thật, không bịa thông tin.</p>
 
 <div class="box">
   <p class="note">➕ Thêm một JD mới (mỗi JD mở một khung chat riêng):</p>
@@ -88,6 +88,7 @@ function render(){
       +'<button class="actbtn" data-act="cover" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>📄 Cover letter</button>'
       +'<button class="actbtn" data-act="fit" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>📊 Chấm fit</button>'
       +'<button class="actbtn" data-act="cvfull" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>📋 CV đầy đủ</button>'
+      +'<button class="actbtn" data-act="interview" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>🎤 Luyện phỏng vấn</button>'
       +'</div>'
       +'<div class="foot"><textarea class="in" data-inp="'+t.id+'" placeholder="Hỏi tiếp / yêu cầu chỉnh (vd: gọn hơn, tập trung kỹ năng X)…" '+(waiting?'disabled':'')+'></textarea>'
       +'<button class="btn sm" data-send="'+t.id+'" '+(waiting?'disabled':'')+'>Gửi</button></div>'
@@ -130,7 +131,8 @@ const PRESET={
   cv:'Đề xuất chỉnh sửa CV của tôi cho JD này (dạng Hiện tại → Sửa thành).',
   cover:'Viết giúp tôi một cover letter hoàn chỉnh (~1 trang) khớp JD này, dựa trên CV của tôi.',
   fit:'Chấm độ phù hợp CV ↔ JD theo 5 chiều (mỗi chiều 0-100) rồi cho verdict Nên nộp / Cân nhắc / Bỏ qua.',
-  cvfull:'Viết lại toàn bộ CV của tôi, tailored cho JD này (giữ đúng thông tin thật).'
+  cvfull:'Viết lại toàn bộ CV của tôi, tailored cho JD này (giữ đúng thông tin thật).',
+  interview:'Giúp tôi luyện phỏng vấn cho JD này: câu hỏi hay gặp, câu trả lời mẫu theo STAR từ CV của tôi, và câu nên hỏi lại nhà tuyển dụng.'
 };
 elT.addEventListener('click',e=>{
   const del=e.target.getAttribute('data-del');

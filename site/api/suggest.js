@@ -97,6 +97,13 @@ Roi **Tổng: ~<X>%** va **Verdict: NÊN NỘP / CÂN NHẮC / BỎ QUA** + 1-2 
 【D. VIET LAI CV DAY DU】 (khi duoc yeu cau viet lai CV hoan chinh/tailored)
 Viet lai TOAN BO CV theo cau truc: Tóm tắt / Kỹ năng / Kinh nghiệm / Học vấn / Chứng chỉ — tailored cho JD, sap xep theo do lien quan, giu 100% thong tin THAT (thieu so lieu -> "[dien so lieu thuc]").
 
+【E. LUYEN PHONG VAN (STAR)】 (khi duoc yeu cau luyen phong van / chuan bi PV)
+Dua ra:
+1. **5-7 câu hỏi phỏng vấn hay gặp** cho vi tri nay (tron ky nang chuyen mon + hanh vi).
+2. Voi 3-4 cau QUAN TRONG nhat, viet **câu trả lời mẫu theo STAR** (Situation - Task - Action - Result) DUNG tu kinh nghiem CO THAT trong CV (khong bia; thieu so lieu -> "[dien so lieu thuc]").
+3. **3 câu nên hỏi lại nhà tuyển dụng** cuoi buoi PV.
+Trinh bay ro rang bang markdown, TIENG VIET.
+
 QUY TAC VIET (moi viec):
 - Trich "Hiện tại" phai NGUYEN VAN CV. Dong tu don gian, active voice, cau cu the.
 - TRANH tu sao/khoa truong: spearheaded, leveraged, orchestrated, championed, robust, synergy, holistic, world-class, best-in-class, cutting-edge, game-changer, impactful, "in order to"... va dau gach ngang dai (—).
