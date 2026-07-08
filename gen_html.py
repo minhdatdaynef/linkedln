@@ -64,6 +64,7 @@ def slim(jobs):
             "posted": j.get("posted") or "",
             "added": j.get("date_added") or "",
             "highlights": j.get("highlights") or [],
+            "source": j.get("source") or "linkedin",
             "url": j.get("url", ""),
             "reason": m.get("one_line_reason", ""),
             "strengths": m.get("strengths", []),
@@ -101,6 +102,8 @@ font-weight:800;font-size:18px;color:#fff}
 .t:hover{color:var(--pri)}
 .meta{color:var(--mut);font-size:13.5px;margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 14px}
 .new{background:#0a66c2;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:8px}
+.srcb{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px}
+.srcb.li{background:#e8f1fb;color:#0a66c2} .srcb.vnw{background:#eafaf0;color:#0a8f4f}
 .hl{margin:12px 0 4px;padding-left:20px;font-size:13.5px;color:#333;line-height:1.55}
 .hl li{margin:3px 0}
 .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0 6px}
@@ -141,6 +144,11 @@ font-size:14px;padding:9px 16px;border-radius:9px}
     <option value="60">≥ 60%</option>
     <option value="70">≥ 70%</option>
   </select>
+  <select id="src">
+    <option value="">🌐 Tất cả nguồn</option>
+    <option value="linkedin">LinkedIn</option>
+    <option value="vietnamworks">VietnamWorks</option>
+  </select>
   <select id="company"><option value="">Tất cả công ty</option></select>
   <label class="chk"><input type="checkbox" id="onlyOk"/> Khớp hết tiêu chí</label>
   <label class="chk"><input type="checkbox" id="onlyNew"/> 🆕 Chỉ mới</label>
@@ -160,11 +168,13 @@ function render(){
   const sort=document.getElementById('sort').value;
   const minf=+document.getElementById('minf').value;
   const comp=document.getElementById('company').value;
+  const src=document.getElementById('src').value;
   const onlyOk=document.getElementById('onlyOk').checked;
   const onlyNew=document.getElementById('onlyNew').checked;
   let arr=JOBS.filter(j=> j.score>=minf
     && (j.title+' '+j.company).toLowerCase().includes(q)
     && (!comp || j.company===comp)
+    && (!src || j.source===src)
     && (!onlyOk || !(j.flags||[]).some(f=>f.includes('✘')))
     && (!onlyNew || j.new));
   arr.sort((a,b)=> sort==='score'? b.score-a.score :
@@ -185,6 +195,7 @@ function render(){
      <div style="flex:1;min-width:0">
       <a class="t" href="${esc(j.url)}" target="_blank">${esc(j.title)}${j.new?'<span class="new">MOI</span>':''}</a>
       <div class="meta"><b style="color:#1d1c1a">${esc(j.company)}</b>
+        <span class="srcb ${j.source==='vietnamworks'?'vnw':'li'}">${j.source==='vietnamworks'?'VietnamWorks':'LinkedIn'}</span>
         ${j.location?'<span>📍 '+esc(j.location)+'</span>':''}
         ${j.posted?'<span>📅 đăng '+esc(j.posted)+'</span>':''}
         ${j.added?'<span>🗓️ thấy '+dd(j.added)+'</span>':''}</div>
@@ -219,7 +230,7 @@ document.getElementById('pager').addEventListener('click',e=>{
   const o=document.createElement('option'); o.value=c; o.textContent=c;
   document.getElementById('company').appendChild(o);
 });
-['q','sort','minf','company','onlyOk','onlyNew'].forEach(id=>{
+['q','sort','minf','company','src','onlyOk','onlyNew'].forEach(id=>{
   const el=document.getElementById(id);
   const h=()=>{page=1;render();};
   el.addEventListener('input',h); el.addEventListener('change',h);
@@ -227,6 +238,7 @@ document.getElementById('pager').addEventListener('click',e=>{
 document.getElementById('reset').onclick=()=>{
   document.getElementById('q').value=''; document.getElementById('sort').value='score';
   document.getElementById('minf').value='0'; document.getElementById('company').value='';
+  document.getElementById('src').value='';
   document.getElementById('onlyOk').checked=false; document.getElementById('onlyNew').checked=false;
   page=1; render();
 };
