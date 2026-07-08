@@ -138,8 +138,8 @@ def hard_exclude_reason(job):
         return "Sai cấp bậc (Manager/Lead/CTV)"
     if m.get("in_hanoi") is False:
         return "Ngoài Hà Nội"
-    if m.get("salary_below_12m"):
-        return "Lương rõ ràng < 12 triệu"
+    if m.get("salary_below_min", m.get("salary_below_12m")):
+        return "Lương rõ ràng thấp hơn mong muốn"
     if m.get("requires_travel"):
         return "Phải đi tỉnh / công tác nhiều"
     return None

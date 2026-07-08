@@ -37,6 +37,15 @@ def _build_jd(job: dict) -> str:
     return "\n\n".join(parts)
 
 
+def _min_salary_m() -> int:
+    """Nguong luong toi thieu (trieu/thang) — lay tu prefs.json (mac dinh 12)."""
+    try:
+        p = json.load(open("prefs.json", encoding="utf-8"))
+        return int(p.get("luong_toi_thieu_trieu") or 12)
+    except Exception:
+        return 12
+
+
 def score_match(cv_text: str, job: dict, api_key: str = None, retries: int = 3, prefs_text: str = "") -> dict:
     """
     Tra ve dict:
@@ -49,6 +58,7 @@ def score_match(cv_text: str, job: dict, api_key: str = None, retries: int = 3, 
         return {"match_score": -1, "one_line_reason": "Thieu GROQ_API_KEY", "strengths": [], "gaps": [], "keywords_missing": [], "criteria_flags": []}
 
     jd = _build_jd(job)
+    min_sal = _min_salary_m()
 
     prefs_block = ""
     if prefs_text:
@@ -85,7 +95,7 @@ Tra ve JSON DUNG format sau (tieng Viet, khong markdown):
   {crit_field}
   "level": "<mot trong: 'Executive/Specialist' | 'Senior' | 'Quan ly' (Manager/Lead/Head/Truong nhom/Director/CMO) | 'CTV/Intern' (cong tac vien/thuc tap) | 'Khong ro'>",
   "in_hanoi": <true neu job lam tai Ha Noi HOAC remote/WFH; false neu o tinh/thanh khac>,
-  "salary_below_12m": <true CHI khi JD ghi RO muc luong va muc do < 12 trieu/thang; nguoc lai false>,
+  "salary_below_min": <true CHI khi JD ghi RO muc luong va muc do < {min_sal} trieu/thang; nguoc lai false>,
   "requires_travel": <true neu JD yeu cau di cong tac/di tinh thuong xuyen; nguoc lai false>,
   "one_line_reason": "<1 cau ngan: vi sao phu hop / khong>",
   "strengths": ["<diem manh CV khop JD 1>", "<2>", "<3>"],
@@ -127,7 +137,7 @@ Tra ve JSON DUNG format sau (tieng Viet, khong markdown):
             # Cac co hard-filter (chuan hoa)
             data["level"] = str(data.get("level", "Khong ro"))
             data["in_hanoi"] = bool(data.get("in_hanoi", True))
-            data["salary_below_12m"] = bool(data.get("salary_below_12m", False))
+            data["salary_below_min"] = bool(data.get("salary_below_min", data.get("salary_below_12m", False)))
             data["requires_travel"] = bool(data.get("requires_travel", False))
             for k in ("strengths", "gaps", "keywords_missing", "criteria_flags"):
                 if not isinstance(data.get(k), list):
