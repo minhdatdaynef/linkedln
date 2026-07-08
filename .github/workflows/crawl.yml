@@ -40,7 +40,7 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-          SITE_URL: https://linchicolen.vercel.app
+          SITE_URL: https://emchicolennha.vercel.app
         run: python send_digest.py
 
       - name: Commit kho + web (giữ lịch sử để hôm sau append tiếp)
@@ -55,5 +55,5 @@ jobs:
         working-directory: site
         env:
           VERCEL_ORG_ID: team_ANvEGkjcTK84M75DOj814rtB
-          VERCEL_PROJECT_ID: prj_OOflP4xd9LK7OUuV6c7lPxo9sfzB
+          VERCEL_PROJECT_ID: prj_g2RoU9cA4VM7mLbRtkwo4WwtBzGb
         run: npx vercel@latest --prod --yes --token=${{ secrets.VERCEL_TOKEN }}

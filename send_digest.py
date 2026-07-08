@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-SITE_URL = os.getenv("SITE_URL", "https://linchicolen.vercel.app")
+SITE_URL = os.getenv("SITE_URL", "https://emchicolennha.vercel.app")
 SRC = ["data/jobs_filtered.json", "data/jobs_ranked.json"]
 TOP_N = int(os.getenv("DIGEST_TOP_N", "3"))
 

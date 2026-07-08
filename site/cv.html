@@ -102,7 +102,7 @@ async function ask(t){
     save(); render();
   }catch(e){
     busy.delete(t.id);
-    t.messages.push({role:'assistant',content:'⚠️ Lỗi mạng: '+e.message+'. Hãy mở trang trên https://linchicolen.vercel.app/cv.html (không phải file trên máy).'});
+    t.messages.push({role:'assistant',content:'⚠️ Lỗi mạng: '+e.message+'. Hãy mở trang trên https://emchicolennha.vercel.app/cv.html (không phải file trên máy).'});
     save(); render();
   }
 }

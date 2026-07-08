@@ -112,8 +112,8 @@ function sanitizeMessages(arr) {
 export default async function handler(req, res) {
   if (req.method !== "POST") { res.status(405).json({ error: "Chi ho tro POST" }); return; }
 
-  const apiKey = process.env.GROQ_API_KEY || process.env.GROG_API_KEY;
-  const cvText = (process.env.CV_TEXT || "").trim();
+  const apiKey = (process.env.GROQ_API_KEY || process.env.GROG_API_KEY || "").replace(/[﻿\r\n\t ]/g, "");
+  const cvText = (process.env.CV_TEXT || "").replace(/^﻿/, "").trim();
   if (!apiKey) { res.status(500).json({ error: "Server chua cau hinh GROQ_API_KEY" }); return; }
   if (!cvText) { res.status(500).json({ error: "Server chua cau hinh CV_TEXT" }); return; }
 
