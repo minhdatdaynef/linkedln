@@ -32,6 +32,7 @@ jobs:
         run: |
           python match_jobs.py            # append: chỉ chấm job MỚI
           python filter_jobs.py           # lọc cấp bậc Executive/Specialist
+          python gen_highlights.py data/jobs_filtered.json   # top 10: rut 5-6 gach chinh (1 call)
           python gen_html.py site/index.html
           python gen_upskill.py site/upskill.html   # trang ky nang can bo sung
 

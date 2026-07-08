@@ -58,18 +58,12 @@ def slim(jobs):
         m = j.get("match", {})
         out.append({
             "score": m.get("match_score", 0) or 0,
-            "cvfit": m.get("cv_fit", ""),
-            "critfit": m.get("criteria_fit", ""),
-            "level": m.get("level", ""),
             "title": j.get("title", ""),
             "company": j.get("company", ""),
             "location": j.get("work_location_detail") or j.get("location") or "",
-            "salary": j.get("salary") or "",
-            "seniority": (j.get("seniority") or "").strip(),
-            "industries": (j.get("industries") or "").strip(),
             "posted": j.get("posted") or "",
             "added": j.get("date_added") or "",
-            "desc": " ".join((j.get("description") or "").split())[:160],
+            "highlights": j.get("highlights") or [],
             "url": j.get("url", ""),
             "reason": m.get("one_line_reason", ""),
             "strengths": m.get("strengths", []),
@@ -107,10 +101,8 @@ font-weight:800;font-size:18px;color:#fff}
 .t:hover{color:var(--pri)}
 .meta{color:var(--mut);font-size:13.5px;margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 14px}
 .new{background:#0a66c2;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:8px}
-.sub2{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
-.pill{font-size:11.5px;font-weight:600;color:#3a35a3;background:#f2eefb;border-radius:6px;padding:2px 8px}
-.pill.lv{color:#15663f;background:#e6f5ec}
-.desc{color:#555;font-size:13px;line-height:1.5;margin:10px 0 2px}
+.hl{margin:12px 0 4px;padding-left:20px;font-size:13.5px;color:#333;line-height:1.55}
+.hl li{margin:3px 0}
 .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0 6px}
 .pg{border:1px solid var(--bd);background:#fff;color:var(--tx);border-radius:8px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
 .pg:hover:not(:disabled){border-color:var(--pri);color:var(--pri)} .pg.on{background:var(--pri);color:#fff;border-color:var(--pri)}
@@ -194,17 +186,11 @@ function render(){
       <a class="t" href="${esc(j.url)}" target="_blank">${esc(j.title)}${j.new?'<span class="new">MOI</span>':''}</a>
       <div class="meta"><b style="color:#1d1c1a">${esc(j.company)}</b>
         ${j.location?'<span>📍 '+esc(j.location)+'</span>':''}
-        ${j.seniority?'<span>📊 '+esc(j.seniority)+'</span>':''}
-        ${j.industries?'<span>🏢 '+esc(j.industries)+'</span>':''}
         ${j.posted?'<span>📅 đăng '+esc(j.posted)+'</span>':''}
         ${j.added?'<span>🗓️ thấy '+dd(j.added)+'</span>':''}</div>
-      <div class="sub2">
-        ${j.cvfit!==''?'<span class="pill">CV khớp '+j.cvfit+'%</span>':''}
-        ${j.critfit!==''?'<span class="pill">Tiêu chí '+j.critfit+'%</span>':''}
-        ${j.level?'<span class="pill lv">'+esc(j.level)+'</span>':''}</div>
      </div>
     </div>
-    ${j.desc?'<div class="desc">'+esc(j.desc)+'…</div>':''}
+    ${j.highlights&&j.highlights.length?'<ul class="hl">'+j.highlights.map(h=>'<li>'+esc(h)+'</li>').join('')+'</ul>':''}
     ${j.reason?'<div class="reason">💬 '+esc(j.reason)+'</div>':''}
     ${j.flags&&j.flags.length?'<div class="flags">'+j.flags.map(f=>{
       const no=f.includes('✘');return '<span class="flag '+(no?'no':'ok')+'">'+esc(f)+'</span>';}).join('')+'</div>':''}
