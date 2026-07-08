@@ -116,6 +116,24 @@ def get_jobs(use_cached: bool, prefs: dict = None) -> list:
 
     print(f"[Jobs] Lay mo ta chi tiet {len(filtered)} job...")
     crawler.enrich_with_details(filtered, delay=1.5)
+
+    # + Nguon VietnamWorks (API JSON, da co san mo ta/luong) — dedup theo url
+    if os.getenv("VNW_ENABLED", "1").lower() in ("1", "true", "yes"):
+        try:
+            import crawl_vietnamworks as vnw
+            vnw_kw = os.getenv("VNW_KEYWORDS", "marketing,social media,communication,PR,event,content")
+            vnw_jobs = vnw.fetch(vnw_kw, pages=int(os.getenv("VNW_PAGES", "2")), within_days=7)
+            have = {j.get("url") for j in filtered}
+            add = [j for j in vnw_jobs if j.get("url") and j.get("url") not in have]
+            # bo title cap quan ly (khoi ton diem cham), uu tien moi nhat, cap so luong
+            add = [j for j in add if not _BAD_LEVEL_TITLE.search(j.get("title", ""))]
+            add.sort(key=lambda j: j.get("posted") or "", reverse=True)
+            add = add[:int(os.getenv("VNW_MAX", "25"))]
+            filtered += add
+            print(f"[Jobs] VietnamWorks: +{len(add)} job (tong {len(filtered)})")
+        except Exception as e:
+            print(f"[Jobs] VNW bo qua ({str(e)[:70]})")
+
     # luu lai de lan sau dung --use-cached
     crawler.save_results(filtered, CACHE_FILE)
     return filtered

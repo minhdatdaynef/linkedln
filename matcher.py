@@ -126,6 +126,9 @@ Tra ve JSON DUNG format sau (tieng Viet, khong markdown):
                 return {"match_score": -1, "one_line_reason": f"Groq {r.status_code}", "strengths": [], "gaps": [], "keywords_missing": []}
             raw = r.json()["choices"][0]["message"]["content"].strip()
             raw = raw.replace("```json", "").replace("```", "").strip()
+            s, e = raw.find("{"), raw.rfind("}")
+            if s >= 0 and e > s:
+                raw = raw[s:e + 1]
             data = json.loads(raw)
             cv_fit = max(0, min(100, int(data.get("cv_fit", data.get("match_score", 0)) or 0)))
             crit_fit = max(0, min(100, int(data.get("criteria_fit", 100) or 100)))
