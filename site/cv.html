@@ -32,13 +32,16 @@ h1{font-size:23px;margin:0 0 4px} .sub{color:var(--mut);margin:0 0 14px;font-siz
 .m.bot{align-self:flex-start;background:#f3f1ec;color:var(--tx);border:1px solid var(--bd);border-bottom-left-radius:4px}
 .m.bot b{color:#155b38} .m.bot code{background:#eee;padding:1px 5px;border-radius:5px;font-size:13px}
 .m.wait{align-self:flex-start;color:var(--mut);font-style:italic;font-size:13.5px}
+.acts{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 10px}
+.actbtn{border:1px solid var(--bd);background:#fff;color:var(--acc);border-radius:8px;padding:6px 11px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.actbtn:hover{background:#f0eefb;border-color:var(--acc)} .actbtn:disabled{opacity:.5;cursor:default}
 .foot{display:flex;gap:8px;padding:0 16px 14px;align-items:flex-end}
 .foot textarea{flex:1;min-height:42px;max-height:140px}
 .empty{text-align:center;color:var(--mut);padding:30px 10px;font-size:14px}
 </style></head><body><div class="wrap">
 <a class="back" href="index.html">← Danh sách job phù hợp</a>
 <h1>✍️ Đề xuất chỉnh sửa CV theo JD</h1>
-<p class="sub">Mỗi JD là một khung chat riêng — dán JD/​link, nhận đề xuất <b>Hiện tại → Sửa thành</b>, rồi hỏi tiếp để tinh chỉnh. Chỉ gợi ý, không tự sửa CV, không bịa thông tin.</p>
+<p class="sub">Mỗi JD là một khung chat riêng. Dán JD/​link rồi bấm: <b>✍️ Sửa CV</b> · <b>📄 Cover letter</b> · <b>📊 Chấm fit</b> · <b>📋 CV đầy đủ</b> — hoặc hỏi tiếp để tinh chỉnh. Bám CV thật, không bịa thông tin.</p>
 
 <div class="box">
   <p class="note">➕ Thêm một JD mới (mỗi JD mở một khung chat riêng):</p>
@@ -80,6 +83,12 @@ function render(){
       +(t.jdSource?'<div class="src">'+esc(t.jdSource)+'</div>':'')
       +'<button class="xbtn" data-del="'+t.id+'" title="Xóa">✕</button></div>'
       +'<div class="msgs">'+msgs+'</div>'
+      +'<div class="acts">'
+      +'<button class="actbtn" data-act="cv" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>✍️ Sửa CV</button>'
+      +'<button class="actbtn" data-act="cover" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>📄 Cover letter</button>'
+      +'<button class="actbtn" data-act="fit" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>📊 Chấm fit</button>'
+      +'<button class="actbtn" data-act="cvfull" data-tid="'+t.id+'" '+(waiting?'disabled':'')+'>📋 CV đầy đủ</button>'
+      +'</div>'
       +'<div class="foot"><textarea class="in" data-inp="'+t.id+'" placeholder="Hỏi tiếp / yêu cầu chỉnh (vd: gọn hơn, tập trung kỹ năng X)…" '+(waiting?'disabled':'')+'></textarea>'
       +'<button class="btn sm" data-send="'+t.id+'" '+(waiting?'disabled':'')+'>Gửi</button></div>'
       +'</div>';
@@ -117,9 +126,20 @@ document.getElementById('addBtn').addEventListener('click',()=>{
   save(); render(); ask(t);
 });
 
+const PRESET={
+  cv:'Đề xuất chỉnh sửa CV của tôi cho JD này (dạng Hiện tại → Sửa thành).',
+  cover:'Viết giúp tôi một cover letter hoàn chỉnh (~1 trang) khớp JD này, dựa trên CV của tôi.',
+  fit:'Chấm độ phù hợp CV ↔ JD theo 5 chiều (mỗi chiều 0-100) rồi cho verdict Nên nộp / Cân nhắc / Bỏ qua.',
+  cvfull:'Viết lại toàn bộ CV của tôi, tailored cho JD này (giữ đúng thông tin thật).'
+};
 elT.addEventListener('click',e=>{
   const del=e.target.getAttribute('data-del');
   const send=e.target.getAttribute('data-send');
+  const act=e.target.getAttribute('data-act');
+  if(act){
+    const t=threads.find(x=>x.id===e.target.getAttribute('data-tid')); if(!t||busy.has(t.id))return;
+    t.messages.push({role:'user',content:PRESET[act]||PRESET.cv}); save(); ask(t); return;
+  }
   if(del){ if(confirm('Xóa khung chat này?')){ threads=threads.filter(x=>x.id!==del); save(); render(); } return; }
   if(send){
     const t=threads.find(x=>x.id===send); if(!t||busy.has(t.id))return;

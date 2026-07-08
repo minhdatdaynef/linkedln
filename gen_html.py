@@ -117,7 +117,9 @@ font-size:14px;padding:9px 16px;border-radius:9px}
 <h1>🎯 Job phù hợp với CV của bạn</h1>
 <p class="sub">__N__ job · cập nhật __DATE__</p>
 <p class="sub" style="color:#3a35a3;font-weight:600">__PREFS__</p>
-<p style="margin:0 0 16px"><a class="navlink" href="cv.html">✍️ Đề xuất sửa CV theo 1 JD →</a></p>
+<p style="margin:0 0 16px;display:flex;gap:10px;flex-wrap:wrap">
+  <a class="navlink" href="cv.html">✍️ Sửa CV · Cover letter · Chấm fit</a>
+  <a class="navlink" href="upskill.html">📈 Kỹ năng cần bổ sung</a></p>
 <div class="bar">
   <input id="q" placeholder="🔍 Tìm theo vị trí / công ty..."/>
   <select id="sort">

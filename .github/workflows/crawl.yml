@@ -33,6 +33,7 @@ jobs:
           python match_jobs.py            # append: chỉ chấm job MỚI
           python filter_jobs.py           # lọc cấp bậc Executive/Specialist
           python gen_html.py site/index.html
+          python gen_upskill.py site/upskill.html   # trang ky nang can bo sung
 
       - name: Email digest "Top 3 job nên nộp hôm nay"
         env:
@@ -47,7 +48,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/jobs_db.json site/index.html
+          git add data/jobs_db.json site/index.html site/upskill.html
           git diff --staged --quiet || git commit -m "chore: daily job match $(date +'%Y-%m-%d')"
           git push
 
