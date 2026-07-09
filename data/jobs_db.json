@@ -3759,36 +3759,26 @@
     "job_function": "",
     "industries": "Tư vấn và dịch vụ CNTT",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 71,
+      "cv_fit": 71,
+      "criteria_fit": 71,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phu hop vao huong cong viec, cap bac, dia diem, nganh uu tien",
+      "one_line_reason": "Marketing Executive B2B (Savvycom) — content marketing B2B phần mềm.",
       "strengths": [
-        "Kinh nghiệm Content Marketing và Digital Advertising",
-        "Kỹ năng viết bài blog SEO, tăng organic traffic website",
-        "Kỹ năng quản lý lịch đăng bài đa kênh: Facebook, Instagram, TikTok"
+        "Content B2B"
       ],
       "gaps": [
-        "Thiếu kinh nghiệm trong lĩnh vực B2B marketing",
-        "Thiếu kinh nghiệm trong lĩnh vực AI và công nghệ"
+        "Research/B2B focus"
       ],
-      "keywords_missing": [
-        "SEO",
-        "Email marketing",
-        "Social media management",
-        "Lead generation"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec khop",
-        "✔ Cap bac khop",
-        "✔ Dia diem khop",
-        "✔ Nganh uu tien khop",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 82
+        "✔ Content Marketing",
+        "✔ Tech",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-02",
     "is_new": false
@@ -4237,35 +4227,24 @@
     "job_function": "",
     "industries": "Công nghệ, thông tin và Internet",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 74,
+      "cv_fit": 74,
+      "criteria_fit": 74,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Marketing Planner (Gamota game) — chiến dịch, cộng đồng, content game, ngành tech/giải trí.",
       "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing với 2+ năm kinh nghiệm",
-        "Có kỹ năng về Content Marketing, Digital Advertising và Social Media",
-        "Có chứng chỉ về Digital Marketing và E-commerce"
+        "Content & community đúng CV"
       ],
-      "gaps": [
-        "Không có kinh nghiệm về Game Marketing",
-        "Không có kinh nghiệm về thị trường Game và sản phẩm Digital"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm về Facebook Ads và Google Ads",
-        "Không có kinh nghiệm về phân tích dữ liệu và A/B testing"
-      ],
+      "gaps": [],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc Executive/Specialist phù hợp",
-        "✔ Địa điểm Hà Nội phù hợp",
-        "✔ Ngành/Loại công ty phù hợp",
-        "✔ Không có yêu cầu đi tỉnh/di chuyển nhiều",
-        "✘ Không có kinh nghiệm về Game Marketing"
-      ],
-      "match_score": 82
+        "✔ Marketing/Content",
+        "✔ Tech/Game",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-03",
     "is_new": false
@@ -4326,28 +4305,18 @@
     "job_function": "",
     "industries": "Sản xuất hóa chất",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 65,
+      "cv_fit": 65,
+      "criteria_fit": 65,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về hướng công việc, cấp bậc và địa điểm làm việc",
-      "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Digital Marketing",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng sử dụng các công cụ như Canva, CapCut, Google Analytics, Mailchimp, Trello, Notion"
-      ],
+      "one_line_reason": "Marketing Specialist SEA — lead gen B2B công nghiệp khu vực.",
+      "strengths": [],
       "gaps": [],
       "keywords_missing": [],
-      "criteria_flags": [
-        "✔ Hướng công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Ngành nghề phù hợp",
-        "✔ Loại công ty phù hợp"
-      ],
-      "match_score": 85
+      "criteria_flags": []
     },
     "date_added": "2026-07-03",
     "is_new": false
@@ -4364,28 +4333,18 @@
     "job_function": "",
     "industries": "Thương mại và phát triển quốc tế",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 54,
+      "cv_fit": 54,
+      "criteria_fit": 54,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm Content Marketing và Digital Advertising, phù hợp với yêu cầu JD về Amazon Ads Specialist.",
-      "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng phân tích và xử lý số liệu, nghiên cứu, tư duy logic, sắp xếp và quản lý thời gian, phối hợp/làm việc nhóm"
-      ],
+      "one_line_reason": "Amazon Ads Specialist — thiên chạy ads, lương cơ bản <14tr.",
+      "strengths": [],
       "gaps": [],
       "keywords_missing": [],
-      "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh), Marketing Communications / PR, Event / Activation",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite, Hybrid tại Hà Nội",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house, Agency / Media house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce, Công nghệ / Startup"
-      ],
-      "match_score": 85
+      "criteria_flags": []
     },
     "date_added": "2026-07-03",
     "is_new": false
@@ -4538,32 +4497,18 @@
     "job_function": "",
     "industries": "Retail Health and Personal Care Products",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 60,
+      "cv_fit": 60,
+      "criteria_fit": 60,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về kinh nghiệm và kỹ năng",
-      "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Content Marketing",
-        "Có kỹ năng thiết kế cơ bản và lập kế hoạch",
-        "Có khả năng phối hợp làm việc theo đội nhóm"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực mẹ và bé",
-        "Không có kỹ năng lập trình hoặc thiết kế chuyên sâu"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc trong môi trường startup",
-        "Không có kỹ năng quản lý dự án"
-      ],
-      "criteria_flags": [
-        "✔ Phù hợp về vị trí Executive/Specialist",
-        "✔ Phù hợp về địa điểm Hà Nội",
-        "✔ Không phù hợp về lĩnh vực mẹ và bé"
-      ],
-      "match_score": 85
+      "one_line_reason": "Content TikTok DCCR — lương 10-15tr (dưới 14).",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-04",
     "is_new": false
@@ -4759,35 +4704,24 @@
     "job_function": "",
     "industries": "Công nghệ, thông tin và Internet",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 74,
+      "cv_fit": 74,
+      "criteria_fit": 74,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về kinh nghiệm và kỹ năng",
+      "one_line_reason": "Marketing Executive (Appota game) — chiến dịch, sự kiện online/offline gamer, content.",
       "strengths": [
-        "Có kinh nghiệm trong Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng sử dụng các công cụ như Canva, CapCut, Google Analytics, Mailchimp, Trello, Notion"
+        "Content + sự kiện đúng thế mạnh"
       ],
-      "gaps": [
-        "Chưa có kinh nghiệm trong lĩnh vực game thủ",
-        "Chưa có kinh nghiệm trong việc quản lý đội ngũ"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong việc chạy Facebook Ads với ngân sách lớn",
-        "Không có kinh nghiệm trong việc quản lý dự án lớn"
-      ],
+      "gaps": [],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Phù hợp về vị trí Executive/Specialist",
-        "✔ Phù hợp về địa điểm Hà Nội",
-        "✔ Phù hợp về lĩnh vực giáo dục/đào tạo",
-        "✔ Phù hợp về loại công ty Brand/In-house",
-        "✔ Không phù hợp về yêu cầu đi tỉnh/di chuyển nhiều",
-        "✘ Không phù hợp về yêu cầu kinh nghiệm trong lĩnh vực game thủ"
-      ],
-      "match_score": 82
+        "✔ Marketing/Event",
+        "✔ Tech/Game",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-04",
     "is_new": false
@@ -4804,34 +4738,18 @@
     "job_function": "",
     "industries": "Sản xuất máy móc cho ngành thương mại và dịch vụ",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 57,
+      "cv_fit": 57,
+      "criteria_fit": 57,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Digital Marketing",
-        "Có kỹ năng phân tích và tối ưu hóa quảng cáo",
-        "Có khả năng làm việc độc lập và làm việc nhóm hiệu quả"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm làm việc trong vị trí Senior",
-        "Chưa có kinh nghiệm làm việc trong lĩnh vực F&B/FMCG"
-      ],
-      "keywords_missing": [
-        "Chưa có kỹ năng về Google Ads",
-        "Chưa có kinh nghiệm làm việc trong môi trường startup"
-      ],
-      "criteria_flags": [
-        "✔ Yêu cầu về kinh nghiệm và kỹ năng phù hợp",
-        "✔ Yêu cầu về vị trí Executive/Specialist",
-        "✔ Yêu cầu về làm việc tại Hà Nội",
-        "✔ Yêu cầu về mức lương trên 12 triệu/tháng",
-        "✔ Yêu cầu về không phải đi công tác thường xuyên"
-      ],
-      "match_score": 85
+      "one_line_reason": "Digital Marketing Ads — thiên chạy quảng cáo.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-04",
     "is_new": false
@@ -4848,34 +4766,27 @@
     "job_function": "",
     "industries": "Retail Health and Personal Care Products",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 81,
+      "cv_fit": 81,
+      "criteria_fit": 81,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về hướng công việc, cấp bậc và địa điểm làm việc",
+      "one_line_reason": "Marketing Executive SAGEN — Social/Content FB-TikTok-IG-YT + KOL/KOC + affiliate: gần như trùng khớp CV.",
       "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Content Marketing",
-        "Có kỹ năng viết content và làm việc với KOL/KOC",
-        "Có khả năng quản lý nhiều đầu việc cùng lúc"
+        "Social/content/KOL đúng kinh nghiệm CV",
+        "Đa nền tảng"
       ],
       "gaps": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực FMCG, Beauty, Healthcare hoặc E-commerce",
-        "Không có chứng chỉ Google Digital Marketing & E-commerce Certificate"
+        "Có phần Trade Marketing kèm theo"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc với Facebook Ads, Google Ads (cơ bản), Meta Business Suite",
-        "Không có kỹ năng sử dụng Canva, CapCut"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Hướng công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Ngành nghề phù hợp",
-        "✔ Không có yêu cầu đi tỉnh/di chuyển nhiều"
-      ],
-      "match_score": 85
+        "✔ Social Media (quản lý kênh)",
+        "✔ Content + KOL/KOC",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-04",
     "is_new": false
@@ -4892,34 +4803,18 @@
     "job_function": "",
     "industries": "Phát triển phần mềm",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 57,
+      "cv_fit": 57,
+      "criteria_fit": 57,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm chạy và tối ưu chuyển đổi trên nhiều nền tảng quảng cáo, phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm chạy và tối ưu chuyển đổi trên nhiều nền tảng quảng cáo",
-        "Có hiểu biết về Conversion Tracking và tối ưu hiệu quả quảng cáo",
-        "Có kinh nghiệm sử dụng các công cụ AI trong công việc hàng ngày"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm trong lĩnh vực giáo dục/đào tạo",
-        "Chưa có kinh nghiệm trong lĩnh vực công nghệ/startup"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong lĩnh vực B2B",
-        "Không có kinh nghiệm sử dụng các công cụ AI như Claude, Chat GPT..."
-      ],
-      "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm phù hợp",
-        "✔ Ngành/Loại công ty phù hợp",
-        "✔ Không có yêu cầu không phù hợp"
-      ],
-      "match_score": 85
+      "one_line_reason": "Digital ads + lead MQL — thiên performance.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-04",
     "is_new": false
@@ -5024,34 +4919,18 @@
     "job_function": "",
     "industries": "Dịch vụ nhân sự",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 60,
+      "cv_fit": 60,
+      "criteria_fit": 60,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Content Marketing",
-        "Có kỹ năng sử dụng các công cụ AI hỗ trợ thiết kế",
-        "Có khả năng viết và tối ưu hóa các bài viết chuẩn SEO"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực Thời trang công sở nữ",
-        "Không có kỹ năng sử dụng các công cụ thiết kế chuyên sâu"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc trong môi trường startup",
-        "Không có kỹ năng sử dụng các công cụ phân tích dữ liệu"
-      ],
-      "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Ngành nghề phù hợp",
-        "✔ Không yêu cầu đi tỉnh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Nội dung Marketing thời trang — lương 10-15tr (dưới 14).",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-04",
     "is_new": false
@@ -5203,35 +5082,26 @@
     "job_function": "",
     "industries": "Technology, Information and Media",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 79,
+      "cv_fit": 79,
+      "criteria_fit": 79,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Quản lý kênh Social Network (game publishing) — vận hành kênh social: đúng 'quản lý kênh' (không phải cấp quản lý).",
       "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Content Marketing",
-        "Có kỹ năng quản lý kênh và tạo nội dung trên YouTube và TikTok",
-        "Có khả năng tuyển dụng và đào tạo creator"
+        "Quản lý & phát triển kênh social đúng CV"
       ],
       "gaps": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực Game Publishing",
-        "Không có kỹ năng lập kế hoạch và phối hợp triển khai"
+        "Ngành game — cần hiểu cộng đồng game thủ"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc với các công cụ AI",
-        "Không có kỹ năng phân tích dữ liệu và báo cáo"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Cap bac: Executive/Specialist",
-        "✔ Dia diem: Hà Nội",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Công nghệ / Startup",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Social Media (quản lý kênh)",
+        "✔ Tech/Game",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-05",
     "is_new": false
@@ -5292,35 +5162,18 @@
     "job_function": "",
     "industries": "Thương mại và phát triển quốc tế",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 60,
+      "cv_fit": 60,
+      "criteria_fit": 60,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm Content Marketing và Digital Advertising, phù hợp với yêu cầu JD về tối ưu SEO và GEO.",
-      "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có kỹ năng SEO và tối ưu nội dung cho Google và AI search",
-        "Có khả năng quản lý nhiều bài/task song song"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm về AI agentic và công cụ AI",
-        "Chưa có kinh nghiệm về GEO và cách các nền tảng AI search hoạt động"
-      ],
-      "keywords_missing": [
-        "AI agentic",
-        "GEO",
-        "Nền tảng AI search"
-      ],
-      "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Ngành nghề phù hợp",
-        "✔ Không có yêu cầu đi tỉnh/di chuyển nhiều"
-      ],
-      "match_score": 82
+      "one_line_reason": "Content SEO (Equarus) — lương cứng 10tr (dưới 14).",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-05",
     "is_new": false
@@ -5380,34 +5233,18 @@
     "job_function": "",
     "industries": "Truyền thông trực tuyến với nội dung video và âm thanh",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 66,
+      "cv_fit": 66,
+      "criteria_fit": 66,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm quản lý kênh YouTube và SEO, phù hợp với yêu cầu của vị trí",
-      "strengths": [
-        "Có kinh nghiệm quản lý kênh YouTube và SEO",
-        "Có kỹ năng giao tiếp và làm việc nhóm tốt",
-        "Có khả năng ngoại ngữ tốt"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm quản lý kênh YouTube quốc tế",
-        "Chưa có kinh nghiệm trong lĩnh vực giáo dục/đào tạo"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong lĩnh vực giáo dục/đào tạo",
-        "Không có kỹ năng thiết kế Photoshop và Premiere"
-      ],
-      "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm phù hợp",
-        "✔ Ngành/Loại công ty phù hợp",
-        "✔ Không có yêu cầu đi tỉnh/di chuyển nhiều"
-      ],
-      "match_score": 82
+      "one_line_reason": "Marketing Fresher SEO/YouTube MMO — fresher, thiên SEO.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-06",
     "is_new": false
@@ -5424,36 +5261,26 @@
     "job_function": "",
     "industries": "Tư vấn và dịch vụ CNTT",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 71,
+      "cv_fit": 71,
+      "criteria_fit": 71,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phu hop vao huong cong viec, cap bac, dia diem, nganh uu tien",
+      "one_line_reason": "Marketing Executive B2B (Savvycom software) — content marketing + collateral B2B.",
       "strengths": [
-        "Kinh nghiệm Content Marketing và Digital Advertising",
-        "Kỹ năng viết bài blog SEO, tăng organic traffic website",
-        "Kỹ năng quản lý lịch đăng bài đa kênh: Facebook, Instagram, TikTok"
+        "Content & tài liệu marketing"
       ],
       "gaps": [
-        "Thiếu kinh nghiệm trong lĩnh vực B2B marketing",
-        "Thiếu kinh nghiệm trong lĩnh vực AI và công nghệ"
+        "Thiên B2B/research"
       ],
-      "keywords_missing": [
-        "SEO",
-        "Email marketing",
-        "Social media management",
-        "Lead generation"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec khop",
-        "✔ Cap bac khop",
-        "✔ Dia diem khop",
-        "✔ Nganh uu tien khop",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 82
+        "✔ Content Marketing",
+        "✔ Tech",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-06",
     "is_new": false
@@ -5470,35 +5297,18 @@
     "job_function": "",
     "industries": "Sản xuất hóa chất",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 65,
+      "cv_fit": 65,
+      "criteria_fit": 65,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phu hop vao huong cong viec, cap bac, dia diem, nganh uu tien",
-      "strengths": [
-        "Kinh nghiệm Content Marketing và Digital Advertising",
-        "Kỹ năng quản lý kênh social media",
-        "Kỹ năng viết bài blog SEO"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm về Digital Advertising",
-        "Chưa có kinh nghiệm về Event/Activation"
-      ],
-      "keywords_missing": [
-        "AI-powered tools",
-        "Google Analytics",
-        "CRM systems"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec khop",
-        "✔ Cap bac khop",
-        "✔ Dia diem khop",
-        "✔ Nganh uu tien khop",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Marketing Specialist SEA (tesa) — lead gen B2B khu vực.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-06",
     "is_new": false
@@ -5561,34 +5371,18 @@
     "job_function": "",
     "industries": "Phát triển phần mềm",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 58,
+      "cv_fit": 58,
+      "criteria_fit": 58,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm trong Content Marketing và Digital Advertising, phù hợp với yêu cầu JD về Digital Marketing Executive.",
-      "strengths": [
-        "Có kinh nghiệm trong Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng phân tích và đánh giá số liệu tốt"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm trong lĩnh vực App/Game mobile",
-        "Không có kinh nghiệm trong chạy quảng cáo trên các nền tảng như Facebook, Google, Tiktok, Youtube..."
-      ],
-      "keywords_missing": [
-        "App/Game mobile",
-        "Chạy quảng cáo trên các nền tảng như Facebook, Google, Tiktok, Youtube..."
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Công nghệ / Startup"
-      ],
-      "match_score": 82
+      "one_line_reason": "UA Marketing (user acquisition) mobile — thiên performance.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-06",
     "is_new": false
@@ -5605,34 +5399,29 @@
     "job_function": "",
     "industries": "Xuất bản nội dung trên Internet",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 82,
+      "cv_fit": 82,
+      "criteria_fit": 82,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Social Media Strategist & Content Creator ở công ty video — social + content + video, đúng thế mạnh.",
       "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate",
-        "Có kỹ năng viết và nói tiếng Anh tốt"
+        "Chiến lược social + sản xuất nội dung khớp CV",
+        "Kinh nghiệm video"
       ],
       "gaps": [
-        "Chưa có kinh nghiệm làm việc trong môi trường video production",
-        "Chưa có kinh nghiệm làm việc với các công cụ như Premiere Pro, CapCut, DaVinci Resolve"
+        "JD cần tư duy chiến lược social"
       ],
       "keywords_missing": [
-        "Không có kinh nghiệm làm việc với các công cụ AI như ChatGPT, Midjourney",
-        "Không có kinh nghiệm làm việc với các công cụ như Mailchimp, Trello, Notion"
+        "social strategy"
       ],
       "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh), Marketing Communications / PR, Event / Activation",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite, Hybrid tại Hà Nội",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house, Agency / Media house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce, Công nghệ / Startup"
-      ],
-      "match_score": 85
+        "✔ Social Media",
+        "✔ Content/Video",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-07",
     "is_new": false,
@@ -5701,34 +5490,18 @@
     "job_function": "",
     "industries": "Tư vấn và dịch vụ cho doanh nghiệp",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 56,
+      "cv_fit": 56,
+      "criteria_fit": 56,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": true,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về hướng công việc, cấp bậc và địa điểm làm việc",
-      "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Digital Marketing",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng đọc hiểu tiếng Anh cơ bản"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm làm việc trong vị trí Performance Marketing",
-        "Không có kinh nghiệm làm việc trong lĩnh vực Print-On-Demand"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực Data Analysis",
-        "Không có kinh nghiệm làm việc trong lĩnh vực Toán-Tin"
-      ],
-      "criteria_flags": [
-        "✔ Hướng công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Không yêu cầu kinh nghiệm",
-        "✔ Không yêu cầu đi tỉnh"
-      ],
-      "match_score": 82
+      "one_line_reason": "Fresher Social Ads POD nước ngoài — thiên chạy ads.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-07",
     "is_new": false
@@ -5745,34 +5518,26 @@
     "job_function": "",
     "industries": "Nhà cung cấp dịch vụ học trực tuyến",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 77,
+      "cv_fit": 77,
+      "criteria_fit": 77,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Chuyên viên Phát triển KOC (Growth, Edupia edtech) — KOC/booking + growth, ngành Giáo dục ưu tiên.",
       "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing",
-        "Có kỹ năng phân tích và giao tiếp tốt",
-        "Có khả năng quản lý và phối hợp với đội ngũ CTV"
+        "Kinh nghiệm KOL/KOC & media booking"
       ],
       "gaps": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực Giáo dục/Đào tạo",
-        "Không có kinh nghiệm làm việc với các KOC/Micro KOC"
+        "Growth marketing thiên số liệu"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc với các công cụ phân tích số liệu sâu",
-        "Không có kinh nghiệm làm việc với các nền tảng xã hội khác ngoài Facebook"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Có kinh nghiệm làm việc trong lĩnh vực Marketing",
-        "✔ Có kỹ năng phân tích và giao tiếp tốt",
-        "✔ Có khả năng quản lý và phối hợp với đội ngũ CTV",
-        "✘ Không có kinh nghiệm làm việc trong lĩnh vực Giáo dục/Đào tạo",
-        "✘ Không có kinh nghiệm làm việc với các KOC/Micro KOC"
-      ],
-      "match_score": 85
+        "✔ Ngành Giáo dục",
+        "✔ KOC/KOL (có trong CV)",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-07",
     "is_new": false
@@ -5834,35 +5599,18 @@
     "job_function": "",
     "industries": "Bán lẻ",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 56,
+      "cv_fit": 56,
+      "criteria_fit": 56,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về kinh nghiệm và kỹ năng",
-      "strengths": [
-        "Có kinh nghiệm trong Content Marketing và Digital Advertising",
-        "Từng làm việc tại một công ty thương mại và một agency",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm trực tiếp về Performance Marketing",
-        "Không có kinh nghiệm về thị trường Malaysia"
-      ],
-      "keywords_missing": [
-        "Performance Marketing",
-        "Thị trường Malaysia",
-        "Meta Business Suite"
-      ],
-      "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc Executive/Specialist",
-        "✔ Địa điểm Hà Nội",
-        "✔ Thuộc ngành Marketing",
-        "✔ Không yêu cầu đi tỉnh"
-      ],
-      "match_score": 82
+      "one_line_reason": "Performance ads thị trường Malaysia — thiên paid/doanh thu.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-07",
     "is_new": false
@@ -5923,35 +5671,26 @@
     "job_function": "",
     "industries": "Dịch vụ sự kiện",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 74,
+      "cv_fit": 74,
+      "criteria_fit": 74,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm trong lĩnh vực Marketing Communications / PR và Event / Activation, phù hợp với yêu cầu của vị trí Senior Event Executive.",
+      "one_line_reason": "Senior Event Executive (Informa) — tổ chức triển lãm/sự kiện B2B: đúng mảng Event.",
       "strengths": [
-        "Kinh nghiệm trong lĩnh vực Marketing Communications / PR và Event / Activation",
-        "Có kỹ năng quản lý thời gian và làm việc dưới áp lực cao",
-        "Có khả năng làm việc độc lập và trong nhóm"
+        "Kinh nghiệm tổ chức sự kiện"
       ],
       "gaps": [
-        "Không có kinh nghiệm trong lĩnh vực Infrastructure & Utilities",
-        "Không có kinh nghiệm trong việc quản lý database và nghiên cứu thị trường"
+        "Sự kiện triển lãm B2B quy mô lớn"
       ],
-      "keywords_missing": [
-        "Infrastructure & Utilities",
-        "Database management",
-        "Market research"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh/loai cong ty uu tien",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Event/Activation",
+        "✔ Hà Nội",
+        "✔ Quốc tế"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -6019,34 +5758,24 @@
     "job_function": "",
     "industries": "Tư vấn và dịch vụ CNTT",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 73,
+      "cv_fit": 73,
+      "criteria_fit": 73,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm Content Marketing và Digital Advertising, phù hợp với yêu cầu của JD",
+      "one_line_reason": "Marketing Executive (CHTLab, EV tech) — brand marketing sản phẩm công nghệ EV, ngành tech ưu tiên.",
       "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có kỹ năng quay/chụp, tư duy thẩm mĩ tốt",
-        "Có khả năng viết content cơ bản"
+        "Brand marketing cho sản phẩm tech"
       ],
-      "gaps": [
-        "Không có kinh nghiệm Trade Marketing",
-        "Không có kinh nghiệm làm việc trong ngành công nghệ"
-      ],
-      "keywords_missing": [
-        "Trade Marketing",
-        "Ngành công nghệ"
-      ],
+      "gaps": [],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec Social Media",
-        "✔ Dia diem Ha Noi",
-        "✔ Cap bac Executive/Specialist",
-        "✔ Loai cong ty Brand/In-house",
-        "✔ Nganh uu tien Công nghệ/Startup"
-      ],
-      "match_score": 82
+        "✔ Brand Marketing",
+        "✔ Tech/Startup",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-07",
     "is_new": false
@@ -6063,35 +5792,29 @@
     "job_function": "",
     "industries": "Dịch vụ thực phẩm và đồ uống",
     "match": {
+      "match_score": 85,
       "cv_fit": 85,
       "criteria_fit": 85,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phu hop vao huong cong viec, cap bac, dia diem, nganh uu tien",
+      "one_line_reason": "Content Creator TikTok cho brand F&B — kịch bản, dựng video, KOL/KOC: trúng kỹ năng CV, ngành F&B ưu tiên.",
       "strengths": [
-        "Kinh nghiệm làm việc tại Agency Sáng Tạo XYZ và Công ty CP Thương mại ABC",
-        "Kỹ năng về Content Marketing, Digital Advertising, SEO",
-        "Tốt nghiệp Đại học Ngoại thương Hà Nội với GPA 3.4/4.0"
+        "Kinh nghiệm TikTok & dựng video đúng JD",
+        "Từng làm việc KOL/KOC, media booking"
       ],
       "gaps": [
-        "Kinh nghiệm làm việc ít hơn 1 năm về việc xây kênh TikTok",
-        "Không có kinh nghiệm về ngành F&B"
+        "Cần bám sát chỉ số TikTok (watch time)"
       ],
       "keywords_missing": [
-        "TikTok Ads",
-        "Influencer Marketing",
-        "Content Calendar"
+        "TikTok analytics"
       ],
       "criteria_flags": [
-        "✔ Huong cong viec Social Media",
-        "✔ Cap bac Executive/Specialist",
-        "✔ Dia diem Ha Noi",
-        "✔ Nganh uu tien F&B",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Social Media / Content",
+        "✔ Ngành F&B",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-07",
     "is_new": false,
@@ -6115,28 +5838,26 @@
     "job_function": "",
     "industries": "Dịch vụ nhân sự",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 79,
+      "cv_fit": 79,
+      "criteria_fit": 79,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Content Marketing (GLA HR) — social đa nền tảng + key visual + phối hợp thiết kế: khớp content/design.",
       "strengths": [
-        "Kinh nghiệm quản lý kênh Social Media và Marketing Communications",
-        "Kỹ năng giao tiếp và xử lý tình huống tốt",
-        "Hiểu biết về các nền tảng mạng xã hội và khả năng sáng tạo nội dung"
+        "Content đa nền tảng + key visual đúng CV"
       ],
-      "gaps": [],
+      "gaps": [
+        "Ngành nhân sự/bán dẫn (ít liên quan)"
+      ],
       "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Cap bac: Executive/Specialist",
-        "✔ Dia diem: Hà Nội",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo"
-      ],
-      "match_score": 85
+        "✔ Content/Social",
+        "✔ Hà Nội",
+        "✔ Executive/Specialist"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -6160,34 +5881,25 @@
     "job_function": "",
     "industries": "Dịch vụ quảng cáo",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 72,
+      "cv_fit": 72,
+      "criteria_fit": 72,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Content Marketing Executive (Medinet) — content đa kênh, ngành y tế; thiên chuyển đổi.",
       "strengths": [
-        "Có kinh nghiệm làm Content Marketing Executive tại Công ty CP Thương mại ABC",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng viết bài blog SEO và quản lý lịch đăng bài đa kênh"
+        "Content đa kênh đúng CV"
       ],
       "gaps": [
-        "Không có kinh nghiệm làm PR, truyền thông lĩnh vực y tế, sức khỏe, làm đẹp",
-        "Không có kinh nghiệm làm việc trong môi trường startup"
+        "Nặng mục tiêu chuyển đổi/lead"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc trong môi trường năng động, khuyến khích chủ động test và thử nghiệm ý tưởng mới",
-        "Không có kinh nghiệm làm việc với các công cụ như Canva, CapCut, Google Analytics, Mailchimp, Trello, Notion"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Có kinh nghiệm làm Content Marketing Executive",
-        "✔ Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "✔ Có kỹ năng viết bài blog SEO và quản lý lịch đăng bài đa kênh",
-        "✘ Không có kinh nghiệm làm PR, truyền thông lĩnh vực y tế, sức khỏe, làm đẹp",
-        "✘ Không có kinh nghiệm làm việc trong môi trường startup"
-      ],
-      "match_score": 85
+        "✔ Content Marketing",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-07",
     "is_new": false,
@@ -6211,35 +5923,25 @@
     "job_function": "",
     "industries": "Pet Services",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 75,
+      "cv_fit": 75,
+      "criteria_fit": 75,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Content Creator VN/Global (PETOUR) — content end-to-end từ insight tới social.",
       "strengths": [
-        "Kinh nghiệm quản lý kênh và marketing communications",
-        "Kỹ năng viết và sáng tạo nội dung",
-        "Kinh nghiệm làm việc trong môi trường đa quốc gia"
+        "Sản xuất content chất lượng đa touchpoint"
       ],
       "gaps": [
-        "CV chưa có kinh nghiệm làm việc trong ngành công nghệ hoặc startup",
-        "CV chưa có kinh nghiệm quản lý đội ngũ"
+        "Cần insight sản phẩm sâu"
       ],
-      "keywords_missing": [
-        "Trending formats và viral hooks",
-        "SEO principles và ChatGPT / AI-assisted content tools",
-        "Social media content optimization"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac Executive/Specialist",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh F&B/FMCG/Bán lẻ/E-commerce",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Content",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -6263,34 +5965,26 @@
     "job_function": "",
     "industries": "Xây dựng",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 76,
+      "cv_fit": 76,
+      "criteria_fit": 76,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": true,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Marketing Executive (SUHA) — truyền thông/marketing/thương hiệu, content + video, 1-2 năm.",
       "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Content Marketing",
-        "Có kỹ năng thiết kế và chỉnh sửa hình ảnh, video ngắn",
-        "Có khả năng viết/chỉnh sửa nội dung cơ bản"
+        "Content, chỉnh sửa ảnh/video đúng CV"
       ],
       "gaps": [
-        "Chưa có kinh nghiệm làm việc trong lĩnh vực Social Media",
-        "Chưa có kỹ năng sử dụng CapCut, Premiere"
+        "Ngành xây dựng/công trình"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực Event/Activation",
-        "Không có kỹ năng sử dụng Google Analytics"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Yêu cầu về kinh nghiệm làm việc trong lĩnh vực Marketing phù hợp",
-        "✔ Yêu cầu về kỹ năng thiết kế và chỉnh sửa hình ảnh, video ngắn phù hợp",
-        "✔ Yêu cầu về khả năng viết/chỉnh sửa nội dung cơ bản phù hợp",
-        "✘ Yêu cầu về kinh nghiệm làm việc trong lĩnh vực Social Media không phù hợp",
-        "✘ Yêu cầu về kỹ năng sử dụng CapCut, Premiere không phù hợp"
-      ],
-      "match_score": 85
+        "✔ Marketing Communications",
+        "✔ Content/Video",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false
@@ -6307,34 +6001,24 @@
     "job_function": "",
     "industries": "Dịch vụ tiêu dùng",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 72,
+      "cv_fit": 72,
+      "criteria_fit": 72,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Nhân viên Digital Marketing (Sóng Thần) — digital plan + phối hợp thiết kế + phân tích thị trường.",
       "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Digital Marketing",
-        "Có kỹ năng về Content Marketing, SEO, Facebook Ads",
-        "Có kinh nghiệm làm việc trong môi trường năng động"
+        "Digital + content/design"
       ],
-      "gaps": [
-        "Không có kinh nghiệm về thương mại điện tử",
-        "Không có kinh nghiệm về quản lý đội ngũ"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm về Google Ads",
-        "Không có kinh nghiệm về Meta Business Suite"
-      ],
+      "gaps": [],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Ngành nghề phù hợp",
-        "✔ Không có yêu cầu đi tỉnh"
-      ],
-      "match_score": 85
+        "✔ Digital Marketing",
+        "✔ FMCG",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -6445,37 +6129,24 @@
     "job_function": "",
     "industries": "Technology, Information and Media",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 72,
+      "cv_fit": 72,
+      "criteria_fit": 72,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm trong Content Marketing và Digital Advertising, phù hợp với yêu cầu của vị trí Marketing Planner.",
+      "one_line_reason": "Marketing Planner - Game Publishing (Funtap) — master plan marketing game.",
       "strengths": [
-        "Có kinh nghiệm trong Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng sử dụng các công cụ như Canva, CapCut, Google Analytics, Mailchimp, Trello, Notion"
+        "Lập & vận hành kế hoạch marketing"
       ],
-      "gaps": [
-        "Không có kinh nghiệm trong lĩnh vực Game Publishing",
-        "Không có kinh nghiệm trong việc sử dụng các công cụ AI như ChatGPT, Gemini, CapCut..."
-      ],
-      "keywords_missing": [
-        "Game Publishing",
-        "AI",
-        "ChatGPT",
-        "Gemini",
-        "CapCut"
-      ],
+      "gaps": [],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh), Marketing Communications / PR, Event / Activation",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite, Hybrid tại Hà Nội",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Công nghệ / Startup"
-      ],
-      "match_score": 82
+        "✔ Marketing Planning",
+        "✔ Tech/Game",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false
@@ -6492,35 +6163,18 @@
     "job_function": "",
     "industries": "Ứng dụng trò chơi di động",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 55,
+      "cv_fit": 55,
+      "criteria_fit": 55,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng phân tích dữ liệu và tối ưu ngân sách quảng cáo"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm Performance Marketing trong ngành TMDT, Giáo dục hoặc app/game mobile",
-        "Chưa có kinh nghiệm sử dụng thành thạo các công cụ như AppsFlyer, Firebase, Adjust, GA4"
-      ],
-      "keywords_missing": [
-        "Performance Marketing",
-        "TMDT, Giáo dục hoặc app/game mobile",
-        "AppsFlyer, Firebase, Adjust, GA4"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Cap bac: Executive/Specialist",
-        "✔ Dia diem: Hà Nội",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 82
+      "one_line_reason": "Performance ads (Meta/Google) + KPI kinh doanh — không đúng định hướng.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-08",
     "is_new": false
@@ -6587,37 +6241,18 @@
     "job_function": "",
     "industries": "Dịch vụ nhân sự",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 59,
+      "cv_fit": 59,
+      "criteria_fit": 59,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm Content Marketing và Digital Advertising phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng sử dụng các công cụ như Canva, CapCut, Google Analytics, Mailchimp, Trello, Notion"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm trong lĩnh vực Banking, Securities, Financial Services, Fintech, hoặc các ngành liên quan",
-        "Không có kinh nghiệm trong Event Marketing"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong Event Marketing",
-        "Không có kinh nghiệm trong lĩnh vực Banking, Securities, Financial Services, Fintech, hoặc các ngành liên quan"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh), Marketing Communications / PR, Event / Activation",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite, Hybrid tại Hà Nội",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house, Agency / Media house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce, Công nghệ / Startup",
-        "✘ Nặng KPI doanh số / sale",
-        "✘ OT nhiều / áp lực cao",
-        "✘ Phải đi tỉnh / di chuyển nhiều"
-      ],
-      "match_score": 82
+      "one_line_reason": "Product Marketing tài chính phái sinh, middle-senior — lệch ngành & cấp.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-08",
     "is_new": false
@@ -6678,34 +6313,18 @@
     "job_function": "",
     "industries": "Xuất bản sách và ấn phẩm định kỳ",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 67,
+      "cv_fit": 67,
+      "criteria_fit": 67,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Kinh nghiệm quản lý kênh social media và marketing communications",
-        "Kỹ năng viết nội dung quảng cáo và tối ưu hóa hiệu quả",
-        "Kinh nghiệm làm việc trong môi trường trẻ trung và lầy lội"
-      ],
-      "gaps": [
-        "CV không có kinh nghiệm làm việc trong ngành game",
-        "CV không có kỹ năng thiết kế đồ họa"
-      ],
-      "keywords_missing": [
-        "Kỹ năng phân tích dữ liệu và tối ưu hóa hiệu quả",
-        "Kinh nghiệm làm việc trong môi trường startup"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac Executive/Specialist",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh uu tien",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Content Performance Marketing (game) — thiên performance.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-08",
     "is_new": false
@@ -6722,35 +6341,29 @@
     "job_function": "",
     "industries": "Marketing Services",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 82,
+      "cv_fit": 82,
+      "criteria_fit": 82,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm trong Social Media, Marketing Communications và Event, phù hợp với yêu cầu của JD.",
+      "one_line_reason": "Brand & Communications Junior: brand voice/story + communication plan đa kênh (Social/Content/PR) — rất khớp định hướng & cấp bậc.",
       "strengths": [
-        "Kinh nghiệm trong Social Media và Marketing Communications",
-        "Có khả năng xây dựng chiến lược nội dung và định hướng thương hiệu",
-        "Tư duy thẩm mỹ tốt và biết sử dụng các công cụ sáng tạo nội dung"
+        "Định hướng truyền thông thương hiệu khớp CV",
+        "Cấp Junior đúng mong muốn"
       ],
       "gaps": [
-        "Chưa có kinh nghiệm trong lĩnh vực Branding Marketing",
-        "Chưa có kinh nghiệm trong việc xây dựng chiến lược nội dung cho thương hiệu"
+        "Cần tư duy hệ thống nội dung thương hiệu"
       ],
       "keywords_missing": [
-        "Digital Marketing",
-        "Các nền tảng quảng cáo (Facebook, TikTok, Google)",
-        "Quản lý kênh truyền thông"
+        "brand voice"
       ],
       "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh/loai cong ty uu tien",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Marketing Communications",
+        "✔ Junior/Executive",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -6774,35 +6387,18 @@
     "job_function": "",
     "industries": "Thực hành y khoa",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 59,
+      "cv_fit": 59,
+      "criteria_fit": 59,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": true,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Kinh nghiệm trong mảng Social Media và Marketing Communications",
-        "Kỹ năng quản lý ngân sách và theo dõi hiệu suất quảng cáo",
-        "Tư duy sáng tạo và khả năng làm việc nhóm tốt"
-      ],
-      "gaps": [
-        "CV không có kinh nghiệm trong mảng Nha khoa/Thẩm mỹ",
-        "CV không có kỹ năng về các công cụ quảng cáo như Google Ads Manager"
-      ],
-      "keywords_missing": [
-        "Kỹ năng về các công cụ quảng cáo như Google Ads Manager",
-        "Kinh nghiệm trong mảng Nha khoa/Thẩm mỹ",
-        "Tư duy về các thuật toán mới từ các nền tảng số"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac Executive/Specialist",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh Giáo dục/Đào tạo",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Performance/paid ads (Parkway) — thiên chạy quảng cáo, không đúng định hướng content/social.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-08",
     "is_new": false
@@ -6903,36 +6499,26 @@
     "job_function": "",
     "industries": "Phát triển phần mềm",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 71,
+      "cv_fit": 71,
+      "criteria_fit": 71,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm trong lĩnh vực Marketing Communications và Event Planning, phù hợp với yêu cầu của JD.",
+      "one_line_reason": "Content Marketing Specialist B2B (BSS) — content blog/landing/social + SEO cho B2B tiếng Anh.",
       "strengths": [
-        "Kinh nghiệm trong lĩnh vực Marketing Communications và Event Planning",
-        "Có kỹ năng viết và chỉnh sửa nội dung",
-        "Có kinh nghiệm trong việc quản lý kênh và tạo nội dung cho các nền tảng xã hội"
+        "Content đa định dạng"
       ],
       "gaps": [
-        "CV không có kinh nghiệm trong lĩnh vực B2B và viết nội dung cho các sản phẩm phần mềm",
-        "CV không có kinh nghiệm trong việc làm việc với các nền tảng như Magento, Shopify, Adobe Commerce"
+        "B2B tiếng Anh + SEO"
       ],
-      "keywords_missing": [
-        "B2B",
-        "Magento",
-        "Shopify",
-        "Adobe Commerce"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh/loai cong ty uu tien",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Content Marketing",
+        "✔ Tech B2B",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -6956,34 +6542,27 @@
     "job_function": "",
     "industries": "Thương mại và phát triển quốc tế",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 79,
+      "cv_fit": 79,
+      "criteria_fit": 79,
       "level": "Executive/Specialist",
       "in_hanoi": true,
-      "salary_below_12m": false,
+      "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm quản lý kênh, marketing communications và event phù hợp với yêu cầu của JD.",
+      "one_line_reason": "Senior Event Executive (British Chamber) — tổ chức sự kiện đầu-cuối, hậu cần, vendor: đúng thế mạnh Event/MC.",
       "strengths": [
-        "Kinh nghiệm quản lý kênh và marketing communications",
-        "Kinh nghiệm tổ chức sự kiện và hoạt động",
-        "Kỹ năng giao tiếp và quản lý đội ngũ"
+        "Kinh nghiệm tổ chức & MC sự kiện",
+        "Tiếng Anh TOEIC 830"
       ],
       "gaps": [
-        "Chưa có kinh nghiệm quản lý dự án lớn",
-        "Chưa có kinh nghiệm trong lĩnh vực giáo dục"
+        "Thiên logistics/ngân sách sự kiện"
       ],
-      "keywords_missing": [
-        "Quản lý dự án",
-        "Lĩnh vực giáo dục"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac Executive/Specialist",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh/loai cong ty uu tien",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Event/Activation",
+        "✔ Hà Nội",
+        "✔ Môi trường quốc tế"
+      ]
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -7009,34 +6588,18 @@
     "salary": "",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 68,
+      "cv_fit": 68,
+      "criteria_fit": 68,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Kinh nghiệm quản lý kênh social media và marketing communications",
-        "Kỹ năng tổ chức sự kiện và hoạt động",
-        "Kinh nghiệm làm việc trong lĩnh vực giáo dục"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm làm việc trong lĩnh vực PR",
-        "Chưa có kinh nghiệm làm việc trong lĩnh vực giáo dục chuyên sâu"
-      ],
-      "keywords_missing": [
-        "Kỹ năng thiết kế và phát triển sản phẩm",
-        "Kinh nghiệm làm việc trong lĩnh vực công nghệ"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Hà Nội",
-        "✔ Thuoc nganh giáo dục",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Senior + đa cơ sở tỉnh, cần master's — vượt cấp mong muốn.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -7382,36 +6945,18 @@
     "salary": "20tr-35tr ₫/tháng",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 62,
+      "cv_fit": 62,
+      "criteria_fit": 62,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm trong Marketing Communications, Event/Activation và Social Media, phù hợp với yêu cầu của JD.",
-      "strengths": [
-        "Kinh nghiệm trong Marketing Communications, Event/Activation và Social Media",
-        "Có kỹ năng trong quản lý kênh, Marketing Communications/PR và Event/Activation",
-        "Có kinh nghiệm trong quản lý đội ngũ và tổ chức sự kiện"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm trong Trade Marketing",
-        "Chưa có kinh nghiệm trong FMCG, Consumer Durables hoặc Building Materials"
-      ],
-      "keywords_missing": [
-        "Trade Marketing",
-        "FMCG",
-        "Consumer Durables",
-        "Building Materials"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Hà Nội",
-        "✔ Thuoc nganh/loai cong ty ưu tiên",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Trade Marketing thiên sales/kênh, 3+ năm, có HCM.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-08",
     "is_new": false,
@@ -7435,34 +6980,26 @@
     "job_function": "",
     "industries": "Thời trang và hàng may mặc bán lẻ",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 79,
+      "cv_fit": 79,
+      "criteria_fit": 79,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Social Media Marketing Specialist (thời trang) — social + brand, ngành bán lẻ thời trang.",
       "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Content Marketing",
-        "Có kỹ năng sáng tạo và sản xuất nội dung đa dạng định dạng",
-        "Có kinh nghiệm quản lý và chăm sóc các kênh truyền thông trên Social Media"
+        "Quản lý kênh social & định hình thương hiệu"
       ],
       "gaps": [
-        "Chưa có kinh nghiệm làm việc trong lĩnh vực thời trang",
-        "Chưa có kỹ năng edit cơ bản trên điện thoại"
+        "Mở rộng thị trường quốc tế"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc trong môi trường startup",
-        "Không có kỹ năng phân tích dữ liệu và đo lường hiệu quả của các nội dung và chiến dịch truyền thông"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce"
-      ],
-      "match_score": 85
+        "✔ Social Media",
+        "✔ Bán lẻ/Thời trang",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7479,35 +7016,26 @@
     "job_function": "",
     "industries": "Phát triển phần mềm",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 81,
+      "cv_fit": 81,
+      "criteria_fit": 81,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về hướng công việc, cấp bậc và địa điểm làm việc",
+      "one_line_reason": "Video Content Creator (upto 20M, TMĐT cross-border) — dựng video, sáng tạo: khớp kỹ năng; lương tốt.",
       "strengths": [
-        "Có kinh nghiệm trong lĩnh vực Content Marketing và Digital Advertising",
-        "Có kỹ năng viết bài blog SEO và quản lý lịch đăng bài đa kênh",
-        "Có kinh nghiệm trong việc chạy Facebook Ads và quản lý ngân sách"
+        "Dựng video & content đúng thế mạnh"
       ],
       "gaps": [
-        "Không có kinh nghiệm trong lĩnh vực thương mại điện tử",
-        "Không có kỹ năng edit video trên CapCut"
+        "Thị trường EU/US — cần tiếng Anh"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong việc quản lý kho nội dung",
-        "Không có kỹ năng ứng dụng công cụ AI vào quá trình sản xuất video"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Hướng công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Ngành nghề phù hợp",
-        "✔ Loại công ty phù hợp",
-        "✔ Không có yêu cầu đi tỉnh"
-      ],
-      "match_score": 82
+        "✔ Content/Video",
+        "✔ E-commerce",
+        "✔ Lương upto 20tr"
+      ]
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7524,34 +7052,27 @@
     "job_function": "",
     "industries": "Sản xuất phụ kiện thời trang",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 81,
+      "cv_fit": 81,
+      "criteria_fit": 81,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phù hợp về hướng công việc, cấp bậc và địa điểm làm việc",
+      "one_line_reason": "Marketing Executive HAPAS (E-commerce top GMV) — chính đối tác cũ trong CV; 15-25tr, 2 năm, ngành TMĐT ưu tiên.",
       "strengths": [
-        "Có kinh nghiệm trong Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng làm việc nhóm tốt và chủ động trong công việc"
+        "Đã hợp tác HAPAS (có trong CV)",
+        "Ngành TMĐT tăng trưởng nhanh"
       ],
       "gaps": [
-        "Không có kinh nghiệm trong ngành thời trang/lifestyle/retail",
-        "Không có chứng chỉ về Event/Activation"
+        "Môi trường áp lực cao/tốc độ"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong quản lý ngân sách marketing",
-        "Không có kỹ năng về phân tích dữ liệu"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Hướng công việc phù hợp",
-        "✔ Cấp bậc phù hợp",
-        "✔ Địa điểm làm việc phù hợp",
-        "✔ Ngành uu tiên phù hợp",
-        "✔ Không có yêu cầu đi tỉnh/di chuyển nhiều"
-      ],
-      "match_score": 85
+        "✔ E-commerce (ưu tiên)",
+        "✔ Lương 15-25tr",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7613,35 +7134,18 @@
     "job_function": "",
     "industries": "Tư vấn và dịch vụ CNTT",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 66,
+      "cv_fit": 66,
+      "criteria_fit": 66,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phu hop vao huong cong viec, cap bac, dia diem, nganh uu tien",
-      "strengths": [
-        "Kinh nghiệm Content Marketing và Digital Advertising",
-        "Kỹ năng viết bài blog SEO, quản lý lịch đăng bài đa kênh",
-        "Kỹ năng chạy Facebook Ads, Google Ads"
-      ],
-      "gaps": [
-        "Thiếu kinh nghiệm về Product Marketing",
-        "Thiếu kinh nghiệm về công nghệ / startup"
-      ],
-      "keywords_missing": [
-        "Product Positioning & Messaging",
-        "Go-to-Market Execution",
-        "Performance Monitoring & Optimization"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec Social Media, Marketing Communications / PR, Event / Activation",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite, Hybrid tại Hà Nội",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house, Agency / Media house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce, Công nghệ / Startup"
-      ],
-      "match_score": 85
+      "one_line_reason": "Product Marketing tech/AI (VinSmart) — thiên product, ít khớp thế mạnh content.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7658,31 +7162,18 @@
     "job_function": "",
     "industries": "Xuất nhập khẩu bán buôn",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 64,
+      "cv_fit": 64,
+      "criteria_fit": 64,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm Trade Marketing và kỹ năng lập kế hoạch, phân tích dữ liệu phù hợp với yêu cầu JD.",
-      "strengths": [
-        "Có kinh nghiệm Trade Marketing trong ngành FMCG/Thực phẩm/Nước giải khát",
-        "Kỹ năng lập kế hoạch, phân tích dữ liệu và đo lường hiệu quả tốt",
-        "Sáng tạo, nhạy bén với xu hướng tiêu dùng và trưng bày điểm bán"
-      ],
-      "gaps": [
-        "Kinh nghiệm làm việc với các chuỗi siêu thị lớn, chuỗi nhà hàng",
-        "Hiểu biết về sản phẩm thực phẩm nhập khẩu và quy định an toàn thực phẩm"
-      ],
+      "one_line_reason": "Trade Marketing (POSM/điểm bán) — thiên kênh/sales.",
+      "strengths": [],
+      "gaps": [],
       "keywords_missing": [],
-      "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh), Marketing Communications / PR, Event / Activation",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite, Hybrid tại Hà Nội",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house, Agency / Media house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce"
-      ],
-      "match_score": 82
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7699,34 +7190,26 @@
     "job_function": "",
     "industries": "Bất động sản",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 76,
+      "cv_fit": 76,
+      "criteria_fit": 76,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phu hop vao huong cong viec, cap bac, dia diem, nganh uu tien",
+      "one_line_reason": "Senior Executive A&P Event (Keppel - mall) — marketing & event/activation cho TTTM, ngành bán lẻ.",
       "strengths": [
-        "Kinh nghiệm Content Marketing và Digital Advertising",
-        "Kỹ năng quản lý kênh social media",
-        "Kỹ năng viết copywriting tốt"
+        "Event & activation đúng thế mạnh"
       ],
       "gaps": [
-        "Chưa có kinh nghiệm trong lĩnh vực Event/Activation",
-        "Chưa có kinh nghiệm trong lĩnh vực PR"
+        "Đo ROI/KPI traffic mall"
       ],
-      "keywords_missing": [
-        "Kỹ năng quản lý ngân sách và lịch trình",
-        "Kỹ năng phân tích dữ liệu và market insights"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec khop",
-        "✔ Cap bac khop",
-        "✔ Dia diem khop",
-        "✔ Nganh uu tien khop",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Event/Activation",
+        "✔ Bán lẻ",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7743,34 +7226,26 @@
     "job_function": "",
     "industries": "Phát triển phần mềm",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 85,
+      "match_score": 72,
+      "cv_fit": 72,
+      "criteria_fit": 72,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Phu hop vao huong cong viec, cap bac, dia diem va nganh uu tien",
+      "one_line_reason": "Content Marketing Specialist B2B (Magestore, tech) — content cho phần mềm B2B, ngành công nghệ.",
       "strengths": [
-        "Kinh nghiệm làm việc trong lĩnh vực Marketing và Content Marketing",
-        "Kỹ năng viết lách và sáng tạo nội dung",
-        "Kinh nghiệm làm việc với các công cụ như Canva, CapCut, Google Analytics, Mailchimp, Trello, Notion"
+        "Kỹ năng content khớp"
       ],
       "gaps": [
-        "Thiếu kinh nghiệm làm việc trong lĩnh vực B2B và Content Marketing cho sản phẩm công nghệ",
-        "Thiếu kinh nghiệm làm việc với các công cụ như Magento, Shopify, Adobe Commerce"
+        "Cần kinh nghiệm viết B2B phần mềm + tiếng Anh"
       ],
-      "keywords_missing": [
-        "Keyword 'B2B' và 'Content Marketing' không xuất hiện trong CV",
-        "Keyword 'Magento', 'Shopify', 'Adobe Commerce' không xuất hiện trong CV"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec khop",
-        "✔ Cap bac khop",
-        "✔ Dia diem khop",
-        "✔ Nganh uu tien khop",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 82
+        "✔ Content Marketing",
+        "✔ Tech",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7787,35 +7262,18 @@
     "job_function": "",
     "industries": "Education Management",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 60,
+      "cv_fit": 60,
+      "criteria_fit": 60,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm Content Marketing và Digital Advertising phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng SEO Content, Script Video, Storytelling, Email Marketing"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm về Event / Activation",
-        "Không có kinh nghiệm về Marketing Communications / PR"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm về F&B / FMCG / Bán lẻ / E-commerce",
-        "Không có kinh nghiệm về Công nghệ / Startup"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Content SEO Langmaster — lương 10-15tr (dưới 14).",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -7926,34 +7384,26 @@
     "salary": "Tới 25tr ₫/tháng",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 76,
+      "cv_fit": 76,
+      "criteria_fit": 76,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
+      "one_line_reason": "Brand Executive ngành Mẹ&Bé (FMCG, upto 25tr) — brand marketing, FMCG ưu tiên, lương tốt.",
       "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng tổ chức và theo dõi kế hoạch"
+        "Định hướng brand + tổ chức triển khai"
       ],
       "gaps": [
-        "Chưa có kinh nghiệm trong ngành FMCG, Mẹ – Bé",
-        "Chưa có kinh nghiệm trong vị trí Brand Executive"
+        "Yêu cầu 2-3 năm brand FMCG"
       ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong việc xây dựng hình ảnh thương hiệu",
-        "Không có kinh nghiệm trong việc quản lý kênh social media"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce"
-      ],
-      "match_score": 85
+        "✔ Brand/Marketing",
+        "✔ FMCG (ưu tiên)",
+        "✔ Lương upto 25tr"
+      ]
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8206,34 +7656,18 @@
     "salary": "",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 65,
+      "cv_fit": 65,
+      "criteria_fit": 65,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm Content Marketing và Digital Advertising",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng viết và biên tập tốt"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm trong lĩnh vực Giáo dục / Đào tạo",
-        "Chưa có kinh nghiệm trong lĩnh vực Công nghệ / Startup"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm trong lĩnh vực Event / Activation",
-        "Không có kinh nghiệm trong lĩnh vực PR"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Hà Nội",
-        "✔ Thuoc nganh Giáo dục / Đào tạo",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Senior comms + editorial management — vượt cấp kinh nghiệm.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8348,34 +7782,18 @@
     "salary": "12tr-17tr ₫/tháng",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 52,
+      "cv_fit": 52,
+      "criteria_fit": 52,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Có kinh nghiệm làm việc trong lĩnh vực Marketing và Digital Marketing",
-        "Có chứng chỉ Google Digital Marketing & E-commerce Certificate và Meta Social Media Marketing Professional Certificate",
-        "Có kỹ năng quản lý kênh và truyền thông nội bộ"
-      ],
-      "gaps": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực tuyển dụng và truyền thông nội bộ",
-        "Không có kinh nghiệm làm việc trong lĩnh vực giáo dục hoặc F&B/FMCG/Bán lẻ/E-commerce"
-      ],
-      "keywords_missing": [
-        "Không có kinh nghiệm làm việc trong lĩnh vực M&E",
-        "Không có kinh nghiệm làm việc trong lĩnh vực Xây dựng"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec: Social Media (quản lý kênh)",
-        "✔ Dia diem / hinh thuc: Hà Nội - onsite",
-        "✔ Cap bac nham toi: Executive / Specialist",
-        "✔ Loai cong ty: Brand / In-house",
-        "✔ Nganh uu tien: Giáo dục / Đào tạo, F&B / FMCG / Bán lẻ / E-commerce"
-      ],
-      "match_score": 85
+      "one_line_reason": "Chủ yếu Nhân sự/Tuyển dụng — không phải marketing.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8394,35 +7812,18 @@
     "salary": "$ 800-1,200 /tháng",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 68,
+      "cv_fit": 68,
+      "criteria_fit": 68,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Kinh nghiệm trong lĩnh vực Marketing và Communications",
-        "Kỹ năng quản lý kênh và tạo nội dung",
-        "Kinh nghiệm trong việc phát triển và triển khai các sản phẩm mới"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm trong lĩnh vực FMCG",
-        "Chưa có kinh nghiệm trong việc làm việc với các đối tác và nhà cung cấp"
-      ],
-      "keywords_missing": [
-        "Kỹ năng phân tích dữ liệu và lập kế hoạch",
-        "Kỹ năng làm việc với các phần mềm chuyên dụng",
-        "Kỹ năng quản lý và phân tích dữ liệu"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Hà Nội",
-        "✔ Thuoc nganh/loai cong ty ưu tiên",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Marketing Officer FMCG yêu cầu 4 năm + thiên product development.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8441,35 +7842,26 @@
     "salary": "",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 72,
+      "cv_fit": 72,
+      "criteria_fit": 72,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của công việc",
+      "one_line_reason": "Nhân viên Marketing (Sóng Thần HN, FMCG Nhật) — marketing tổng hợp/trade, 2 năm, ngành FMCG.",
       "strengths": [
-        "Kinh nghiệm quản lý kênh social media và marketing communications",
-        "Kỹ năng tổ chức sự kiện và hoạt động",
-        "Kinh nghiệm làm việc trong môi trường đa quốc gia"
+        "Marketing tổng hợp cho nhãn hàng"
       ],
       "gaps": [
-        "CV không có kinh nghiệm về trade marketing",
-        "CV không có kinh nghiệm về quản lý đội ngũ"
+        "Thiên trade marketing"
       ],
-      "keywords_missing": [
-        "Trade marketing",
-        "Quản lý đội ngũ",
-        "KPI doanh số"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Hà Nội",
-        "✔ Thuoc nganh Giáo dục / Đào tạo",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+        "✔ Marketing",
+        "✔ FMCG",
+        "✔ Hà Nội"
+      ]
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8528,35 +7920,18 @@
     "salary": "",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 80,
-      "criteria_fit": 80,
+      "match_score": 55,
+      "cv_fit": 55,
+      "criteria_fit": 55,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Ung vien co kinh nghiem trong Social Media, Marketing Communications và Event Planning, phù hợp với yêu cầu của JD.",
-      "strengths": [
-        "Kinh nghiệm trong Social Media và Marketing Communications",
-        "Kỹ năng quản lý và vận hành các nền tảng mạng xã hội",
-        "Hiểu biết về các nền tảng mạng xã hội Trung Quốc"
-      ],
-      "gaps": [
-        "Chưa có kinh nghiệm trong lĩnh vực Digital Marketing",
-        "Chưa có chứng chỉ tiếng Trung HSK5 trở lên"
-      ],
-      "keywords_missing": [
-        "Xiaohongshu (XHS)",
-        "WeChat",
-        "Hành vi người tiêu dùng"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac phù hợp",
-        "✔ Dia diem Hà Nội",
-        "✔ Thuoc nganh Giáo dục / Đào tạo",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 80
+      "one_line_reason": "Yêu cầu tiếng Trung HSK5 — không phù hợp hồ sơ.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8615,35 +7990,18 @@
     "salary": "",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 66,
+      "cv_fit": 66,
+      "criteria_fit": 66,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Kinh nghiệm quản lý kênh và marketing communications",
-        "Kỹ năng viết và giao tiếp tiếng Anh tốt",
-        "Kinh nghiệm làm việc với các đối tác và khách hàng"
-      ],
-      "gaps": [
-        "CV chưa có kinh nghiệm về giáo dục/trường đại học",
-        "CV chưa có kinh nghiệm về quản lý dự án lớn"
-      ],
-      "keywords_missing": [
-        "Talent attraction trends",
-        "Global academic environments",
-        "Digital communication strategies"
-      ],
-      "criteria_flags": [
-        "✔ Huong cong viec phù hợp",
-        "✔ Cap bac Executive/Specialist",
-        "✔ Dia diem Ha Noi",
-        "✔ Thuoc nganh Giáo dục/trường đại học",
-        "✔ KHONG dinh dieu can tranh"
-      ],
-      "match_score": 85
+      "one_line_reason": "Employer branding học thuật, cần kinh nghiệm branding chuyên biệt.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8708,34 +8066,18 @@
     "salary": "12tr-16tr ₫/tháng",
     "source": "vietnamworks",
     "match": {
-      "cv_fit": 85,
-      "criteria_fit": 85,
+      "match_score": 50,
+      "cv_fit": 50,
+      "criteria_fit": 50,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "CV có kinh nghiệm và kỹ năng phù hợp với yêu cầu của JD",
-      "strengths": [
-        "Kinh nghiệm tổ chức sự kiện và quản lý kênh social media",
-        "Kỹ năng lãnh đạo và quản lý đội ngũ",
-        "Kinh nghiệm làm việc trong môi trường kinh doanh"
-      ],
-      "gaps": [
-        "CV không có kinh nghiệm làm việc trong lĩnh vực bất động sản",
-        "CV không có kỹ năng chuyên sâu về marketing tổng hợp"
-      ],
-      "keywords_missing": [
-        "Kỹ năng lập kế hoạch và quản lý dự án",
-        "Kỹ năng phân tích và đánh giá hiệu quả của các chương trình marketing"
-      ],
-      "criteria_flags": [
-        "✔ Huống công việc phù hợp",
-        "✔ Cấp bậc phù hợp (Executive/Specialist)",
-        "✔ Địa điểm làm việc phù hợp (Hà Nội)",
-        "✔ Ngành nghề phù hợp (bất động sản)",
-        "✔ Không có yêu cầu đi tỉnh/di chuyển nhiều"
-      ],
-      "match_score": 85
+      "one_line_reason": "Sự kiện bán hàng BĐS + đa tỉnh (Đà Nẵng/Nghệ An) — phải di chuyển.",
+      "strengths": [],
+      "gaps": [],
+      "keywords_missing": [],
+      "criteria_flags": []
     },
     "date_added": "2026-07-09",
     "is_new": true
@@ -8991,25 +8333,23 @@
     "source": "vietnamworks",
     "match": {
       "match_score": 85,
-      "cv_fit": 88,
-      "criteria_fit": 80,
+      "cv_fit": 85,
+      "criteria_fit": 85,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Đúng mảng Social Media: lập kế hoạch & sản xuất nội dung Facebook/TikTok/YouTube, khớp mạnh kinh nghiệm CV.",
+      "one_line_reason": "Đúng mảng Social Media: lập kế hoạch & sản xuất nội dung FB/TikTok/YouTube — khớp mạnh CV.",
       "strengths": [
-        "Kinh nghiệm quản lý kênh Facebook/TikTok đúng yêu cầu",
-        "Sản xuất nội dung, video, thiết kế khớp JD",
-        "Cấp Specialist tại Hà Nội đúng định hướng"
+        "Kinh nghiệm quản lý kênh FB/TikTok đúng yêu cầu",
+        "Sản xuất nội dung, video, thiết kế"
       ],
       "gaps": [
-        "JD nhắm thị trường châu Âu, cần tiếng Anh tốt (CV có TOEIC 830)",
-        "Chưa nêu kinh nghiệm LinkedIn/B2B"
+        "JD nhắm thị trường châu Âu — cần tiếng Anh tốt"
       ],
       "keywords_missing": [
         "LinkedIn content",
-        "nội dung thị trường quốc tế"
+        "nội dung quốc tế"
       ],
       "criteria_flags": [
         "✔ Social Media (quản lý kênh)",
@@ -9033,31 +8373,25 @@
     "source": "vietnamworks",
     "match": {
       "match_score": 72,
-      "cv_fit": 62,
-      "criteria_fit": 86,
+      "cv_fit": 72,
+      "criteria_fit": 72,
       "level": "Executive/Specialist",
       "in_hanoi": true,
       "salary_below_min": false,
       "requires_travel": false,
-      "one_line_reason": "Định hướng content/truyền thông tại đại học (ngành Giáo dục ưu tiên), Hà Nội; JD thiên chiến lược nội dung cấp cao hơn kinh nghiệm hiện tại.",
+      "one_line_reason": "Marketing Expert Content Strategy (VinUni) — content/truyền thông, ngành Giáo dục ưu tiên.",
       "strengths": [
-        "Kinh nghiệm content/truyền thông đa nền tảng",
-        "Ngành Giáo dục/Đào tạo đúng ưu tiên",
-        "Tiếng Anh tốt (TOEIC 830)"
+        "Content & truyền thông đa nền tảng",
+        "Tiếng Anh tốt"
       ],
       "gaps": [
-        "JD cần nền tảng editor/journalist & tư duy chiến lược nội dung",
-        "Yêu cầu dùng AI tools cho nội dung"
+        "JD cần nền tảng editor/chiến lược nội dung"
       ],
-      "keywords_missing": [
-        "content strategy",
-        "editorial",
-        "narrative systems"
-      ],
+      "keywords_missing": [],
       "criteria_flags": [
         "✔ Marketing Communications",
-        "✔ Hà Nội",
-        "✔ Ngành Giáo dục"
+        "✔ Ngành Giáo dục",
+        "✔ Hà Nội"
       ]
     },
     "date_added": "2026-07-09",

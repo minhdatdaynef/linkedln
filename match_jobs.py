@@ -146,12 +146,29 @@ _BAD_LEVEL_TITLE = re.compile(
     re.IGNORECASE,
 )
 
+# Title PHAI thuoc marketing/truyen thong (hoac dong nghia) moi giu lai
+_MKT_TITLE = re.compile(
+    r"marketing|mkt|truyền thông|truyen thong|communication|comms|\bpr\b|"
+    r"thương hiệu|thuong hieu|\bbrand\b|content|nội dung|noi dung|social|\bmedia\b|"
+    r"event|sự kiện|su kien|activation|digital|\bseo\b|\bsem\b|quảng cáo|quang cao|"
+    r"\bads?\b|advertising|copywrit|creative|sáng tạo|community|\bkol\b|\bkoc\b|influencer|marcom",
+    re.IGNORECASE,
+)
+# Title co dau hieu SALES/kinh doanh -> loai (ung vien tranh sale)
+_SALES_TITLE = re.compile(
+    r"\bsales?\b|\bsale\b|bán hàng|ban hang|kinh doanh|business development|\bbd\b|"
+    r"telesales|tuyển sinh|tuyen sinh|account executive|account manager",
+    re.IGNORECASE,
+)
+
 
 def hard_exclude_reason(job):
     """Tra ve ly do LOAI THANG (None neu giu lai). Theo lua chon: loai toan bo."""
     m = job.get("match", {})
     lvl = (m.get("level") or "").lower()
     title = job.get("title", "")
+    if not _MKT_TITLE.search(title) or _SALES_TITLE.search(title):
+        return "Title không thuộc marketing/truyền thông (hoặc là sales)"
     if "quản lý" in lvl or "quan ly" in lvl or "ctv" in lvl or "intern" in lvl or _BAD_LEVEL_TITLE.search(title):
         return "Sai cấp bậc (Manager/Lead/CTV)"
     if m.get("in_hanoi") is False:
