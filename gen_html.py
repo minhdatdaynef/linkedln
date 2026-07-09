@@ -116,6 +116,22 @@ font-weight:800;font-size:18px;color:#fff}
 .new{background:#0a66c2;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:8px}
 .srcb{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px}
 .srcb.li{background:#e8f1fb;color:#0a66c2} .srcb.vnw{background:#eafaf0;color:#0a8f4f}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tab{border:1px solid var(--bd);background:#fff;border-radius:10px;padding:9px 16px;font:inherit;font-size:14px;font-weight:600;color:var(--mut);cursor:pointer}
+.tab.on{background:var(--acc,#3a35a3);color:#fff;border-color:var(--acc,#3a35a3)}
+.tab .cnt{font-weight:800}
+.star{flex:0 0 auto;border:none;background:none;font-size:22px;line-height:1;cursor:pointer;color:#c9c4bb;padding:0 2px}
+.star.on{color:#f5b301}
+.summary{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 14px;font-size:13px;color:var(--mut)}
+.summary b{color:var(--tx)}
+.tl{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px}
+.st{font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;border:1px solid var(--bd);background:#fff;color:var(--mut);cursor:pointer}
+.st.on{border-color:transparent;color:#fff}
+.st.on[data-st="quan_tam"]{background:#b58a00} .st.on[data-st="da_nop"]{background:#0a66c2}
+.st.on[data-st="phong_van"]{background:#7a2ea0} .st.on[data-st="offer"]{background:#1f8a5b}
+.st.on[data-st="reject"]{background:#cf3b3b}
+.note{width:100%;border:1px solid var(--bd);border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;margin-top:8px;min-height:38px;resize:vertical}
+.upd{font-size:11.5px;color:var(--mut);margin-top:6px}
 .pager{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0 6px}
 .pg{border:1px solid var(--bd);background:#fff;color:var(--tx);border-radius:8px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
 .pg:hover:not(:disabled){border-color:var(--pri);color:var(--pri)} .pg.on{background:var(--pri);color:#fff;border-color:var(--pri)}
@@ -140,7 +156,11 @@ font-size:14px;padding:9px 16px;border-radius:9px}
 <p style="margin:0 0 16px;display:flex;gap:10px;flex-wrap:wrap">
   <a class="navlink" href="cv.html">✍️ Sửa CV · Cover letter · Chấm fit</a>
   <a class="navlink" href="upskill.html">📈 Kỹ năng cần bổ sung</a></p>
-<div class="bar">
+<div class="tabs">
+  <button class="tab on" data-view="all">Tất cả job</button>
+  <button class="tab" data-view="saved">⭐ Quan tâm <span class="cnt" id="savedCount">0</span></button>
+</div>
+<div class="bar" id="bar">
   <input id="q" placeholder="🔍 Tìm theo vị trí / công ty..."/>
   <select id="sort">
     <option value="score">Phù hợp + mới nhất</option>
@@ -167,10 +187,18 @@ font-size:14px;padding:9px 16px;border-radius:9px}
 </div>
 <div id="list"></div>
 <div id="pager" class="pager"></div>
+<div id="saved"></div>
 </div>
 <script>
 const JOBS = __DATA__;
 const color = s => s>=70?'#1f8a5b':s>=50?'#c87a16':'#cf3b3b';
+// ===== Quan tam + timeline (localStorage) =====
+const SKEY='saved_jobs_v1';
+let SAVED={}; try{ SAVED=JSON.parse(localStorage.getItem(SKEY)||'{}')||{}; }catch(e){ SAVED={}; }
+const saveSt=()=>{ try{ localStorage.setItem(SKEY,JSON.stringify(SAVED)); }catch(e){} };
+const STAGES=[['quan_tam','💛 Quan tâm'],['da_nop','📤 Đã nộp'],['phong_van','🗓️ Phỏng vấn'],['offer','✅ Offer'],['reject','❌ Từ chối']];
+const today10=()=>{ try{return new Date().toISOString().slice(0,10);}catch(e){return '';} };
+let view='all';
 const esc = t => (t||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 let page=1; const PER=10;
 function render(){
@@ -210,6 +238,7 @@ function render(){
         ${j.posted?'<span>📅 đăng '+esc(j.posted)+'</span>':''}
         ${j.added?'<span>🗓️ thấy '+dd(j.added)+'</span>':''}</div>
      </div>
+     <button class="star ${SAVED[j.url]?'on':''}" data-star="${esc(j.url)}" title="Quan tâm">${SAVED[j.url]?'★':'☆'}</button>
     </div>
     ${j.reason?'<div class="reason">💬 '+esc(j.reason)+'</div>':''}
     ${j.flags&&j.flags.length?'<div class="flags">'+j.flags.map(f=>{
@@ -251,6 +280,56 @@ document.getElementById('reset').onclick=()=>{
   document.getElementById('onlyOk').checked=false; document.getElementById('onlyNew').checked=false;
   page=1; render();
 };
+
+// ===== Quan tam: tab, sao, timeline =====
+function updSavedCount(){ document.getElementById('savedCount').textContent=Object.keys(SAVED).length; }
+function setView(v){
+  view=v;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-view')===v));
+  document.getElementById('bar').style.display=v==='all'?'':'none';
+  document.getElementById('list').style.display=v==='all'?'':'none';
+  document.getElementById('pager').style.display=v==='all'?'':'none';
+  document.getElementById('saved').style.display=v==='saved'?'':'none';
+  if(v==='saved') renderSaved(); else render();
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setView(t.getAttribute('data-view'))));
+document.getElementById('list').addEventListener('click',e=>{
+  const u=e.target.getAttribute('data-star'); if(!u)return;
+  if(SAVED[u]){ delete SAVED[u]; }
+  else{ const j=JOBS.find(x=>x.url===u)||{}; SAVED[u]={url:u,title:j.title||'',company:j.company||'',score:j.score||0,source:j.source||'',status:'quan_tam',note:'',updated:today10()}; }
+  saveSt(); updSavedCount(); render();
+});
+function renderSaved(){
+  const S=document.getElementById('saved'), arr=Object.values(SAVED);
+  const cnt={}; STAGES.forEach(([k])=>cnt[k]=0); arr.forEach(s=>{ cnt[s.status]=(cnt[s.status]||0)+1; });
+  if(!arr.length){ S.innerHTML='<div class="empty">Chưa có job quan tâm. Bấm ⭐ ở danh sách để thêm.</div>'; return; }
+  const sum='<div class="summary">'+STAGES.map(([k,l])=>'<span>'+l+': <b>'+(cnt[k]||0)+'</b></span>').join(' · ')+'</div>';
+  const ord={quan_tam:0,da_nop:1,phong_van:2,offer:3,reject:4};
+  arr.sort((a,b)=>(ord[a.status]-ord[b.status])||(b.score-a.score));
+  S.innerHTML=sum+arr.map(s=>`
+   <div class="card">
+    <div class="row1">
+     <div class="badge" style="background:${color(s.score)}">${s.score}<small style="font-size:11px">%</small></div>
+     <div style="flex:1;min-width:0">
+      <a class="t" href="${esc(s.url)}" target="_blank">${esc(s.title)}</a>
+      <div class="meta"><b style="color:#1d1c1a">${esc(s.company)}</b></div>
+     </div>
+     <button class="star on" data-unsave="${esc(s.url)}" title="Bỏ quan tâm">★</button>
+    </div>
+    <div class="tl">${STAGES.map(([k,l])=>'<span class="st '+(s.status===k?'on':'')+'" data-st="'+k+'" data-u="'+esc(s.url)+'">'+l+'</span>').join('')}</div>
+    <textarea class="note" data-note="${esc(s.url)}" placeholder="Ghi chú (ngày PV, người liên hệ...)">${esc(s.note||'')}</textarea>
+    <div class="upd">Cập nhật: ${esc(s.updated||'-')}</div>
+   </div>`).join('');
+}
+document.getElementById('saved').addEventListener('click',e=>{
+  const st=e.target.getAttribute('data-st'), u=e.target.getAttribute('data-u'), un=e.target.getAttribute('data-unsave');
+  if(st&&u&&SAVED[u]){ SAVED[u].status=st; SAVED[u].updated=today10(); saveSt(); renderSaved(); return; }
+  if(un){ if(confirm('Bỏ job này khỏi Quan tâm?')){ delete SAVED[un]; saveSt(); updSavedCount(); renderSaved(); } }
+});
+document.getElementById('saved').addEventListener('input',e=>{
+  const u=e.target.getAttribute('data-note'); if(u&&SAVED[u]){ SAVED[u].note=e.target.value; SAVED[u].updated=today10(); saveSt(); }
+});
+updSavedCount();
 render();
 </script></body></html>"""
 
