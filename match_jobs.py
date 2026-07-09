@@ -110,6 +110,10 @@ def get_jobs(use_cached: bool, prefs: dict = None) -> list:
     print(f"[Jobs] Tong raw: {len(all_jobs)} tu {len(keywords)} keyword")
 
     filtered = crawler.filter_by_title(all_jobs, list(set(keywords)))
+    # LOC TITLE marketing/khong-sales ngay khi keo ve (khoi ton cong cham job khong lien quan)
+    before = len(filtered)
+    filtered = [j for j in filtered if title_ok(j.get("title", ""))]
+    print(f"[Jobs] LinkedIn loc title marketing: {before} -> {len(filtered)} job")
     if not filtered:
         print("[Jobs] Khong co job sau filter.")
         return []
@@ -122,13 +126,12 @@ def get_jobs(use_cached: bool, prefs: dict = None) -> list:
         try:
             import crawl_vietnamworks as vnw
             vnw_kw = os.getenv("VNW_KEYWORDS", "marketing,social media,communication,PR,event,content")
-            vnw_jobs = vnw.fetch(vnw_kw, pages=int(os.getenv("VNW_PAGES", "2")), within_days=7)
+            vnw_jobs = vnw.fetch(vnw_kw, pages=int(os.getenv("VNW_PAGES", "6")), within_days=7)
             have = {j.get("url") for j in filtered}
+            # vnw.fetch() da loc title marketing san; chi dedup + cap so luong, uu tien moi nhat
             add = [j for j in vnw_jobs if j.get("url") and j.get("url") not in have]
-            # bo title cap quan ly (khoi ton diem cham), uu tien moi nhat, cap so luong
-            add = [j for j in add if not _BAD_LEVEL_TITLE.search(j.get("title", ""))]
             add.sort(key=lambda j: j.get("posted") or "", reverse=True)
-            add = add[:int(os.getenv("VNW_MAX", "25"))]
+            add = add[:int(os.getenv("VNW_MAX", "30"))]
             filtered += add
             print(f"[Jobs] VietnamWorks: +{len(add)} job (tong {len(filtered)})")
         except Exception as e:
@@ -139,27 +142,8 @@ def get_jobs(use_cached: bool, prefs: dict = None) -> list:
     return filtered
 
 
-# Tu khoa title -> cap quan ly / CTV (an toan, bat sot truong hop AI bo qua)
-_BAD_LEVEL_TITLE = re.compile(
-    r"\bmanager\b|\bdirector\b|\bhead\b|\blead\b|\bleader\b|trưởng nhóm|trưởng phòng|"
-    r"\bchief\b|\bcmo\b|giám đốc|\bctv\b|cộng tác viên|collaborator|\bintern\b|thực tập",
-    re.IGNORECASE,
-)
-
-# Title PHAI thuoc marketing/truyen thong (hoac dong nghia) moi giu lai
-_MKT_TITLE = re.compile(
-    r"marketing|mkt|truyền thông|truyen thong|communication|comms|\bpr\b|"
-    r"thương hiệu|thuong hieu|\bbrand\b|content|nội dung|noi dung|social|\bmedia\b|"
-    r"event|sự kiện|su kien|activation|digital|\bseo\b|\bsem\b|quảng cáo|quang cao|"
-    r"\bads?\b|advertising|copywrit|creative|sáng tạo|community|\bkol\b|\bkoc\b|influencer|marcom",
-    re.IGNORECASE,
-)
-# Title co dau hieu SALES/kinh doanh -> loai (ung vien tranh sale)
-_SALES_TITLE = re.compile(
-    r"\bsales?\b|\bsale\b|bán hàng|ban hang|kinh doanh|business development|\bbd\b|"
-    r"telesales|tuyển sinh|tuyen sinh|account executive|account manager",
-    re.IGNORECASE,
-)
+# Bo loc title dung chung (marketing / khong sales / khong cap quan ly)
+from job_filter import _MKT_TITLE, _SALES_TITLE, _BAD_LEVEL_TITLE, title_ok
 
 
 def hard_exclude_reason(job):

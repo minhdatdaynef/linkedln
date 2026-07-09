@@ -9,6 +9,7 @@ Chay test: python crawl_vietnamworks.py
 import re
 import time
 import requests
+from job_filter import title_ok
 from datetime import datetime, date, timedelta
 
 API = "https://ms.vietnamworks.com/job-search/v1.0/search"
@@ -105,6 +106,8 @@ def fetch(keywords, city_hanoi_only=True, pages=2, hits=30, within_days=7):
             for j in data:
                 nj = _normalize(j)
                 if not nj["url"] or nj["url"] in seen:
+                    continue
+                if not title_ok(nj["title"]):          # LOC TITLE ngay khi keo ve
                     continue
                 if city_hanoi_only and not _in_hanoi(j):
                     continue
