@@ -8977,5 +8977,90 @@
     },
     "date_added": "2026-07-09",
     "is_new": true
+  },
+  "https://www.vietnamworks.com/social-media-specialist-2050207-jv": {
+    "title": "Social Media Specialist",
+    "company": "Công Ty TNHH Cibes Lift Việt Nam",
+    "location": "P.303, tòa nhà HITC, số 239 Xuân Thủy, Hà Nội",
+    "url": "https://www.vietnamworks.com/social-media-specialist-2050207-jv",
+    "posted": "2026-07-09",
+    "description": "A. MÔ TẢ CÔNG VIỆC Thị trường mục tiêu: Các nước châu Âu 1. Lên kế hoạch nội dung mạng xã hội - Lên kế hoạch sản xuất nội dung theo tháng cho các kênh social Facebook, Tiktok, Youtube, Linkedin,v.v cho 2 đối tượng: khách hàng mục tiêu và LLM - Đề xuất chủ đề, tuyến nội dung...\n\nYêu cầu:\nB. YÊU CẦU CÔNG VIỆC 1. Thái độ - Nhanh nhẹn, kỷ luật, có trách nhiệm, chủ động quan sát và đề xuất cải thiện - Yêu thích sáng tạo content - Không ngại học hỏi cái mới - Có khả năng sắp xếp, bám sát tiến độ công việc 2. Kỹ năng - Có tư duy logic, tư duy...",
+    "seniority": "Nhân viên",
+    "industries": "",
+    "salary": "",
+    "source": "vietnamworks",
+    "match": {
+      "match_score": 85,
+      "cv_fit": 88,
+      "criteria_fit": 80,
+      "level": "Executive/Specialist",
+      "in_hanoi": true,
+      "salary_below_min": false,
+      "requires_travel": false,
+      "one_line_reason": "Đúng mảng Social Media: lập kế hoạch & sản xuất nội dung Facebook/TikTok/YouTube, khớp mạnh kinh nghiệm CV.",
+      "strengths": [
+        "Kinh nghiệm quản lý kênh Facebook/TikTok đúng yêu cầu",
+        "Sản xuất nội dung, video, thiết kế khớp JD",
+        "Cấp Specialist tại Hà Nội đúng định hướng"
+      ],
+      "gaps": [
+        "JD nhắm thị trường châu Âu, cần tiếng Anh tốt (CV có TOEIC 830)",
+        "Chưa nêu kinh nghiệm LinkedIn/B2B"
+      ],
+      "keywords_missing": [
+        "LinkedIn content",
+        "nội dung thị trường quốc tế"
+      ],
+      "criteria_flags": [
+        "✔ Social Media (quản lý kênh)",
+        "✔ Hà Nội",
+        "✔ Executive/Specialist"
+      ]
+    },
+    "date_added": "2026-07-09",
+    "is_new": true
+  },
+  "https://www.vietnamworks.com/marketing-expert-content-strategy-2073839-jv": {
+    "title": "Marketing Expert (Content Strategy)",
+    "company": "Trường Đại học VinUni",
+    "location": "Trường đại học VinUni, Vinhomes Ocean park, Gia Lâm, Hà Nội",
+    "url": "https://www.vietnamworks.com/marketing-expert-content-strategy-2073839-jv",
+    "posted": "2026-07-09",
+    "description": "ABOUT THE ROLE VinUniversity is seeking a highly motivated Marketing Expert (Content Strategy) to lead the development of impactful content initiatives that strengthen the University’s brand presence and audience engagement. This role is responsible for developing and executing strategic content and marketing initiatives across multiple platforms to enhance brand storytelling, support institutional priorities, and drive meaningful...\n\nYêu cầu:\n• Strong background as an editor, journalist, or content strategist. • Excellent English writing and editorial skills. • Strong structural thinking and editorial judgment. • Ability to design narrative systems rather than only producing content. • Demonstrated ability to effectively leverage AI tools to enhance strategic thinking, research, storytelling, communication quality, productivity, and creative execution.",
+    "seniority": "Nhân viên",
+    "industries": "",
+    "salary": "",
+    "source": "vietnamworks",
+    "match": {
+      "match_score": 72,
+      "cv_fit": 62,
+      "criteria_fit": 86,
+      "level": "Executive/Specialist",
+      "in_hanoi": true,
+      "salary_below_min": false,
+      "requires_travel": false,
+      "one_line_reason": "Định hướng content/truyền thông tại đại học (ngành Giáo dục ưu tiên), Hà Nội; JD thiên chiến lược nội dung cấp cao hơn kinh nghiệm hiện tại.",
+      "strengths": [
+        "Kinh nghiệm content/truyền thông đa nền tảng",
+        "Ngành Giáo dục/Đào tạo đúng ưu tiên",
+        "Tiếng Anh tốt (TOEIC 830)"
+      ],
+      "gaps": [
+        "JD cần nền tảng editor/journalist & tư duy chiến lược nội dung",
+        "Yêu cầu dùng AI tools cho nội dung"
+      ],
+      "keywords_missing": [
+        "content strategy",
+        "editorial",
+        "narrative systems"
+      ],
+      "criteria_flags": [
+        "✔ Marketing Communications",
+        "✔ Hà Nội",
+        "✔ Ngành Giáo dục"
+      ]
+    },
+    "date_added": "2026-07-09",
+    "is_new": true
   }
 }
