@@ -188,7 +188,7 @@ font-size:14px;padding:9px 16px;border-radius:9px}
 <div class="bar" id="bar">
   <input id="q" placeholder="🔍 Tìm theo vị trí / công ty..."/>
   <select id="sort">
-    <option value="score">Phù hợp + mới nhất</option>
+    <option value="score">💰 Ưu tiên có lương + phù hợp</option>
     <option value="posted">Mới đăng nhất</option>
     <option value="company">Công ty (A-Z)</option>
     <option value="title">Vị trí (A-Z)</option>
@@ -217,6 +217,8 @@ font-size:14px;padding:9px 16px;border-radius:9px}
 <script>
 const JOBS = __DATA__;
 const color = s => s>=70?'#1f8a5b':s>=50?'#c87a16':'#cf3b3b';
+const SAL_BONUS = 8;  // job co luong duoc cong nhe khi sap xep; match van la chinh
+const effScore = j => (j.score||0) + (j.salary ? SAL_BONUS : 0);
 // ===== Quan tam + timeline (localStorage) =====
 const SKEY='saved_jobs_v1';
 let SAVED={}; try{ SAVED=JSON.parse(localStorage.getItem(SKEY)||'{}')||{}; }catch(e){ SAVED={}; }
@@ -240,7 +242,7 @@ function render(){
     && (!src || j.source===src)
     && (!onlyOk || !(j.flags||[]).some(f=>f.includes('✘')))
     && (!onlyNew || j.new));
-  arr.sort((a,b)=> sort==='score'? ((b.score-a.score) || (b.posted||'').localeCompare(a.posted||'')) :
+  arr.sort((a,b)=> sort==='score'? ((effScore(b)-effScore(a)) || (b.posted||'').localeCompare(a.posted||'')) :
     sort==='posted'? (b.posted||'').localeCompare(a.posted||'') :
     (a[sort]||'').localeCompare(b[sort]||''));
   const total=arr.length;
@@ -365,11 +367,10 @@ def main():
     n_all = len(jobs)
     jobs, cutoff = within_posted_window(jobs)
     n_win = len(jobs)
-    jobs = [j for j in jobs if extract_salary(j)]  # CHI giu job co luong ro rang
-    n_sal = len(jobs)
+    n_sal = sum(1 for j in jobs if extract_salary(j))  # dem job co luong (GIU HET, khong loc bo)
     per = int(os.getenv("MAX_PER_SOURCE", "30"))
     jobs = cap_per_source(jobs, per)
-    print(f"[Loc] posted >= {cutoff}; co luong {n_sal}/{n_win}; toi da {per}/nguon -> {len(jobs)} job.")
+    print(f"[Loc] posted >= {cutoff}; {n_sal}/{n_win} co luong (giu het, uu tien len top); toi da {per}/nguon -> {len(jobs)} job.")
     data = slim(jobs)
     html = (HTML
             .replace("__DATA__", json.dumps(data, ensure_ascii=False))
