@@ -5,8 +5,31 @@ Mo bang trinh duyet: co tim kiem / sap xep / loc theo diem / link bam duoc.
 Nguon: data/jobs_filtered.json -> data/jobs_ranked.json
 Chay: python gen_html.py  ->  data/jobs.html
 """
-import os, sys, json
+import os, sys, json, re
 from datetime import date, timedelta
+
+# Chi hien job CO LUONG (ro rang tu trường salary cua VNW HOAC tu mo ta JD)
+_SAL_SKIP = ("", "negotiable", "thương lượng", "thoả thuận", "thỏa thuận", "cạnh tranh", "competitive")
+_SAL_PATS = [
+    re.compile(r"(?:thu nhập|lương|mức lương|income|salary)[:\s]{0,4}(?:up ?to |upto |tới |từ |khoảng )?\d[\d.,]*\s*(?:[-–~]|đến|to)?\s*\d*[\d.,]*\s*(?:triệu|tr|m\b|vnđ|vnd|₫|đ|000\.000|usd|\$)", re.I),
+    re.compile(r"(?:up ?to|upto|tới|từ)\s*\d[\d.,]*\s*(?:triệu|tr|m\b|million)", re.I),
+    re.compile(r"\d{1,3}\s*(?:[-–~]|đến)\s*\d{1,3}\s*(?:triệu|tr|m\b|million)", re.I),
+    re.compile(r"\d{1,2}[.,]\d{3}[.,]\d{3}\s*(?:[-–~]|đến)?\s*\d{0,2}[.,]?\d{0,3}[.,]?\d{0,3}", re.I),
+    re.compile(r"\$\s?\d[\d,.]*\s*[-–~]\s*\d[\d,.]*", re.I),
+]
+
+
+def extract_salary(job):
+    """Tra ve chuoi luong RUT DUOC (tu truong salary hoac tu mo ta); '' neu khong co."""
+    s = str(job.get("salary") or "").strip()
+    if s and s.lower() not in _SAL_SKIP:
+        return s[:45]
+    t = " ".join(((job.get("title", "") or "") + "  " + (job.get("description", "") or "")).split())
+    for p in _SAL_PATS:
+        m = p.search(t)
+        if m:
+            return re.sub(r"\s+", " ", m.group(0)).strip(" :.-–~")[:45]
+    return ""
 
 # Chi hien thi job co posted trong DUNG 7 ngay gan nhat (current - 7).
 POSTED_WINDOW_DAYS = int(os.getenv("POSTED_WINDOW_DAYS", "7"))
@@ -77,6 +100,7 @@ def slim(jobs):
             "posted": j.get("posted") or "",
             "added": j.get("date_added") or "",
             "source": j.get("source") or "linkedin",
+            "salary": extract_salary(j),
             "url": j.get("url", ""),
             "reason": m.get("one_line_reason", ""),
             "strengths": m.get("strengths", []),
@@ -116,6 +140,7 @@ font-weight:800;font-size:18px;color:#fff}
 .new{background:#0a66c2;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:6px;margin-left:8px}
 .srcb{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px}
 .srcb.li{background:#e8f1fb;color:#0a66c2} .srcb.vnw{background:#eafaf0;color:#0a8f4f}
+.sal{color:#0a8f4f;font-weight:700}
 .tabs{display:flex;gap:8px;margin-bottom:14px}
 .tab{border:1px solid var(--bd);background:#fff;border-radius:10px;padding:9px 16px;font:inherit;font-size:14px;font-weight:600;color:var(--mut);cursor:pointer}
 .tab.on{background:var(--acc,#3a35a3);color:#fff;border-color:var(--acc,#3a35a3)}
@@ -234,6 +259,7 @@ function render(){
       <a class="t" href="${esc(j.url)}" target="_blank">${esc(j.title)}${j.new?'<span class="new">MOI</span>':''}</a>
       <div class="meta"><b style="color:#1d1c1a">${esc(j.company)}</b>
         <span class="srcb ${j.source==='vietnamworks'?'vnw':'li'}">${j.source==='vietnamworks'?'VietnamWorks':'LinkedIn'}</span>
+        ${j.salary?'<span class="sal">💰 '+esc(j.salary)+'</span>':''}
         ${j.location?'<span>📍 '+esc(j.location)+'</span>':''}
         ${j.posted?'<span>📅 đăng '+esc(j.posted)+'</span>':''}
         ${j.added?'<span>🗓️ thấy '+dd(j.added)+'</span>':''}</div>
@@ -296,7 +322,7 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setV
 document.getElementById('list').addEventListener('click',e=>{
   const u=e.target.getAttribute('data-star'); if(!u)return;
   if(SAVED[u]){ delete SAVED[u]; }
-  else{ const j=JOBS.find(x=>x.url===u)||{}; SAVED[u]={url:u,title:j.title||'',company:j.company||'',score:j.score||0,source:j.source||'',status:'quan_tam',note:'',updated:today10()}; }
+  else{ const j=JOBS.find(x=>x.url===u)||{}; SAVED[u]={url:u,title:j.title||'',company:j.company||'',score:j.score||0,source:j.source||'',salary:j.salary||'',status:'quan_tam',note:'',updated:today10()}; }
   saveSt(); updSavedCount(); render();
 });
 function renderSaved(){
@@ -312,7 +338,7 @@ function renderSaved(){
      <div class="badge" style="background:${color(s.score)}">${s.score}<small style="font-size:11px">%</small></div>
      <div style="flex:1;min-width:0">
       <a class="t" href="${esc(s.url)}" target="_blank">${esc(s.title)}</a>
-      <div class="meta"><b style="color:#1d1c1a">${esc(s.company)}</b></div>
+      <div class="meta"><b style="color:#1d1c1a">${esc(s.company)}</b>${s.salary?'<span class="sal">💰 '+esc(s.salary)+'</span>':''}</div>
      </div>
      <button class="star on" data-unsave="${esc(s.url)}" title="Bỏ quan tâm">★</button>
     </div>
@@ -338,9 +364,12 @@ def main():
     jobs, src = load()
     n_all = len(jobs)
     jobs, cutoff = within_posted_window(jobs)
+    n_win = len(jobs)
+    jobs = [j for j in jobs if extract_salary(j)]  # CHI giu job co luong ro rang
+    n_sal = len(jobs)
     per = int(os.getenv("MAX_PER_SOURCE", "30"))
     jobs = cap_per_source(jobs, per)
-    print(f"[Loc] posted >= {cutoff}; toi da {per}/nguon -> {len(jobs)} job.")
+    print(f"[Loc] posted >= {cutoff}; co luong {n_sal}/{n_win}; toi da {per}/nguon -> {len(jobs)} job.")
     data = slim(jobs)
     html = (HTML
             .replace("__DATA__", json.dumps(data, ensure_ascii=False))
